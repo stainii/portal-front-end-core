@@ -1,0 +1,37 @@
+@import "../../app";
+
+.mainComponent {
+
+  min-width: 100%;
+  min-height: 100%;
+  background-color: $background-colour;
+
+  display: flex;
+  flex-direction: row;
+
+  h1 {
+    color: $background-colour;
+    background-color: $highlight-colour;
+    display: block;
+    padding: 20px;
+    max-width: 100%;
+  }
+
+  .menu {
+    flex-grow: 1;
+    min-height: 100%;
+    background-color: $dark-background;
+    opacity: 0.9;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  .notifications {
+    flex-grow: 5;
+    background: $background-colour;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}

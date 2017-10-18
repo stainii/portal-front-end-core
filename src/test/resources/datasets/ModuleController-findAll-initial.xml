@@ -1,0 +1,23 @@
+<dataset>
+    <module_collection
+            id="1"
+            name="default"
+            default_collection="true"
+    />
+
+    <module
+        module_collection_id="1"
+        position="0"
+        name="test1"
+        js="testjs1"
+        css="testcss1"
+    />
+    <module
+        module_collection_id="1"
+        position="1"
+        name="test2"
+        js="testjs2"
+        css="testcss2"
+    />
+
+</dataset>

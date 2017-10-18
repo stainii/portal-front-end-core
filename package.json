@@ -5,11 +5,12 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "gulp"
+    "build": "npm update --dev && gulp"
   },
   "author": "Stijn Hooft",
   "license": "MIT",
   "dependencies": {
+    "event-emitter-es6": "^1.1.5",
     "lie": "^3.1.1",
     "lodash": "^4.17.4",
     "react": "^15.6.1",

@@ -12,11 +12,13 @@ var config = {
     port: 3000,
     devBaseUrl: "http://localhost",
     paths: {
-        html: "./src/**/*.html",
-        js: "./src/**/*.js",
-        mainJS: "./src/app.js",
-        sass: "./src/**/*.scss",
-        dist: "./dist"
+        html: "./src/main/webapp/**/*.html",
+        js: "./src/main/webapp/**/*.js",
+        mainJS: "./src/main/webapp/app.js",
+        sass: "./src/main/webapp/**/*.scss",
+        imgs: "./src/main/webapp/imgs/**/*",
+        webInf: "./src/main/webapp/WEB-INF/**/*",
+        dist: "./src/main/webapp/dist/"
     }
 
 }
@@ -33,13 +35,20 @@ gulp.task("connect", function () {
 gulp.task("open", ["connect"], function() {
     gulp.src("dist/index.html")
         .pipe(open({
-            uri: config.devBaseUrl + ":" + config.port + "/"
+            uri: config.devBaseUrl + ":" + config.port + "/",
+
         }));
 });
 
 gulp.task("html", function() {
     gulp.src(config.paths.html)
         .pipe(gulp.dest(config.paths.dist))
+        .pipe(connect.reload());
+});
+
+gulp.task("web-inf", function() {
+    gulp.src(config.paths.webInf)
+        .pipe(gulp.dest(config.paths.dist + "/WEB-INF/"))
         .pipe(connect.reload());
 });
 
@@ -62,4 +71,11 @@ gulp.task('sass', function () {
         .pipe(gulp.dest(config.paths.dist));
 });
 
-gulp.task("default", [ "html", "js", "sass", "open" ]);
+gulp.task("imgs", function() {
+    gulp.src(config.paths.imgs)
+        .pipe(gulp.dest(config.paths.dist + "imgs/"))
+        .pipe(connect.reload());
+});
+
+gulp.task("default", [ "html", "js", "sass", "imgs", "web-inf" ]);
+gulp.task("lite", [ "html", "js", "sass", "imgs", "open" ]);

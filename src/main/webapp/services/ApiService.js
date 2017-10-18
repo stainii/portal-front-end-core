@@ -1,6 +1,6 @@
-class ConfigService {
+class ApiService {
 
-    loadConfiguration() {
+    getJson(url) {
         return new Promise(function (resolve, reject) {
             const request = new XMLHttpRequest();
 
@@ -13,11 +13,11 @@ class ConfigService {
                 }
             };
 
-            request.open('GET', "http://localhost:8080/portal/config/front-end-core-dev.json");
+            request.open('GET', url);
             request.send();
         });
     }
 
 }
 
-export default ConfigService
+export default ApiService

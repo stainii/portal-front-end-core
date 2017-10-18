@@ -1,0 +1,8 @@
+<dataset>
+    <module_collection
+            name="default"
+            default_collection="true" />
+    <module_collection
+            name="test"
+            default_collection="false" />
+</dataset>

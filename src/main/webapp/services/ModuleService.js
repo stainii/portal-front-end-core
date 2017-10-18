@@ -1,14 +1,26 @@
-import ConfigService from "./ConfigService";
+import ApiService from "./ApiService";
 import _ from "lodash";
 
 class ModuleService {
 
     constructor() {
-        this.configService = new ConfigService();
+        this.apiService = new ApiService();
     }
 
+    loadRemoteModules() {
+        const self = this;
+        return this.apiService.getJson("/portal/core/api/module/")
+            .then(modules => {
+                return Promise.all(
+                    _.map(modules, function (module) {
+                        console.log(module.name, module.js, module.css);
+                        return self._loadRemoteModule(module);
+                    })
+                );
+            });
+    };
 
-    loadRemoteModule(module) {
+    _loadRemoteModule(module) {
         const loadJS = new Promise(function (resolve, reject) {
             const request = new XMLHttpRequest();
 
@@ -42,20 +54,8 @@ class ModuleService {
             loadJS,
             loadCSS
         ]).then(() => {
-            return { name: eval(module.name), props: module.props || {}}
-        });
-    };
-
-    loadRemoteModules() {
-        const self = this;
-        return this.configService.loadConfiguration()
-            .then(config => {
-                return Promise.all(
-                    _.map(config.modules, function (module) {
-                        console.log(module.name, module.js, module.css);
-                        return self.loadRemoteModule(module);
-                    })
-            );
+            //return { name: eval(module.name), props: module.props || {}}
+            return module;
         });
     };
 
