@@ -30,20 +30,13 @@
         <config.server.uri>http://localhost:8080/portal/config</config.server.uri>
 
         <!-- versions of dependencies -->
-        <java.version>1.8</java.version>
-        <spring-cloud.version>Dalston.SR1</spring-cloud.version>
-        <javaee.api.version>7.0</javaee.api.version>
-        <maven.resources.plugin.version>3.0.2</maven.resources.plugin.version>
-        <maven.war.plugin.version>3.0.0</maven.war.plugin.version>
-        <frontend.maven.plugin.version>1.4</frontend.maven.plugin.version>
-        <lombok.version>1.16.16</lombok.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>${javaee.api.version}</version>
+            <version>7.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -93,7 +86,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>${lombok.version}</version>
+            <version>1.16.16</version>
         </dependency>
 
         <dependency>
@@ -153,7 +146,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
+                <version>Dalston.SR1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -177,12 +170,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>${maven.resources.plugin.version}</version>
+                <version>3.0.2</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>${maven.war.plugin.version}</version>
+                <version>3.0.0</version>
                 <configuration>
                     <warSourceDirectory>${basedir}/src/main/webapp/dist</warSourceDirectory>
                     <webResources>
@@ -197,7 +190,7 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>${frontend.maven.plugin.version}</version>
+                <version>1.4</version>
                 <executions>
                     <execution>
                         <id>install node and npm</id>
