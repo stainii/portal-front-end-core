@@ -5,6 +5,7 @@ import be.stijnhooft.portal.core.mappers.ModuleMapper;
 import be.stijnhooft.portal.core.model.Module;
 import be.stijnhooft.portal.core.model.ModuleCollection;
 import be.stijnhooft.portal.core.repositories.ModuleCollectionRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,8 +13,11 @@ import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
 
+import static org.springframework.util.CollectionUtils.isEmpty;
+
 @Service
 @Transactional
+@Slf4j
 public class ModuleService {
 
     private final ConfigurationService configurationService;
@@ -42,24 +46,26 @@ public class ModuleService {
     public void syncModules() {
         List<Module> modules = configurationService.getModules();
 
-        ModuleCollection moduleCollection =
-                moduleCollectionRepository.findDefault()
-                                          .orElseGet(moduleCollectionService::createInitialDefault);
+        if (isEmpty(modules)) {
+            log.error("No modules found in the config module. Did something go wrong? I will skip syncing.");
+        } else {
+            ModuleCollection moduleCollection =
+                    moduleCollectionRepository.findDefault()
+                                              .orElseGet(moduleCollectionService::createInitialDefault);
 
-        updateExistingModules(modules, moduleCollection);
-        persistNewModules(modules, moduleCollection);
-        removeModulesWhichNoLongerExist(modules, moduleCollection);
+            updateExistingModules(modules, moduleCollection);
+            persistNewModules(modules, moduleCollection);
+            removeModulesWhichNoLongerExist(modules, moduleCollection);
+        }
     }
 
     private void removeModulesWhichNoLongerExist(List<Module> modules, ModuleCollection moduleCollection) {
         moduleCollection.getModulesInOrder()
-                .forEach((possiblyRemovedModule) -> {
-                    boolean moduleNoLongerExistsInConfig = modules. stream()
-                                                                    .noneMatch(module -> module.getName().equalsIgnoreCase(possiblyRemovedModule.getName()));
-                    if (moduleNoLongerExistsInConfig) {
-                        moduleCollection.remove(possiblyRemovedModule);
-                    }
-                });
+                .stream()
+                .filter(possiblyRemovedModule -> {
+                    return modules .stream()
+                            .noneMatch(module -> module.getName().equalsIgnoreCase(possiblyRemovedModule.getName()));
+                }).forEach(module -> moduleCollection.remove(module));
     }
 
     private void updateExistingModules(List<Module> modules, ModuleCollection moduleCollection) {

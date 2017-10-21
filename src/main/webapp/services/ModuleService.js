@@ -54,7 +54,7 @@ class ModuleService {
             loadJS,
             loadCSS
         ]).then(() => {
-            //return { name: eval(module.name), props: module.props || {}}
+            module.component = { name: eval(module.name), props: module.props || {}};
             return module;
         });
     };

@@ -6,6 +6,7 @@ var source = require('vinyl-source-stream');
 var babelify = require("babelify");
 var sass = require("gulp-sass");
 var concat = require("gulp-concat");
+var Proxy = require('gulp-api-proxy');
 
 
 var config = {
@@ -28,7 +29,14 @@ gulp.task("connect", function () {
        root: [config.paths.dist],
        port: config.port,
        base: config.devBaseUrl,
-       livereload: true
+       livereload: true,
+       middleware: function (connect, opt) {
+           // `localhost/portal/core/api/...` will be proxied to `localhost:8080/portal/core/api/...`
+           opt.route = '/portal/core/api';
+           opt.context = 'localhost:8080/portal/core/api';
+           var proxy = new Proxy(opt);
+           return [proxy];
+       }
    })
 });
 

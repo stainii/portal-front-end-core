@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {BrowserRouter} from 'react-router-dom'
 import MainComponent from "./components/MainComponent/MainComponent";
 import ModuleService from "./services/ModuleService";
 import GlobalServiceFactory from "./factories/GlobalServiceFactory";
@@ -7,8 +8,10 @@ import GlobalServiceFactory from "./factories/GlobalServiceFactory";
 
 const loadApp = (modules) => {
     ReactDOM.render(
-        React.createElement(MainComponent, {modules: modules}),
-        document.getElementById('main')
+        <BrowserRouter>
+            <MainComponent modules={modules} />
+        </BrowserRouter>,
+        document.getElementById("main")
     );
 };
 

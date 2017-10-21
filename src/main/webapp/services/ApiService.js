@@ -6,8 +6,8 @@ class ApiService {
 
             request.onload = function () {
                 if (request.status >= 200 && request.status < 400) {
-                    const config = JSON.parse(request.responseText);
-                    return resolve(config);
+                    const response = JSON.parse(request.responseText);
+                    return resolve(response);
                 } else {
                     return reject();
                 }

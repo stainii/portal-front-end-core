@@ -25,7 +25,7 @@ class NotificationListComponent extends React.Component {
 
                     {
                         self.state.notifications.map((notification) => {
-                            return <p>
+                            return <p key={notification.title}>
                                 abc
                                 <a href={notification.link}>{ notification.title }, { notification.text }, { notification.icon }</a>
                             </p>

@@ -90,17 +90,13 @@ public class ModuleServiceTest {
     public void syncModulesWhenNoModulesAreProvidedAndNoModulesAreInTheDatabase() {
         //mock
         doReturn(new ArrayList<>()).when(configurationService).getModules();
-        doReturn(Optional.of(moduleCollection)).when(moduleCollectionRepository).findDefault();
-        doReturn(new ArrayList<>()).when(moduleMapper).map(moduleCollection);
-        doReturn(new ArrayList<>()).when(moduleCollection).getModulesInOrder();
 
         //execute
         moduleService.syncModules();
 
         //assert and verify
-        verify(moduleCollectionRepository).findDefault();
-        verify(moduleCollection).getModulesInOrder();
-        verifyNoMoreInteractions(moduleCollectionRepository, moduleCollection, moduleMapper, moduleCollectionService);
+        verify(configurationService).getModules();
+        verifyNoMoreInteractions(configurationService, moduleCollectionRepository, moduleCollection, moduleMapper, moduleCollectionService);
     }
 
     @Test
@@ -129,7 +125,7 @@ public class ModuleServiceTest {
         verify(moduleCollection, times(2)).findModuleByName("module2");
         verify(moduleCollection).add(module2);
         verify(moduleCollection).getModulesInOrder();
-        verifyNoMoreInteractions(moduleCollectionRepository, moduleCollection, moduleMapper, moduleCollectionService);
+        verifyNoMoreInteractions(configurationService, moduleCollectionRepository, moduleCollection, moduleMapper, moduleCollectionService);
     }
 
     @Test
@@ -151,7 +147,7 @@ public class ModuleServiceTest {
         verify(moduleCollection, times(2)).findModuleByName("module1");
         verify(moduleCollection, times(2)).findModuleByName("module2");
         verify(moduleCollection).getModulesInOrder();
-        verifyNoMoreInteractions(moduleCollectionRepository, moduleCollection, moduleMapper, moduleCollectionService);
+        verifyNoMoreInteractions(configurationService, moduleCollectionRepository, moduleCollection, moduleMapper, moduleCollectionService);
     }
 
     @Test
@@ -175,7 +171,7 @@ public class ModuleServiceTest {
         verify(moduleCollection).add(module1);
         verify(moduleCollection, times(2)).findModuleByName("module2");
         verify(moduleCollection).getModulesInOrder();
-        verifyNoMoreInteractions(moduleCollectionRepository, moduleCollection, moduleMapper, moduleCollectionService);
+        verifyNoMoreInteractions(configurationService, moduleCollectionRepository, moduleCollection, moduleMapper, moduleCollectionService);
 
     }
 
@@ -205,7 +201,7 @@ public class ModuleServiceTest {
         verify(moduleCollection).update(updatedModule1);
         verify(moduleCollection, times(2)).findModuleByName("module2");
         verify(moduleCollection).getModulesInOrder();
-        verifyNoMoreInteractions(moduleCollectionRepository, moduleCollection, moduleMapper, moduleCollectionService);
+        verifyNoMoreInteractions(configurationService, moduleCollectionRepository, moduleCollection, moduleMapper, moduleCollectionService);
     }
 
     @Test
@@ -227,7 +223,7 @@ public class ModuleServiceTest {
         verify(moduleCollection, times(2)).findModuleByName("module1");
         verify(moduleCollection).getModulesInOrder();
         verify(moduleCollection).remove(module2);
-        verifyNoMoreInteractions(moduleCollectionRepository, moduleCollection, moduleMapper, moduleCollectionService);
+        verifyNoMoreInteractions(configurationService, moduleCollectionRepository, moduleCollection, moduleMapper, moduleCollectionService);
     }
 
     @Test
@@ -256,7 +252,7 @@ public class ModuleServiceTest {
         verify(moduleCollection, times(2)).findModuleByName("module2");
         verify(moduleCollection).add(module2);
         verify(moduleCollection).getModulesInOrder();
-        verifyNoMoreInteractions(moduleCollectionRepository, moduleCollection, moduleCollectionService);
+        verifyNoMoreInteractions(configurationService, moduleCollectionRepository, moduleCollection, moduleCollectionService);
     }
 
 }

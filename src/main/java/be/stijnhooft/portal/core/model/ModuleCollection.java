@@ -62,7 +62,7 @@ public class ModuleCollection {
     }
 
     public List<Module> getModulesInOrder() {
-        return Collections.unmodifiableList(modules);
+        return Collections.unmodifiableList(new ArrayList<>(modules));
     }
 
     public Optional<Module> findModuleByName(@NonNull String name) {
