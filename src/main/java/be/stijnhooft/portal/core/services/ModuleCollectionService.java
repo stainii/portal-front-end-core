@@ -1,4 +1,4 @@
-package be.stijnhooft.portal.core.service;
+package be.stijnhooft.portal.core.services;
 
 import be.stijnhooft.portal.core.model.ModuleCollection;
 import be.stijnhooft.portal.core.repositories.ModuleCollectionRepository;

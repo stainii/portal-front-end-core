@@ -1,7 +1,7 @@
 package be.stijnhooft.portal.core.controllers;
 
 import be.stijnhooft.portal.core.dtos.ModuleDTO;
-import be.stijnhooft.portal.core.service.ModuleService;
+import be.stijnhooft.portal.core.services.ModuleService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

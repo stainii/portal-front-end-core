@@ -1,6 +1,6 @@
 package be.stijnhooft.portal.core.eventlisteners;
 
-import be.stijnhooft.portal.core.service.ModuleService;
+import be.stijnhooft.portal.core.services.ModuleService;
 import org.springframework.cloud.context.scope.refresh.RefreshScopeRefreshedEvent;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
