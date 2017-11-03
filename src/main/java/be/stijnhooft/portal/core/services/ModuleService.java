@@ -47,7 +47,7 @@ public class ModuleService {
         List<Module> modules = configurationService.getModules();
 
         if (isEmpty(modules)) {
-            log.error("No modules found in the config module. Did something go wrong? I will skip syncing.");
+            log.warn("No modules found in the config module. Did something go wrong? I will skip syncing.");
         } else {
             ModuleCollection moduleCollection =
                     moduleCollectionRepository.findDefault()

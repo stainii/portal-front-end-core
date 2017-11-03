@@ -6,7 +6,7 @@
     <groupId>be.stijnhooft</groupId>
     <artifactId>portal-front-end-core</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>portal-front-end-core</name>
     <description>This the core of the front-end of the portal, on in other words: the user's starting point.
@@ -48,6 +48,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
         </dependency>
 
         <dependency>
@@ -105,6 +110,12 @@
             <scope>runtime</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+
         <!-- test dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -153,6 +164,7 @@
     </dependencyManagement>
 
     <build>
+
         <resources>
             <resource>
                 <directory>${basedir}/src/main/resources</directory>
@@ -164,26 +176,22 @@
                     <include>**/bootstrap.properties</include>
                 </includes>
             </resource>
+            <resource>
+                <directory>${basedir}/src/main/public</directory>
+                <targetPath>public</targetPath>
+            </resource>
         </resources>
+
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.0.2</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.0.0</version>
-                <configuration>
-                    <warSourceDirectory>${basedir}/src/main/webapp/dist</warSourceDirectory>
-                    <webResources>
-                        <resource>
-                            <directory>${basedir}/src/main/webapp/dist</directory>
-                            <filtering>true</filtering>
-                        </resource>
-                    </webResources>
-                </configuration>
             </plugin>
 
             <plugin>
@@ -210,6 +218,14 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>

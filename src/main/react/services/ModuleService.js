@@ -9,7 +9,7 @@ class ModuleService {
 
     loadRemoteModules() {
         const self = this;
-        return this.apiService.getJson("/portal/core/api/module/")
+        return this.apiService.getJson("/api/module/")
             .then(modules => {
                 return Promise.all(
                     _.map(modules, function (module) {

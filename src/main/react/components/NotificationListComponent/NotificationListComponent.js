@@ -20,7 +20,7 @@ class NotificationListComponent extends React.Component {
         return (
             <div className={"notificationList"}>
                 <div className="noNotifications">
-                    <img src="imgs/no_notifications.png" />
+                    <img src="static-front-end-core/imgs/no_notifications.png" />
                     <p>Relax! Nothing else to do.</p>
 
                     {

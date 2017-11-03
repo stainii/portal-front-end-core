@@ -34,9 +34,9 @@ public class ModuleMapperTest {
     @Test
     public void mapWhenModuleCollectionHasModules() throws Exception {
         ModuleCollection moduleCollection = new ModuleCollection("test", true);
-        moduleCollection.add(new Module("test1", "js", "css"));
-        moduleCollection.add(new Module("test2", "js", "css"));
-        moduleCollection.add(new Module("test3", "js", "css"));
+        moduleCollection.add(new Module("test1", "js", "css", "http://localhost:3000/module1"));
+        moduleCollection.add(new Module("test2", "js", "css", "http://localhost:3000/module2"));
+        moduleCollection.add(new Module("test3", "js", "css", "http://localhost:3000/module3"));
 
         List<ModuleDTO> moduleDTOs = moduleMapper.map(moduleCollection);
 

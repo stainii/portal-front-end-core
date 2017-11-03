@@ -1,6 +1,7 @@
 package be.stijnhooft.portal.core.mappers;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public abstract class Mapper<X, Y> {
@@ -11,7 +12,7 @@ public abstract class Mapper<X, Y> {
         return mapAsList(x);
     }
 
-    public Collection<Y> mapAsList(Collection<X> x) {
+    public List<Y> mapAsList(Collection<X> x) {
         return x.stream()
                 .map(this::map)
                 .collect(Collectors.toList());

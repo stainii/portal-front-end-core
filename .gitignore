@@ -26,9 +26,6 @@ build/Release
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
 
-#dist folder
-dist
-
 # IDEA/Webstorm project files
 .idea
 *.iml
@@ -38,3 +35,6 @@ dist
 
 # Mac files
 .DS_Store
+
+# generated code
+src/main/public

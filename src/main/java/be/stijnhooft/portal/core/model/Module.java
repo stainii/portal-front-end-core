@@ -23,5 +23,8 @@ public class Module {
     /** Path to the css file **/
     private String css;
 
+    /** Path to the context root of the module. **/
+    private String contextRoot;
+
 
 }
