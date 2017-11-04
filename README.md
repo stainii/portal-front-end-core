@@ -7,7 +7,10 @@ This module should
 * be a (set of) React component(s)
 * provide one React component as entry point
 * all code must be bundled in **one js** and **one css file**. This also **includes any libraries, including React itself**.
-* provide its static resources as **[context root]/static/[module-name]/**
+* all external resources, like images, a REST API, ..., must be provided under a **context root**.
+    * This context root must **be unique for every module**.
+    * This context root must **start with /portal/module/**
+    * You must refer to this external resource as **/portal/module/[unique name]/[path to external resource]**
 
 ### How to define which modules should be loaded
 - Several properties should be added to the configuration files in [the portal-config-data Github](https://github.com/stainii/portal-config-data). Make sure to push the changes to the **master branch**.
@@ -17,7 +20,8 @@ modules:
   - name: Housagotchi
     js: 'http://localhost:8080/portal/housagotchi/bundle.js'
     css: 'http://localhost:8080/portal/housagotchi/bundle.css'
-    contextRoot: 'http://localhost:8080/portal/housagotchi/'
+    host: http://localhost:8080/
+    contextRoot: 'portal/module/housagotchi/'
   - name: module2
     ...
 ````

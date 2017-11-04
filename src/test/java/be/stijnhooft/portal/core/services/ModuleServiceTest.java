@@ -48,8 +48,8 @@ public class ModuleServiceTest {
 
     @Before
     public void init() {
-        module1 = new Module("module1",  "js", "css", "http://localhost:3000/module1");
-        module2 = new Module("module2",  "js", "css", "http://localhost:3000/module2");
+        module1 = new Module("module1",  "js", "css", "http://localhost:3000/", "module1/");
+        module2 = new Module("module2",  "js", "css", "http://localhost:3000/", "module2/");
         moduleDTO1 = new ModuleDTO("module1", "js", "css", 0);
         moduleDTO2 = new ModuleDTO("module2",  "js", "css", 1);
         moduleDTOs = Arrays.asList(moduleDTO1, moduleDTO2);
@@ -178,7 +178,7 @@ public class ModuleServiceTest {
     @Test
     public void syncModulesWhenUpdatingAModule() {
         //data set
-        Module updatedModule1 = new Module("module1", "new-js", "new-css", "http://localhost:3000/module1");
+        Module updatedModule1 = new Module("module1", "new-js", "new-css", "http://localhost:3000/", "module1/");
 
         //mock
         doReturn(Arrays.asList(updatedModule1, module2)).when(configurationService).getModules();

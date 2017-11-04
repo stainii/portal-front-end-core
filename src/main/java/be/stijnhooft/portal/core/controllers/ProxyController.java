@@ -1,6 +1,6 @@
 package be.stijnhooft.portal.core.controllers;
 
-import be.stijnhooft.portal.core.services.StaticFileProxyService;
+import be.stijnhooft.portal.core.services.ProxyService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,20 +13,20 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/static/")
-public class StaticFileProxyController {
+@RequestMapping("/portal/module/")
+public class ProxyController {
 
-    private final StaticFileProxyService staticFileProxyService;
+    private final ProxyService proxyService;
 
     @Inject
-    public StaticFileProxyController(StaticFileProxyService staticFileProxyService) {
-        this.staticFileProxyService = staticFileProxyService;
+    public ProxyController(ProxyService proxyService) {
+        this.proxyService = proxyService;
     }
 
     @RequestMapping("/**")
     public ResponseEntity<String> findAll(HttpServletRequest request) {
         String requestedUrl = request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE).toString();
-        Optional<String> actualUrl = staticFileProxyService.searchStaticFile(requestedUrl);
+        Optional<String> actualUrl = proxyService.searchRealUrl(requestedUrl);
         if (actualUrl.isPresent()) {
             return ResponseEntity
                     .status(HttpStatus.TEMPORARY_REDIRECT)

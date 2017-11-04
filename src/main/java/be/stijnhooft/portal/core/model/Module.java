@@ -23,8 +23,10 @@ public class Module {
     /** Path to the css file **/
     private String css;
 
+    /** Path to the ip/domain name of the host and port of the module **/
+    private String host;
+
     /** Path to the context root of the module. **/
     private String contextRoot;
-
 
 }
