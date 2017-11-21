@@ -3,14 +3,12 @@ This the core of the front-end of the portal, on in other words: the **user's st
 
 ## How to add a module
 ### What should your module look like
-This module should
-* be a (set of) React component(s)
-* provide one React component as entry point
-* all code must be bundled in **one js** and **one css file**. This also **includes any libraries, including React itself**.
-* all external resources, like images, a REST API, ..., must be provided under a **context root**.
-    * This context root must **be unique for every module**.
-    * This context root must **start with /portal/module/**
-    * You must refer to this external resource as **/portal/module/[unique name]/[path to external resource]**
+Each module is a self-contained website, with its own technologies.
+
+It should adhere to these few principles:
+* it needs one entrance page
+* in order to have the same look and feel as other modules, it needs to extend the stylesheets in the npm module **stijnhooft-portal-front-end-library**.
+* in order to communicate with other modules via the front-end, it can use the stylesheets in the npm module **stijnhooft-portal-front-end-library**.
 
 ### How to define which modules should be loaded
 - Several properties should be added to the configuration files in [the portal-config-data Github](https://github.com/stainii/portal-config-data). Make sure to push the changes to the **master branch**.
@@ -18,10 +16,7 @@ This module should
 ````yaml
 modules:
   - name: Housagotchi
-    js: 'http://localhost:8080/portal/housagotchi/bundle.js'
-    css: 'http://localhost:8080/portal/housagotchi/bundle.css'
-    host: http://localhost:8080/
-    contextRoot: 'portal/module/housagotchi/'
+    url: 'http://localhost:8080/portal/housagotchi'
   - name: module2
     ...
 ````

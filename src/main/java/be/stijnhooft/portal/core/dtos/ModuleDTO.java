@@ -13,11 +13,8 @@ public class ModuleDTO {
 
     private String name;
 
-    /** Path to the bundled js file. Not saved  **/
-    private String js;
-
-    /** Path to the css file **/
-    private String css;
+    /** Path to the index page.  **/
+    private String url;
 
     /** Position of the module in the list of modules.
      * The lower the number, the higher the module must appear in a menu. **/

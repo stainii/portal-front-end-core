@@ -17,16 +17,7 @@ public class Module {
     /** Name of the module. Must be unique **/
     private String name;
 
-    /** Path to the bundled js file. Not saved  **/
-    private String js;
-
-    /** Path to the css file **/
-    private String css;
-
-    /** Path to the ip/domain name of the host and port of the module **/
-    private String host;
-
-    /** Path to the context root of the module. **/
-    private String contextRoot;
+    /** Path to the index page **/
+    private String url;
 
 }

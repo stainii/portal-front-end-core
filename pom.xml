@@ -27,9 +27,7 @@
         <!-- default parameters used in the application. Override these with a Maven profile -->
         <context.path>portal/core</context.path>
         <environment>dev</environment>
-        <config.server.uri>http://localhost:8080/portal/config</config.server.uri>
-
-        <!-- versions of dependencies -->
+        <config.server.uri>http://localhost:2000</config.server.uri>
     </properties>
 
     <dependencies>

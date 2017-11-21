@@ -9,15 +9,13 @@
         module_collection_id="1"
         position="0"
         name="test1"
-        js="testjs1"
-        css="testcss1"
+        url="url1"
     />
     <module
         module_collection_id="1"
         position="1"
         name="test2"
-        js="testjs2"
-        css="testcss2"
+        url="url2"
     />
 
 </dataset>

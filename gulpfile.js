@@ -18,7 +18,7 @@ var config = {
         js: ["./src/main/react/**/*.js", "!./src/main/react/dist/**/*"],
         mainJS: "./src/main/react/app.js",
         sass: ["./src/main/react/**/*.scss", "!./src/main/react/dist/**/*"],
-        statics: "./src/main/react/static-front-end-core/**/*",
+        statics: "./src/main/react/static/**/*",
     }
 
 };
@@ -76,9 +76,9 @@ gulp.task('sass', ["clean"], function () {
 
 gulp.task("statics", ["clean"], function() {
     gulp.src(config.paths.statics)
-        .pipe(gulp.dest(config.paths.dist + "static-front-end-core/"))
+        .pipe(gulp.dest(config.paths.dist + "static/"))
         .pipe(connect.reload());
 });
 
 gulp.task("default", [ "clean", "html", "js", "sass", "statics" ]);
-gulp.task("lite", [ "html", "js", "sass", "imgs", "open" ]);
+gulp.task("lite", [ "html", "js", "sass", "statics", "open" ]);

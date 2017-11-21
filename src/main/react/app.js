@@ -15,17 +15,17 @@ const loadApp = (modules) => {
     );
 };
 
-const loadRemoteModules = () => {
-    return new ModuleService().loadRemoteModules();
+const findModules = () => {
+    return new ModuleService().findModules()
 };
 
 
 //load applications with its modules
-loadRemoteModules()
-.then(loadApp)
-.catch(function (err) {
-    console.log("Something went wrong: " + err);
-});
+findModules()
+    .then(loadApp)
+    .catch(function (err) {
+        console.log("Something went wrong: " + err);
+    });
 
 //expose global services
 new GlobalServiceFactory().createGlobalServices(window);

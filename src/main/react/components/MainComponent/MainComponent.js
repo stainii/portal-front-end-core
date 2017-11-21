@@ -1,16 +1,9 @@
 import React from "react";
-import _ from "lodash";
 import NotificationListComponent from "../NotificationListComponent/NotificationListComponent";
 import {NavLink, Route} from 'react-router-dom'
+import ModuleFrameComponent from "../ModuleFrameComponent/ModuleFrameComponent";
 
 const MainComponent = (props) => {
-
-    const modules = () => {
-        return _.map(props.modules, function (module, index) {
-            return module;
-        });
-    };
-
 
     return (
         <div className={"mainComponent"}>
@@ -31,7 +24,7 @@ const MainComponent = (props) => {
                             <NavLink
                                 activeClassName="active"
                                 to={"/" + module.name}>
-                                {module.name}
+                                {module.name} - {module.url}
                             </NavLink>
                         </li>
                     })}
@@ -41,10 +34,11 @@ const MainComponent = (props) => {
 
             <div className="content">
                 <Route exact path={"/"} component={NotificationListComponent}/>
-                {modules().map(module => {
+                {props.modules.map(module => {
                     return <Route key={module.name + "-route"}
                                   path={"/" + module.name}
-                                  component={module.component.name} />
+                                  render={() => <ModuleFrameComponent moduleUrl={module.url} />}
+                            />
                 })}
             </div>
         </div>

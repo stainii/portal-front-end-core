@@ -34,18 +34,16 @@ public class ModuleMapperTest {
     @Test
     public void mapWhenModuleCollectionHasModules() throws Exception {
         ModuleCollection moduleCollection = new ModuleCollection("test", true);
-        moduleCollection.add(new Module("test1", "js", "css", "http://localhost:3000/", "module1/"));
-        moduleCollection.add(new Module("test2", "js", "css", "http://localhost:3000/", "module2/"));
-        moduleCollection.add(new Module("test3", "js", "css", "http://localhost:3000/", "module3/"));
+        moduleCollection.add(new Module("test1", "http://localhost:3000/"));
+        moduleCollection.add(new Module("test2", "http://localhost:3000/"));
+        moduleCollection.add(new Module("test3", "http://localhost:3000/"));
 
         List<ModuleDTO> moduleDTOs = moduleMapper.map(moduleCollection);
 
         assertEquals(3, moduleDTOs.size());
-        assertEquals(new ModuleDTO("test1",  "js", "css", 0), moduleDTOs.get(0));
-        assertEquals(new ModuleDTO("test2",  "js", "css", 1), moduleDTOs.get(1));
-        assertEquals(new ModuleDTO("test3",  "js", "css", 2), moduleDTOs.get(2));
-
-
+        assertEquals(new ModuleDTO("test1",  "http://localhost:3000/", 0), moduleDTOs.get(0));
+        assertEquals(new ModuleDTO("test2",  "http://localhost:3000/", 1), moduleDTOs.get(1));
+        assertEquals(new ModuleDTO("test3",  "http://localhost:3000/", 2), moduleDTOs.get(2));
     }
 
 }
