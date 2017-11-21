@@ -24,17 +24,18 @@ const MainComponent = (props) => {
                                  exact={true}>
                             Notifications
                         </NavLink>
-
-                        {props.modules.map(module => {
-                            return <li key={module.name + "-link"}>
-                                <NavLink
-                                    activeClassName="active"
-                                    to={"/" + module.name}>
-                                    {module.name}
-                                </NavLink>
-                            </li>
-                        })}
                     </li>
+
+                    {props.modules.map(module => {
+                        return <li key={module.name + "-link"}>
+                            <NavLink
+                                activeClassName="active"
+                                to={"/" + module.name}>
+                                {module.name}
+                            </NavLink>
+                        </li>
+                    })}
+
                 </ul>
             </nav>
 
