@@ -3,7 +3,6 @@ var connect = require("gulp-connect");
 var open = require("gulp-open");
 var browserify = require("browserify");
 var source = require('vinyl-source-stream');
-var babelify = require("babelify");
 var sass = require("gulp-sass");
 var concat = require("gulp-concat");
 var Proxy = require('gulp-api-proxy');
@@ -20,12 +19,11 @@ var config = {
         mainJS: "./src/main/react/app.js",
         sass: ["./src/main/react/**/*.scss", "!./src/main/react/dist/**/*"],
         statics: "./src/main/react/static-front-end-core/**/*",
-        webInf: "./src/main/react/WEB-INF/**/*",
     }
 
 };
 
-gulp.task("connect", function () {
+gulp.task("connect", ["html", "js", "sass", "statics"], function () {
    connect.server({
        root: [config.paths.dist],
        port: config.port,
@@ -62,9 +60,6 @@ gulp.task("html", ["clean"], function() {
 
 gulp.task("js", ["clean"], function() {
     browserify(config.paths.mainJS)
-        .transform("babelify", {
-            presets: ["es2015", "react"]
-        })
         .bundle()
         .on("error", console.error.bind(console))
         .pipe(source("bundle.js"))
