@@ -19,7 +19,7 @@ public class ModuleMapper extends Mapper<ModuleCollection, List<ModuleDTO>> {
 
         for (int i = 0; i < modules.size(); i++) {
             Module module = modules.get(i);
-            moduleDTOs.add(new ModuleDTO(module.getName(), module.getUrl(), i));
+            moduleDTOs.add(new ModuleDTO(module.getName(), module.getUrl(), module.isOpenByDefault(), i));
         }
 
         return moduleDTOs;

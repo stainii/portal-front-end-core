@@ -26,9 +26,9 @@ public class ModuleCollectionTest {
 
     @Test
     public void findModuleByNameWhenFound() throws Exception {
-        Module module1 = new Module("module1", "http://localhost:3000/");
-        Module module2 = new Module("module2", "http://localhost:3000/");
-        Module module3 = new Module("module3", "http://localhost:3000/");
+        Module module1 = new Module("module1", "http://localhost:3000/", true);
+        Module module2 = new Module("module2", "http://localhost:3000/", false);
+        Module module3 = new Module("module3", "http://localhost:3000/", false);
 
         moduleCollection.add(module1);
         moduleCollection.add(module2);
@@ -41,9 +41,9 @@ public class ModuleCollectionTest {
 
     @Test
     public void findModuleByNameWhenFoundButWithDifferentCasing() throws Exception {
-        Module module1 = new Module("module1", "http://localhost:3000/");
-        Module module2 = new Module("module2", "http://localhost:3000/");
-        Module module3 = new Module("module3", "http://localhost:3000/");
+        Module module1 = new Module("module1", "http://localhost:3000/", true);
+        Module module2 = new Module("module2", "http://localhost:3000/", false);
+        Module module3 = new Module("module3", "http://localhost:3000/", false);
 
         moduleCollection.add(module1);
         moduleCollection.add(module2);
@@ -56,9 +56,9 @@ public class ModuleCollectionTest {
 
     @Test
     public void findModuleByNameWhenNotFound() throws Exception {
-        Module module1 = new Module("module1", "http://localhost:3000/");
-        Module module2 = new Module("module2", "http://localhost:3000/");
-        Module module3 = new Module("module3", "http://localhost:3000/");
+        Module module1 = new Module("module1", "http://localhost:3000/", true);
+        Module module2 = new Module("module2", "http://localhost:3000/", false);
+        Module module3 = new Module("module3", "http://localhost:3000/", false);
 
         moduleCollection.add(module1);
         moduleCollection.add(module2);
@@ -74,7 +74,7 @@ public class ModuleCollectionTest {
 
     @Test
     public void addWhenSuccess() throws Exception {
-        Module module1 = new Module("module1", "http://localhost:3000/");
+        Module module1 = new Module("module1", "http://localhost:3000/", true);
 
         moduleCollection.add(module1);
 
@@ -84,8 +84,8 @@ public class ModuleCollectionTest {
 
     @Test
     public void addWhenItDoesAlreadyExist() throws Exception {
-        Module module1 = new Module("module1", "http://localhost:3000/");
-        Module secondModule = new Module("module1", "http://localhost:3000/");
+        Module module1 = new Module("module1", "http://localhost:3000/", true);
+        Module secondModule = new Module("module1", "http://localhost:3000/", false);
 
         moduleCollection.add(module1);
         moduleCollection.add(secondModule);
@@ -103,9 +103,9 @@ public class ModuleCollectionTest {
     @Test
     public void changePositionOfWhenMovingAModuleToTheCenterTheOfList() throws Exception {
         //data set
-        Module module1 = new Module("module1", "http://localhost:3000/");
-        Module module2 = new Module("module2", "http://localhost:3000/");
-        Module module3 = new Module("module3", "http://localhost:3000/");
+        Module module1 = new Module("module1", "http://localhost:3000/", true);
+        Module module2 = new Module("module2", "http://localhost:3000/", false);
+        Module module3 = new Module("module3", "http://localhost:3000/", false);
 
         moduleCollection.add(module1);
         moduleCollection.add(module2);
@@ -124,9 +124,9 @@ public class ModuleCollectionTest {
     @Test
     public void changePositionOfWhenMovingAModuleToTheBeginningTheOfList() throws Exception {
         //data set
-        Module module1 = new Module("module1", "http://localhost:3000/");
-        Module module2 = new Module("module2", "http://localhost:3000/");
-        Module module3 = new Module("module3", "http://localhost:3000/");
+        Module module1 = new Module("module1", "http://localhost:3000/", true);
+        Module module2 = new Module("module2", "http://localhost:3000/", false);
+        Module module3 = new Module("module3", "http://localhost:3000/", false);
 
         moduleCollection.add(module1);
         moduleCollection.add(module2);
@@ -145,9 +145,9 @@ public class ModuleCollectionTest {
     @Test
     public void changePositionOfWhenMovingAModuleToTheEndTheOfList() throws Exception {
         //data set
-        Module module1 = new Module("module1", "http://localhost:3000/");
-        Module module2 = new Module("module2", "http://localhost:3000/");
-        Module module3 = new Module("module3", "http://localhost:3000/");
+        Module module1 = new Module("module1", "http://localhost:3000/", true);
+        Module module2 = new Module("module2", "http://localhost:3000/", false);
+        Module module3 = new Module("module3", "http://localhost:3000/", false);
 
         moduleCollection.add(module1);
         moduleCollection.add(module2);
@@ -166,9 +166,9 @@ public class ModuleCollectionTest {
     @Test
     public void changePositionOfWhenModuleIsNotInTheList() throws Exception {
         //data set
-        Module module1 = new Module("module1", "http://localhost:3000/");
-        Module module2 = new Module("module2", "http://localhost:3000/");
-        Module module3 = new Module("module3", "http://localhost:3000/");
+        Module module1 = new Module("module1", "http://localhost:3000/", true);
+        Module module2 = new Module("module2", "http://localhost:3000/", false);
+        Module module3 = new Module("module3", "http://localhost:3000/", true);
 
         moduleCollection.add(module1);
         moduleCollection.add(module2);
@@ -183,9 +183,9 @@ public class ModuleCollectionTest {
 
     @Test
     public void updateWhenSuccess() {
-        Module module1 = new Module("module1", "http://localhost:3000/");
-        Module module2 = new Module("module2", "http://localhost:3000/");
-        Module module3 = new Module("module3", "http://localhost:3000/");
+        Module module1 = new Module("module1", "http://localhost:3000/", true);
+        Module module2 = new Module("module2", "http://localhost:3000/", false);
+        Module module3 = new Module("module3", "http://localhost:3000/", false);
 
         moduleCollection.add(module1);
         moduleCollection.add(module2);
@@ -193,7 +193,7 @@ public class ModuleCollectionTest {
 
         assertEquals(1, moduleCollection.getModulesInOrder().indexOf(module2));
 
-        Module updatedModule2 = new Module("module2", "http://localhost:9000/");
+        Module updatedModule2 = new Module("module2", "http://localhost:9000/", false);
 
         moduleCollection.update(updatedModule2);
 
@@ -204,9 +204,9 @@ public class ModuleCollectionTest {
     @Test
     public void updateWhenCollectionDoesNotContainModule() {
         //data set
-        Module module1 = new Module("module1", "http://localhost:3000/");
-        Module module2 = new Module("module2", "http://localhost:3000/");
-        Module module3 = new Module("module3", "http://localhost:3000/");
+        Module module1 = new Module("module1", "http://localhost:3000/", true);
+        Module module2 = new Module("module2", "http://localhost:3000/", false);
+        Module module3 = new Module("module3", "http://localhost:3000/", false);
 
         moduleCollection.add(module1);
         moduleCollection.add(module2);
@@ -221,9 +221,9 @@ public class ModuleCollectionTest {
 
     @Test
     public void removeWhenSuccess() {
-        Module module1 = new Module("module1", "http://localhost:3000/");
-        Module module2 = new Module("module2", "http://localhost:3000/");
-        Module module3 = new Module("module3", "http://localhost:3000/");
+        Module module1 = new Module("module1", "http://localhost:3000/", true);
+        Module module2 = new Module("module2", "http://localhost:3000/", false);
+        Module module3 = new Module("module3", "http://localhost:3000/", false);
 
         moduleCollection.add(module1);
         moduleCollection.add(module2);
@@ -239,9 +239,9 @@ public class ModuleCollectionTest {
     @Test
     public void removeWhenCollectionDoesNotContainModule() {
         //data set
-        Module module1 = new Module("module1", "http://localhost:3000/");
-        Module module2 = new Module("module2", "http://localhost:3000/");
-        Module module3 = new Module("module3", "http://localhost:3000/");
+        Module module1 = new Module("module1", "http://localhost:3000/", true);
+        Module module2 = new Module("module2", "http://localhost:3000/", false);
+        Module module3 = new Module("module3", "http://localhost:3000/", false);
 
         moduleCollection.add(module1);
         moduleCollection.add(module2);

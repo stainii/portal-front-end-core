@@ -1,6 +1,6 @@
-import React from "react";
+import React, {PropTypes} from "react";
 
-class IFrameComponent extends React.Component {
+class ModuleFrameComponent extends React.Component {
 
     render() {
         return (
@@ -12,4 +12,8 @@ class IFrameComponent extends React.Component {
 
 }
 
-export default IFrameComponent;
+ModuleFrameComponent.propTypes = {
+    moduleUrl: PropTypes.string.isRequired
+};
+
+export default ModuleFrameComponent;

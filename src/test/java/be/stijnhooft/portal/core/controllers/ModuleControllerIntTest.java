@@ -38,8 +38,8 @@ public class ModuleControllerIntTest {
     @DatabaseTearDown("/datasets/clear.xml")
     public void findAll() throws Exception {
         List<ModuleDTO> expectedModules = Arrays.asList(
-                new ModuleDTO("test1", "url1", 0),
-                new ModuleDTO("test2", "url2", 1));
+                new ModuleDTO("test1", "url1", true, 0),
+                new ModuleDTO("test2", "url2", false,1));
 
         List<ModuleDTO> actualModules = moduleController.findAll();
 

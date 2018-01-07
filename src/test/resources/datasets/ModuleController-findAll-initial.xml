@@ -10,12 +10,14 @@
         position="0"
         name="test1"
         url="url1"
+        open_by_default="true"
     />
     <module
         module_collection_id="1"
         position="1"
         name="test2"
         url="url2"
+        open_by_default="false"
     />
 
 </dataset>

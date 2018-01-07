@@ -24,7 +24,7 @@ const findModules = () => {
 findModules()
     .then(loadApp)
     .catch(function (err) {
-        console.log("Something went wrong: " + err);
+        console.log("Something went wrong: ", err);
     });
 
 //expose global services

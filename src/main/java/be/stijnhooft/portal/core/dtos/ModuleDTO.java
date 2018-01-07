@@ -16,6 +16,9 @@ public class ModuleDTO {
     /** Path to the index page.  **/
     private String url;
 
+    /** if true, the module shows by default when opening the app **/
+    private boolean openByDefault;
+
     /** Position of the module in the list of modules.
      * The lower the number, the higher the module must appear in a menu. **/
     private int position;

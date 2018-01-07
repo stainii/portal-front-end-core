@@ -20,4 +20,7 @@ public class Module {
     /** Path to the index page **/
     private String url;
 
+    /** if true, the module shows by default when opening the app **/
+    private boolean openByDefault;
+
 }
