@@ -38,3 +38,6 @@ node_modules
 
 # generated code
 src/main/public
+
+# include maven wrapper
+!.mvn/wrapper/maven-wrapper.jar
