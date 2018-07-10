@@ -2,10 +2,9 @@ package be.stijnhooft.portal.core.services;
 
 import be.stijnhooft.portal.core.model.ModuleCollection;
 import be.stijnhooft.portal.core.repositories.ModuleCollectionRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.inject.Inject;
 
 @Service
 @Transactional
@@ -13,7 +12,7 @@ public class ModuleCollectionService {
 
     private final ModuleCollectionRepository moduleCollectionRepository;
 
-    @Inject
+    @Autowired
     public ModuleCollectionService(ModuleCollectionRepository moduleCollectionRepository) {
         this.moduleCollectionRepository = moduleCollectionRepository;
     }

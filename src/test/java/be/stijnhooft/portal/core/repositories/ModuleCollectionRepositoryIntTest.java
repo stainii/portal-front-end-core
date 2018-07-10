@@ -9,6 +9,7 @@ import com.github.springtestdbunit.annotation.ExpectedDatabase;
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestExecutionListeners;
@@ -18,7 +19,6 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
@@ -32,7 +32,7 @@ import static org.junit.Assert.*;
         DbUnitTestExecutionListener.class})
 public class ModuleCollectionRepositoryIntTest {
 
-    @Inject
+    @Autowired
     private ModuleCollectionRepository repository;
 
     @Test

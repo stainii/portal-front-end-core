@@ -1,11 +1,10 @@
 package be.stijnhooft.portal.core.eventlisteners;
 
 import be.stijnhooft.portal.core.services.ModuleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-
-import javax.inject.Inject;
 
 /**
  * This event listener will initialize services right after the whole context is loaded.
@@ -17,7 +16,7 @@ public class StartupEventListener implements ApplicationListener<ContextRefreshe
 
     private final ModuleService moduleService;
 
-    @Inject
+    @Autowired
     public StartupEventListener(ModuleService moduleService) {
         this.moduleService = moduleService;
     }

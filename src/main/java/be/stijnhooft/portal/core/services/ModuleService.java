@@ -6,10 +6,10 @@ import be.stijnhooft.portal.core.model.Module;
 import be.stijnhooft.portal.core.model.ModuleCollection;
 import be.stijnhooft.portal.core.repositories.ModuleCollectionRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +25,7 @@ public class ModuleService {
     private final ModuleMapper moduleMapper;
     private final ModuleCollectionService moduleCollectionService;
 
-    @Inject
+    @Autowired
     public ModuleService(ConfigurationService configurationService, ModuleCollectionRepository moduleCollectionRepository,
                          ModuleMapper moduleMapper, ModuleCollectionService moduleCollectionService) {
         this.configurationService = configurationService;
