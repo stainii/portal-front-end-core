@@ -32,6 +32,7 @@
         <config.server.uri>http://localhost:2000</config.server.uri>
         <database.host>localhost</database.host>
         <database.port>5432</database.port>
+        <eureka.server.uri>http://localhost:8761</eureka.server.uri>
     </properties>
 
 
@@ -219,6 +220,7 @@
                 <config.server.uri>http://portal-config:2000</config.server.uri>
                 <database.host>portal-core-db</database.host>
                 <database.port>5432</database.port>
+                <eureka.server.uri>http://portal-eureka:8761</eureka.server.uri>
             </properties>
             <build>
                 <plugins>
