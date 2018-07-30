@@ -1,4 +1,6 @@
 # Portal front-end core
+[![Build Status](http://portal-ci.westeurope.cloudapp.azure.com/buildStatus/icon?job=portal-front-end-core/master)](http://portal-ci.westeurope.cloudapp.azure.com/job/portal-front-end-core/job/master/)
+
 This the core of the front-end of the portal, on in other words: the **user's starting point**. This core **loads all modules**, and provides **general services on the window scope** in order to be able to communicate across modules.
 
 ## How to add a module
