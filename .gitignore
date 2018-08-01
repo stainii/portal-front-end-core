@@ -38,6 +38,7 @@ node_modules
 
 # generated code
 src/main/public
+target
 
 
 # downloaded by the Maven front-end plugin
