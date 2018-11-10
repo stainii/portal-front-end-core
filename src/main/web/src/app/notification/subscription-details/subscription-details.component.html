@@ -1,0 +1,83 @@
+<form #subscriptionForm="ngForm" *ngIf="subscription">
+    <mat-form-field>
+
+        <input id="origin"
+               name="origin"
+               matInput
+               [(ngModel)]="subscription.origin"
+               placeholder="Origin"
+               required/>
+        <mat-hint>The name of the app</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input id="activationCondition"
+               name="activationCondition"
+               matInput
+               [(ngModel)]="subscription.activationCondition"
+               placeholder="Activation condition"
+               required/>
+        <mat-hint>Always on? Use true</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select id="urgency"
+                    name="urgency"
+                    [(ngModel)]="subscription.urgency"
+                    required
+                    placeholder="Urgency">
+            <mat-option value="PUBLISH_IMMEDIATELY">Publish immediately</mat-option>
+            <mat-option value="PUBLISH_WITHIN_24_HOURS">Publish within 24 hours</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <h3>Mapping</h3>
+    <mat-form-field>
+        <textarea id="title"
+                  name="title"
+                  matInput
+                  class="form-control"
+                  placeholder="Title"
+                  [(ngModel)]="subscription.mappingToNotification.mappingOfTitle"
+                  required>
+        </textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+        <textarea id="message"
+                  name="message"
+                  matInput
+                  class="form-control"
+                  placeholder="Message"
+                  [(ngModel)]="subscription.mappingToNotification.mappingOfMessage"
+                  required>
+        </textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input id="actionText" name="actionText"
+               matInput
+               [(ngModel)]="subscription.mappingToNotification.mappingOfActionText"
+               placeholder="Action button text"
+               required/>
+        <mat-hint>Something like 'Cool!'</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input id="actionUrl"
+               name="actionUrl"
+               matInput
+               [(ngModel)]="subscription.mappingToNotification.mappingOfActionUrl"
+               placeholder="Action button url"
+               required/>
+        <mat-hint>Something like 'http://www.stijnhooft.be'</mat-hint>
+    </mat-form-field>
+
+    <button type="submit"
+            mat-button
+            [disabled]="!subscriptionForm.form.valid"
+            class="btn btn-primary"
+            (click)="save()"
+            color="primary">Save
+    </button>
+</form>

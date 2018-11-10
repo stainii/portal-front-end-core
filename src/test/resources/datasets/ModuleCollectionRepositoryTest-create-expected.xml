@@ -1,8 +1,6 @@
 <dataset>
     <module_collection
-            name="test"
-            default_collection="false" />
+            username="test" />
     <module_collection
-            name="default"
-            default_collection="true" />
+            username="default" />
 </dataset>

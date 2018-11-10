@@ -1,0 +1,26 @@
+@import "../notification-app/notification-app.component";
+
+.important {
+    font-weight: bold;
+}
+mat-card {
+    margin-bottom: 50px
+}
+mat-card-subtitle {
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+.card-close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-style: normal;
+    font-weight: 500;
+    color: $dark-background;
+}
+.card-close:hover, .card-close:active, .card-close:focus {
+    color: $main-colour;
+    text-decoration: none;
+    cursor: pointer;
+}

@@ -1,0 +1,30 @@
+.sidenav-container {
+    height: 100%;
+}
+
+.sidenav {
+    width: 200px;
+}
+
+.mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+}
+
+.fill-remaining-space {
+    /* This fills the remaining space, by using flexbox.
+       Every toolbar row uses a flexbox row layout. */
+    flex: 1 1 auto;
+}
+
+/** animate the top bar after log in **/
+.mat-toolbar {
+    transition-property: height;
+    transition-duration: .5s;
+    overflow: hidden;
+    z-index: 100;
+    opacity: 0.9;
+}
+.mat-toolbar.hidden {
+    height: 0px;
+}

@@ -1,0 +1,21 @@
+<div *ngIf="notification">
+    <mat-card-subtitle>
+        <span class="important">{{notification.origin}}</span><span>, {{calculateTimeSinceNotificationPoppedUp(notification)}} ago...</span>
+    </mat-card-subtitle>
+    <mat-card *ngIf="!read">
+        <mat-card-title>
+            {{notification.title}}
+        </mat-card-title>
+        <a (click)="markAsRead(notification.id, $event)" class="card-close">x</a>
+        <mat-card-content>
+            <p class="card-text">{{notification.message}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button
+                    (click)="executeAction(notification)"
+                    color="primary">
+                {{notification.action.text}}
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
