@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiBaseUrl: "http://portal-proxy:2000/"
+    apiBaseUrl: "http://stijnhooftportal.westeurope.cloudapp.azure.com:2000/"
 };

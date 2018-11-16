@@ -46,6 +46,7 @@ node
 /dist
 /tmp
 /out-tsc
+/src/main/resources/public
 
 # dependencies
 node_modules

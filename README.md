@@ -47,3 +47,9 @@ The unsplittable common part is kept in a single location. Efforts are made to k
     * in **Angular**
     * in **another technology**, as long as I can pack it in a **web component**
 * All static resources, like the manifest, css, images, ... are kept in one place.
+
+## Environment variables
+| Name | Example value | Description | Required? |
+| ---- | ------------- | ----------- | -------- |
+| POSTGRES_PASSWORD | secret | Password to log in to the database | required
+| JAVA_OPTS_PORTAL_FRONT_END | -Xmx400m -Xms400m | Java opts you want to pass to the JVM | optional
