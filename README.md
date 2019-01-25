@@ -1,5 +1,5 @@
 # Portal front-end
-[![Build Status](http://portal-ci.westeurope.cloudapp.azure.com/buildStatus/icon?job=portal-front-end/master)](http://portal-ci.westeurope.cloudapp.azure.com/job/portal-front-end/job/master/)
+[![Build Status](https://server.stijnhooft.be/jenkins/buildStatus/icon?job=portal-front-end/master)](https://server.stijnhooft.be/jenkins/job/portal-front-end/job/master/)
 
 This the front-end of the portal.
 
