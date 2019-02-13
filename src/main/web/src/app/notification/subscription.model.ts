@@ -12,12 +12,21 @@ export class Subscription {
     /** The origin that sends an data event **/
     origin: string;
 
-    /** To which conditions should the data event apply to fire this subscription. Should be a Spring EL expression.
+    /**
+     * To which conditions should the data event apply to fire this subscription. Should be a Spring EL expression.
      * Examples:
-     *          true (always)
-     *          data['someProperty'] == "bla"
+     *      true (always)
+     *      data['someProperty'] == "bla"
      **/
     activationCondition: string;
+
+    /**
+     * To which conditions should the data event apply to cancel all earlier notifications with the same flowId.
+     * Examples:
+     *      true (always)
+     *      data['someProperty'] == "bla"
+     **/
+    cancellationCondition: string;
 
     mappingToNotification: SubscriptionMappingToNotification;
 

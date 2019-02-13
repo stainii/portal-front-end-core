@@ -17,7 +17,17 @@
                [(ngModel)]="subscription.activationCondition"
                placeholder="Activation condition"
                required/>
-        <mat-hint>Always on? Use true</mat-hint>
+        <mat-hint>When does an event cause a new notification? Always? Use true</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input id="cancellationCondition"
+               name="cancellationCondition"
+               matInput
+               [(ngModel)]="subscription.cancellationCondition"
+               placeholder="Cancellation condition"
+               required/>
+        <mat-hint>When does an event cause no new notification, but a cancellation of previous events?</mat-hint>
     </mat-form-field>
 
     <mat-form-field>
