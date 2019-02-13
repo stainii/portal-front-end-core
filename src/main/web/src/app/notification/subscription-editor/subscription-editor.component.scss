@@ -1,0 +1,33 @@
+@import "../notification-app/notification-app.component";
+
+h1 {
+    font-size: 16pt;
+    margin: 0;
+}
+
+.subscription-editor {
+    flex-grow: 2;
+    padding: 20px;
+}
+
+.subscription-editor .grid {
+    display: flex;
+}
+
+.subscription-editor .grid app-subscription-list {
+    flex-grow: 1;
+}
+
+.subscription-editor .grid app-subscription-details {
+    flex-grow: 4;
+}
+
+app-subscription-list, app-subscription-details {
+    margin-top: 20px;
+}
+
+@media (max-width: 400px) {
+    .subscription-editor .grid {
+        display: block;
+    }
+}

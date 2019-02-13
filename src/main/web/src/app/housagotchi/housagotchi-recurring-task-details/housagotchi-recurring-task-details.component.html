@@ -1,0 +1,31 @@
+
+<form #editorForm="ngForm" [formGroup]="editorFormGroup"
+      (submit)="save()">
+    <mat-form-field>
+        <input matInput
+               formControlName="name"
+               placeholder="Name"
+               required>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+               formControlName="minNumberOfDays"
+               placeholder="Min number of days"
+               required
+               type="number">
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+               formControlName="maxNumberOfDays"
+               placeholder="Max number of days"
+               required
+               type="number">
+    </mat-form-field>
+    <button type="submit"
+            mat-button
+            [disabled]="!editorForm.form.valid"
+            class="btn btn-primary"
+            color="primary">
+        Save
+    </button>
+</form>

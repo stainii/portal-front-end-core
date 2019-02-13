@@ -1,0 +1,21 @@
+$menu-width: 30px;
+$menu-height: 30px;
+$dark-background: #192224;
+$main-colour: #F25D5F;
+$highlight-colour: #18a89a;
+$cursive-font: "Indie Flower", cursive;
+
+.menu {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: $menu-width;
+    height: $menu-height;
+    margin: 0;
+    padding-left: $menu-width / 4;
+    padding-top: 3px;
+    z-index: 100;
+}
+.menu * {
+    cursor: pointer;
+}
