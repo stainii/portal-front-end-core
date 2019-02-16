@@ -256,14 +256,14 @@
                         <phase>test</phase>
                     </execution>
                     <execution>
-                        <id>npm run build</id>
+                        <id>${npm-build-command}</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
                         <configuration>
                             <arguments>${npm-build-command}</arguments>
                         </configuration>
-                        <phase>install</phase>
+                        <phase>prepare-package</phase>
                     </execution>
                 </executions>
             </plugin>
