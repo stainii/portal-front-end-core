@@ -4,7 +4,7 @@
 
     <groupId>be.stijnhooft</groupId>
     <artifactId>portal-front-end</artifactId>
-    <version>2.0.0</version>
+    <version>2.0.1</version>
     <packaging>jar</packaging>
 
     <name>portal-front-end</name>
@@ -256,14 +256,14 @@
                         <phase>test</phase>
                     </execution>
                     <execution>
-                        <id>npm run build</id>
+                        <id>${npm-build-command}</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
                         <configuration>
                             <arguments>${npm-build-command}</arguments>
                         </configuration>
-                        <phase>install</phase>
+                        <phase>prepare-package</phase>
                     </execution>
                 </executions>
             </plugin>
