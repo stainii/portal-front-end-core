@@ -3,6 +3,7 @@ import * as moment from "moment";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {RecurringTask} from "@app/housagotchi/recurring-task.model";
 import {Execution} from "@app/housagotchi/execution.model";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
     selector: 'app-housagotchi-add-execution',
@@ -17,9 +18,14 @@ export class HousagotchiAddExecutionComponent implements OnInit, OnChanges {
     recurringTasks: RecurringTask[];
 
     @Output()
-    onAddExecution = new EventEmitter<Execution>()
+    onAddExecution = new EventEmitter<Execution>();
 
-    constructor(private _formBuilder: FormBuilder) {
+    constructor(private _formBuilder: FormBuilder,
+                private _activatedRoute: ActivatedRoute) {
+        this._activatedRoute.queryParams.subscribe(params => {
+            let task = params['task'];
+            console.log(task); // Print the parameter to the console.
+        });
     }
 
     ngOnInit() {

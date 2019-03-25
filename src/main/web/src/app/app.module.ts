@@ -21,7 +21,7 @@ import {
 } from '@angular/material';
 import {DashboardComponent} from "@app/dashboard/dashboard.component";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {Ng2Webstorage} from 'ngx-webstorage';
+import {NgxWebstorageModule} from 'ngx-webstorage';
 import {LoginComponent} from "@app/login/login.component";
 import {FormsModule} from "@angular/forms";
 import {LogoutComponent} from './logout/logout.component';
@@ -47,7 +47,7 @@ import {NgProgressHttpModule} from "@ngx-progressbar/http";
         AppRoutingModule,
         LayoutModule,
         FormsModule,
-        Ng2Webstorage,
+        NgxWebstorageModule.forRoot(),
         MatToolbarModule,
         MatButtonModule,
         MatSidenavModule,
@@ -56,8 +56,8 @@ import {NgProgressHttpModule} from "@ngx-progressbar/http";
         MatCardModule,
         MatFormFieldModule,
         MatInputModule,
-        NgProgressModule.forRoot(),
-        NgProgressHttpModule.forRoot()
+        NgProgressModule,
+        NgProgressHttpModule
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,
