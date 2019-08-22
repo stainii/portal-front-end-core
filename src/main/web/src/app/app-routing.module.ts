@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren: './housagotchi/housagotchi.module#HousagotchiModule',
         canActivate: [AuthenticationGuardService, AuthorisationGuardService]
     }, {
+        path: 'todo',
+        loadChildren: './todo/todo.module#TodoModule',
+        canActivate: [AuthenticationGuardService, AuthorisationGuardService]
+    }, {
         path: "**",
         redirectTo: "notifications",
         canActivate: [AuthenticationGuardService, AuthorisationGuardService]

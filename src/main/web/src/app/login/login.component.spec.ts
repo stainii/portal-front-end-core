@@ -9,8 +9,8 @@ import {
     MatCardContent,
     MatCardHeader,
     MatCardTitle,
-    MatFormField,
-    MatInput,
+    MatFormFieldModule,
+    MatInputModule,
     MatRippleModule
 } from "@angular/material";
 import {UserService} from "../user.service";
@@ -30,16 +30,16 @@ describe('LoginComponent', () => {
                 LoginComponent,
                 MatButton,
                 MatCard,
-                MatInput,
                 MatCardHeader,
                 MatCardContent,
                 MatCardTitle,
                 MatCardActions,
-                MatFormField
             ], imports: [
                 RouterTestingModule.withRoutes([]),
                 FormsModule,
                 MatRippleModule,
+                MatInputModule,
+                MatFormFieldModule
             ], providers: [
                 {provide: UserService, useValue: userService},
                 {provide: Router, useValue: router}

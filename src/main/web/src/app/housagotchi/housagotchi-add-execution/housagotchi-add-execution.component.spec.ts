@@ -14,6 +14,7 @@ import {
 } from "@angular/material";
 import {MatMomentDateModule} from "@angular/material-moment-adapter";
 import {NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('HousagotchiAddExecutionComponent', () => {
     let component: HousagotchiAddExecutionComponent;
@@ -36,7 +37,8 @@ describe('HousagotchiAddExecutionComponent', () => {
                 MatDatepickerModule,
                 MatMomentDateModule,
                 ReactiveFormsModule,
-                NoopAnimationsModule
+                NoopAnimationsModule,
+                RouterTestingModule.withRoutes([])
             ]
         })
             .compileComponents();

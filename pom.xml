@@ -54,7 +54,6 @@
         <environment>dev</environment>
         <database.host>localhost</database.host>
         <database.port>5432</database.port>
-        <eureka.server.uri>http://localhost:8761</eureka.server.uri>
         <npm-build-command>run build</npm-build-command>
     </properties>
 
@@ -302,7 +301,6 @@
                 <environment>production</environment>
                 <database.host>portal-front-end-db</database.host>
                 <database.port>5432</database.port>
-                <eureka.server.uri>http://portal-eureka:8761</eureka.server.uri>
                 <npm-build-command>run build-prod</npm-build-command>
             </properties>
             <build>

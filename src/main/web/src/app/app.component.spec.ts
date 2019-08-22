@@ -17,7 +17,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "@app/app-routing.module";
 import {LayoutModule} from "@angular/cdk/layout";
 import {FormsModule} from "@angular/forms";
-import {Ng2Webstorage} from 'ngx-webstorage';
+import {NgxWebstorageModule} from 'ngx-webstorage';
 import {LoginComponent} from "@app/login/login.component";
 import {LogoutComponent} from "@app/logout/logout.component";
 import {APP_BASE_HREF} from "@angular/common";
@@ -41,10 +41,11 @@ describe('AppComponent', () => {
                 AppRoutingModule,
                 LayoutModule,
                 FormsModule,
-                Ng2Webstorage,
+                NgxWebstorageModule,
                 MatFormFieldModule,
                 MatInputModule,
-                NgProgressModule
+                NgProgressModule,
+                NgxWebstorageModule.forRoot(),
             ],
             declarations: [
                 AppComponent,

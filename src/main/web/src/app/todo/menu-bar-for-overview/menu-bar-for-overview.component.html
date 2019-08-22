@@ -1,0 +1,6 @@
+<a *ngFor="let context of contexts"
+    [routerLink]="['/todo', { outlets: { primary: ['overview'], menuBar: ['overview'] } }]"
+    [queryParams]="{context: context}">
+    {{context}}
+</a>
+<mat-icon (click)="refreshTasks()" aria-label="Reshresh list of tasks">refresh</mat-icon>
