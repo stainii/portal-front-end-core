@@ -30,7 +30,6 @@ import {MenuComponent} from './menu/menu.component';
 import {NgProgressModule} from "@ngx-progressbar/core";
 import {NgProgressHttpModule} from "@ngx-progressbar/http";
 
-
 @NgModule({
     declarations: [
         AppComponent,

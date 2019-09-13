@@ -1,5 +1,26 @@
+.contexts {
+    margin-right: 20px;
+    height: 100%;
+    overflow: hidden;
+    display: table-cell;
+    vertical-align: middle;
+}
+
 a {
+    display: inline-block;
     text-decoration: none;
     color: white;
-    margin: 5px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+mat-icon {
+    display: inline-block;
+    cursor: pointer;
+}
+
+mat-select {
+    font-size: 12pt;
+    max-height: 30px;
+    overflow: hidden;
 }

@@ -1,4 +1,27 @@
-<div class="tasks">
-    <app-task-panel *ngFor="let task of tasks" [task]="task">
-    </app-task-panel>
+<div class="overview">
+    <section class="tasks-section">
+        <h1>Most important todo's</h1>
+        <div class="tasks-section-content">
+            <app-task-panel
+                *ngFor="let task of mostImportantTasks"
+                [task]="task"
+                (edit)="showDetails($event)"
+                (done)="complete($event)">
+            </app-task-panel>
+        </div>
+    </section>
+
+    <section class="tasks-section"
+             (click)="makeLessImportantTasksVisible()"
+             *ngIf="lessImportantTasks && lessImportantTasks.length > 0">
+        <h1>Also... <span *ngIf="!lessImportantTasksVisible">(click to see the tasks)</span></h1>
+        <div class="tasks-section-content" [class.disabled]="!lessImportantTasksVisible">
+            <app-task-panel
+                *ngFor="let task of lessImportantTasks"
+                [task]="task"
+                (edit)="showDetails($event)"
+                (done)="complete($event)">
+            </app-task-panel>
+        </div>
+    </section>
 </div>

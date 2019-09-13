@@ -1,0 +1,51 @@
+<h1 mat-dialog-title>{{task ? task.name : 'New task'}}</h1>
+<div mat-dialog-content>
+    <mat-vertical-stepper>
+        <mat-step>
+            <ng-template matStepLabel>What needs to be done?</ng-template>
+            <!--<mat-form-field>
+        <input matInput [(ngModel)]="data.animal">)
+    </mat-form-field>-->
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Does it fit a template?</ng-template>
+            <!--<mat-form-field>
+        <input matInput [(ngModel)]="data.animal">)
+    </mat-form-field>-->
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>What is the context?</ng-template>
+            <!--<mat-form-field>
+        <input matInput [(ngModel)]="data.animal">)
+    </mat-form-field>-->
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>When should it be finished?</ng-template>
+            <!--<mat-form-field>
+        <input matInput [(ngModel)]="data.animal">)
+    </mat-form-field>-->
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>How long will it take?</ng-template>
+            <!--<mat-form-field>
+        <input matInput [(ngModel)]="data.animal">)
+    </mat-form-field>-->
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>How important is the task?</ng-template>
+            <!--<mat-form-field>
+        <input matInput [(ngModel)]="data.animal">)
+    </mat-form-field>-->
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Extra information?</ng-template>
+            <!--<mat-form-field>
+        <input matInput [(ngModel)]="data.animal">)
+    </mat-form-field>-->
+        </mat-step>
+    </mat-vertical-stepper>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="close()">No Thanks</button>
+    <!--<button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>-->
+</div>

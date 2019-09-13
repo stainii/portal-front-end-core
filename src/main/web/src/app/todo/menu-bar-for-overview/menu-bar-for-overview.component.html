@@ -1,6 +1,33 @@
-<a *ngFor="let context of contexts"
-    [routerLink]="['/todo', { outlets: { primary: ['overview'], menuBar: ['overview'] } }]"
-    [queryParams]="{context: context}">
-    {{context}}
-</a>
-<mat-icon (click)="refreshTasks()" aria-label="Reshresh list of tasks">refresh</mat-icon>
+<div class="menu-bar">
+
+    <div class="contexts"
+        *ngIf="(contexts$ | async).length <= 3 && !(isHandset$ | async)">
+        <a (click)="selectContext('')">
+            All contexts
+        </a>
+        <a
+            *ngFor="let context of (contexts$ | async)"
+            (click)="selectContext(context)">
+            {{context}}
+        </a>
+    </div>
+    <div class="contexts"
+        *ngIf="(contexts$ | async).length > 3 || (isHandset$ | async)">
+        <mat-form-field>
+            <mat-select [(value)]="selectedContext" class="menu-bar">
+                <mat-option [value]="'all'"
+                    (click)="selectContext('all')">
+                    All contexts
+                </mat-option>
+                <mat-option *ngFor="let context of (contexts$ | async)"
+                    [value]="context"
+                    (click)="selectContext(context)">
+                    {{context}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <div class="contexts">
+        <mat-icon (click)="refreshTasks()" aria-label="Refresh list of tasks">refresh</mat-icon>
+    </div>
+</div>

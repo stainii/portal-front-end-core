@@ -13,4 +13,3 @@ $portal-warn:    mat-palette($mat-deep-orange);
 
 $portal-theme: mat-light-theme($portal-primary, $portal-accent, $portal-warn);
 @include angular-material-theme($portal-theme);
-

@@ -5,6 +5,31 @@ mat-expansion-panel {
     overflow: hidden;
     background-size: 10px 100%;
     background-repeat: no-repeat;
+
+    ::ng-deep .mat-action-row {
+        border-top-style: none;
+    }
+
+    .task-panel-header {
+        display: flex;
+        width: 100%;
+
+        .name {
+            flex-grow: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 300px;
+        }
+
+        .remaining-time {
+            text-align: right;
+            width: 50px;
+            flex-shrink: 0;
+            color: #3f51b5;
+        }
+
+    }
 }
 
 .focus {

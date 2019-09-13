@@ -15,6 +15,7 @@ import {UserService} from "@app/user.service";
 export class TaskService {
 
     private _taskWatcher: BehaviorSubject<Task[]>;
+    private _taskTailer: EventSource;
 
     constructor(private _storage: LocalStorageService,
                 private _http: HttpClient,
@@ -30,8 +31,10 @@ export class TaskService {
 
     refreshTasks() {
         this._clearLocalStorage();
-        return this._retrieveUpToDateTasks()
-            .subscribe(tasks => this._storeTasksInLocalStorage(tasks));
+        if (this._taskTailer) {
+            this._taskTailer.close();
+        }
+        return this._setup();
     }
 
     private _setup() {
@@ -62,10 +65,10 @@ export class TaskService {
     }
 
     private _watchChangesToTasks() {
-        let source = new EventSource(
+        this._taskTailer = new EventSource(
             environment.apiBaseUrl + "todo/task/patch/?tail&jwt=" + this._userService.getLoggedInUser().token.value);
 
-        source.addEventListener('message', (event: MessageEvent) => {
+        this._taskTailer.addEventListener('message', (event: MessageEvent) => {
             let patches = JSON.parse(event.data);
             if (!Array.isArray(patches)) {
                 patches = [patches]; // there is only one patch, so let's put in an array
@@ -80,9 +83,9 @@ export class TaskService {
         console.info("Watching changes to tasks (sent by server).");
 
         //when the connection is lost, retry after 10 seconds
-        source.onerror = error => {
+        this._taskTailer.onerror = error => {
             console.error("Connection lost while watching changes to tasks. Retrying in 10 seconds");
-            source.close();
+            this._taskTailer.close();
             setTimeout(() => {
                 this._setup();
             }, 10000);
