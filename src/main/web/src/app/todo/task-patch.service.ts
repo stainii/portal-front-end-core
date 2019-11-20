@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {Task} from "@app/todo/task.model";
 import {environment} from "@env/environment";
 import {TaskPatch} from "@app/todo/task-patch.model";
+import {TaskStatus} from "@app/todo/task-status.model";
 
 @Injectable({
     providedIn: 'root'
@@ -20,5 +21,16 @@ export class TaskPatchService {
     patch(task: Task, patch: TaskPatch) {
         Object.keys(patch.changes)
             .forEach(key => task[key] = patch.changes[key]);
+    }
+
+    update(task: Task) {
+        // TODO create a patch, comparing the original with the new task, send update to server
+    }
+
+    complete(task: Task) {
+        return this._http.patch<Task>(environment.apiBaseUrl + "todo/task/", {
+            taskId: task.id,
+            status: TaskStatus.COMPLETED
+        });
     }
 }

@@ -9,7 +9,7 @@ export class Task {
     public creationDateTime: Date;
     public startDateTime: Date;
     public dueDateTime: Date;
-    public expectedDuration: string;
+    public expectedDurationInHours: number;
     public context: string;
     public importance: Importance;
     public description: string;

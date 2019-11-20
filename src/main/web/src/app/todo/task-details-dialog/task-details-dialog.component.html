@@ -3,49 +3,76 @@
     <mat-vertical-stepper>
         <mat-step>
             <ng-template matStepLabel>What needs to be done?</ng-template>
-            <!--<mat-form-field>
-        <input matInput [(ngModel)]="data.animal">)
-    </mat-form-field>-->
+            <mat-form-field>
+                <input matInput [(ngModel)]="task.name">
+            </mat-form-field>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Does it fit a template?</ng-template>
-            <!--<mat-form-field>
-        <input matInput [(ngModel)]="data.animal">)
-    </mat-form-field>-->
+            <mat-form-field>
+                <mat-select>
+                    <mat-option>No</mat-option>
+                    <mat-option value="TODO">TODO</mat-option>
+                </mat-select>
+            </mat-form-field>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>What is the context?</ng-template>
-            <!--<mat-form-field>
-        <input matInput [(ngModel)]="data.animal">)
-    </mat-form-field>-->
+            <mat-form-field>
+                <input matInput [(ngModel)]="task.context">
+            </mat-form-field>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>When should it be finished?</ng-template>
-            <!--<mat-form-field>
-        <input matInput [(ngModel)]="data.animal">)
-    </mat-form-field>-->
+            <mat-form-field>
+                <input matInput
+                       [matDatepicker]="dueDatePicker"
+                       placeholder="Choose a date"
+                       [(ngModel)]="task.dueDateTime">
+                <mat-datepicker-toggle matSuffix [for]="dueDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #dueDatePicker></mat-datepicker>
+            </mat-form-field>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>How long will it take?</ng-template>
-            <!--<mat-form-field>
-        <input matInput [(ngModel)]="data.animal">)
-    </mat-form-field>-->
+            <mat-form-field>
+                <input matInput type="number" [(ngModel)]="task.expectedDurationInHours">
+            </mat-form-field>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>When can we start?</ng-template>
+            <mat-form-field>
+                <input matInput
+                       [matDatepicker]="startDatePicker"
+                       placeholder="Choose a date"
+                       [(ngModel)]="task.startDateTime">
+                <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #startDatePicker></mat-datepicker>
+            </mat-form-field>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>How important is the task?</ng-template>
-            <!--<mat-form-field>
-        <input matInput [(ngModel)]="data.animal">)
-    </mat-form-field>-->
+            <mat-form-field>
+                <mat-select [(ngModel)]="task.importance">
+                    <mat-option>None</mat-option>
+                    <mat-option value="I_DO_NOT_REALLY_CARE">I do not really care</mat-option>
+                    <mat-option value="NOT_SO_IMPORTANT">Not so important</mat-option>
+                    <mat-option value="VERY_IMPORTANT">Very important</mat-option>
+                </mat-select>
+            </mat-form-field>
         </mat-step>
         <mat-step>
             <ng-template matStepLabel>Extra information?</ng-template>
-            <!--<mat-form-field>
-        <input matInput [(ngModel)]="data.animal">)
-    </mat-form-field>-->
+            <mat-form-field>
+                <textarea matInput placeholder="What needs to be done, in detail?" [(ngModel)]="task.description"></textarea>
+            </mat-form-field>
         </mat-step>
     </mat-vertical-stepper>
 </div>
-<div mat-dialog-actions>
-    <button mat-button (click)="close()">No Thanks</button>
-    <!--<button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>-->
+<div class="mat-dialog-actions">
+    <button mat-button
+            (click)="close()">No Thanks</button>
+    <button mat-flat-button
+            class="mat-primary"
+            (click)="saveAndClose()">Save</button>
 </div>

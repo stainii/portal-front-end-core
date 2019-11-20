@@ -15,7 +15,7 @@ import {UserService} from "@app/user.service";
 export class TaskService {
 
     private _taskWatcher: BehaviorSubject<Task[]>;
-    private _taskTailer: EventSource;
+    private _taskTail: EventSource;
 
     constructor(private _storage: LocalStorageService,
                 private _http: HttpClient,
@@ -31,10 +31,22 @@ export class TaskService {
 
     refreshTasks() {
         this._clearLocalStorage();
-        if (this._taskTailer) {
-            this._taskTailer.close();
+        if (this._taskTail) {
+            this._taskTail.close();
         }
         return this._setup();
+    }
+
+    create(task: Task) {
+        return this._http.post<Task>(environment.apiBaseUrl + "todo/task/", task);
+    }
+
+    complete(task: Task) {
+        return this._taskPatchService.complete(task);
+    }
+
+    update(task: Task) {
+        return this._taskPatchService.update(task);
     }
 
     private _setup() {
@@ -65,10 +77,10 @@ export class TaskService {
     }
 
     private _watchChangesToTasks() {
-        this._taskTailer = new EventSource(
+        this._taskTail = new EventSource(
             environment.apiBaseUrl + "todo/task/patch/?tail&jwt=" + this._userService.getLoggedInUser().token.value);
 
-        this._taskTailer.addEventListener('message', (event: MessageEvent) => {
+        this._taskTail.addEventListener('message', (event: MessageEvent) => {
             let patches = JSON.parse(event.data);
             if (!Array.isArray(patches)) {
                 patches = [patches]; // there is only one patch, so let's put in an array
@@ -83,9 +95,9 @@ export class TaskService {
         console.info("Watching changes to tasks (sent by server).");
 
         //when the connection is lost, retry after 10 seconds
-        this._taskTailer.onerror = error => {
+        this._taskTail.onerror = error => {
             console.error("Connection lost while watching changes to tasks. Retrying in 10 seconds");
-            this._taskTailer.close();
+            this._taskTail.close();
             setTimeout(() => {
                 this._setup();
             }, 10000);

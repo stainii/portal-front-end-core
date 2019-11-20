@@ -1,27 +1,30 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {TaskService} from "@app/todo/task.service";
 import {Task} from "@app/todo/task.model";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {map} from "rxjs/operators";
 import {Subscription} from "rxjs";
 import {taskComparator} from "@app/todo/task.comparator";
-import {TaskDetailsDialogComponent} from "@app/todo/task-details-dialog/task-details-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
 
 @Component({
-    selector: 'app-overview',
-    templateUrl: './overview.component.html',
-    styleUrls: ['./overview.component.scss'],
+    selector: 'app-todo-overview',
+    templateUrl: './todo-overview.component.html',
+    styleUrls: ['./todo-overview.component.scss'],
 })
-export class OverviewComponent implements OnInit, OnDestroy {
+export class TodoOverviewComponent implements OnInit, OnDestroy {
 
     mostImportantTasks: Task[];
     lessImportantTasks: Task[];
     lessImportantTasksVisible: boolean;
     private _taskWatcher: Subscription;
 
-    constructor(private _taskService: TaskService, private _route: ActivatedRoute,
-                private _router: Router, public dialog: MatDialog) {
+    @Output()
+    public onEdit: EventEmitter<Task> = new EventEmitter<Task>();
+
+    @Output()
+    public onComplete: EventEmitter<Task> = new EventEmitter<Task>();
+
+    constructor(private _taskService: TaskService, private _route: ActivatedRoute) {
     }
 
     ngOnInit() {
@@ -58,17 +61,12 @@ export class OverviewComponent implements OnInit, OnDestroy {
             });
     }
 
-    showDetails(task: Task) {
-        console.log("Should open details of task " + task + ", either in a dialog or next to the tasks");
-        setTimeout(() => {
-            let dialogRef = this.dialog.open(TaskDetailsDialogComponent);
-
-            dialogRef.afterClosed()
-                .subscribe(result => this._router.navigate(["todo/overview"]));
-        }, 1);
+    edit(task: Task) {
+        this.onEdit.emit(task);
     }
 
     complete(task: Task) {
-        console.log("Complete task " + task);
+        this.onComplete.emit(task);
     }
+
 }

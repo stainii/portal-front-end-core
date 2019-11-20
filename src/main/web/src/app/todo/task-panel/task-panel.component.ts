@@ -28,10 +28,10 @@ export class TaskPanelComponent {
     task: Task;
 
     @Output()
-    public edit: EventEmitter<Task> = new EventEmitter<Task>();
+    public onEdit: EventEmitter<Task> = new EventEmitter<Task>();
 
     @Output()
-    public done: EventEmitter<Task> = new EventEmitter<Task>();
+    public onComplete: EventEmitter<Task> = new EventEmitter<Task>();
 
     destroyed: boolean;
     fillSize: number = TaskPanelComponent.MIN_FILL_SIZE;
@@ -93,13 +93,13 @@ export class TaskPanelComponent {
     }
 
     showDetails() {
-        this.edit.emit(this.task);
+        this.onEdit.emit(this.task);
     }
 
     complete() {
         this.fillCompletely(() => {
             this.destroyed = true;
-            this.done.emit(this.task)
+            this.onComplete.emit(this.task)
         });
     }
 

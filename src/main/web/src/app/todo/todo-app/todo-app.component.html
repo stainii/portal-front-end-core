@@ -1,4 +1,7 @@
-<app-overview></app-overview>
+<app-todo-overview
+    (onEdit)="showDetails($event)"
+    (onComplete)="complete($event)"
+></app-todo-overview>
 
 <button class="create"
         mat-fab

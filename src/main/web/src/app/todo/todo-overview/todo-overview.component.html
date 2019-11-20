@@ -5,8 +5,8 @@
             <app-task-panel
                 *ngFor="let task of mostImportantTasks"
                 [task]="task"
-                (edit)="showDetails($event)"
-                (done)="complete($event)">
+                (onEdit)="edit($event)"
+                (onComplete)="complete($event)">
             </app-task-panel>
         </div>
     </section>
@@ -19,8 +19,8 @@
             <app-task-panel
                 *ngFor="let task of lessImportantTasks"
                 [task]="task"
-                (edit)="showDetails($event)"
-                (done)="complete($event)">
+                (onEdit)="edit($event)"
+                (onComplete)="complete($event)">
             </app-task-panel>
         </div>
     </section>
