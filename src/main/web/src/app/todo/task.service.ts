@@ -45,8 +45,8 @@ export class TaskService {
         return this._taskPatchService.complete(task);
     }
 
-    update(task: Task) {
-        return this._taskPatchService.update(task);
+    update(updatedTask: Task, originalTask: Task) {
+        return this._taskPatchService.update(updatedTask, originalTask);
     }
 
     private _setup() {

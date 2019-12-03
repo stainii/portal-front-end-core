@@ -4,6 +4,7 @@ import {Task} from "@app/todo/task.model";
 import {environment} from "@env/environment";
 import {TaskPatch} from "@app/todo/task-patch.model";
 import {TaskStatus} from "@app/todo/task-status.model";
+import * as moment from "moment";
 
 @Injectable({
     providedIn: 'root'
@@ -20,16 +21,33 @@ export class TaskPatchService {
 
     patch(task: Task, patch: TaskPatch) {
         Object.keys(patch.changes)
-            .forEach(key => task[key] = patch.changes[key]);
+            .forEach(key => {
+                task[key] = patch.changes[key]
+            });
     }
 
-    update(task: Task) {
-        // TODO create a patch, comparing the original with the new task, send update to server
+    update(updatedTask: Task, originalTask: Task) {
+        let patch = {
+            taskId: originalTask.id,
+            date: moment(),
+            changes: {}
+        };
+
+        Object.keys(updatedTask)
+            .forEach(key => {
+                if (updatedTask[key] != originalTask[key]) {
+                    patch.changes[key] = updatedTask[key]
+                    console.log(patch.changes)
+                }
+            });
+
+        return this._http.patch<Task>(environment.apiBaseUrl + "todo/task/" + originalTask.id, patch);
     }
 
     complete(task: Task) {
-        return this._http.patch<Task>(environment.apiBaseUrl + "todo/task/", {
+        return this._http.patch<Task>(environment.apiBaseUrl + "todo/task/" + task.id, {
             taskId: task.id,
+            date: moment(),
             status: TaskStatus.COMPLETED
         });
     }

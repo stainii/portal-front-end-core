@@ -37,7 +37,8 @@ export class TodoAppComponent implements OnInit {
 
             dialogRef.afterClosed()
                 .subscribe(result => {
-                    this._taskService.update(result);
+                    this._taskService.update(result, task)
+                        .subscribe();
                     this._router.navigate(["todo/overview"])
                 });
         }, 1);
