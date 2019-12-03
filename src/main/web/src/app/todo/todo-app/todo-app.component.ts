@@ -23,7 +23,7 @@ export class TodoAppComponent implements OnInit {
 
     complete(task: Task) {
         this._taskService.complete(task).subscribe(
-            task => console.log("Task " + task.id + " completed!"),
+            nothing => console.log("Task " + task.id + " completed!"),
             error => console.error(error));
     }
 

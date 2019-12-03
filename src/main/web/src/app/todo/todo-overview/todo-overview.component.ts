@@ -53,7 +53,7 @@ export class TodoOverviewComponent implements OnInit, OnDestroy {
         }
         this._taskWatcher = this._taskService.watchTasks()
             .pipe(
-                map(tasks => tasks.filter(task => !context || context == 'all' || task.context == context))
+                map(tasks => tasks.filter(task => !context || context == 'all' || task.context == context)),
             ).subscribe(tasks => {
                 let sortedTasks = tasks.sort(taskComparator);
                 this.mostImportantTasks = sortedTasks.slice(0,5);

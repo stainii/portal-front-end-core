@@ -8,6 +8,7 @@ import {map} from "rxjs/operators";
 import {TaskPatchService} from '@app/todo/task-patch.service';
 import {TaskPatch} from "@app/todo/task-patch.model";
 import {UserService} from "@app/user.service";
+import {TaskStatus} from "@app/todo/task-status.model";
 
 @Injectable({
     providedIn: 'root'
@@ -177,6 +178,8 @@ export class TaskService {
                 tasks[index] = updatedOrNewTask;
             }
         });
+
+        tasks = tasks.filter(task => task.status != TaskStatus.COMPLETED);
 
         this._storeTasksInLocalStorage(tasks);
     }
