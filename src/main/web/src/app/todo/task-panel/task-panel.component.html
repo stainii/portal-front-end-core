@@ -15,7 +15,7 @@
         <mat-panel-title>
             <div class="task-panel-header">
                 <div class="name">{{task.name}}</div>
-                <div class="remaining-time"><sub>3d</sub></div>
+                <div class="remaining-time"><sub>{{task.getRemainingTime()}}</sub></div>
             </div>
         </mat-panel-title>
     </mat-expansion-panel-header>

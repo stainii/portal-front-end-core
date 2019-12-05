@@ -53,4 +53,13 @@ export class Task {
     }
 
     private dueDateIsGettingNear = () => moment(this.dueDateTime).diff(moment(), "days") < 7;
+
+    getRemainingTime() {
+        let remainingDays = moment(this.dueDateTime).diff(moment().startOf("day"), "days");
+        if (remainingDays > 0) {
+            return `${remainingDays} d`;
+        } else {
+            return "Due!";
+        }
+    }
 }
