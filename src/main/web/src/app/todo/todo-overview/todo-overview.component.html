@@ -1,6 +1,6 @@
 <div class="overview">
     <section class="tasks-section">
-        <h1>Most important todo's</h1>
+        <h1 *ngIf="mostImportantTasks?.length > 0">Most important todo's</h1>
         <div class="tasks-section-content">
             <app-task-panel
                 *ngFor="let task of mostImportantTasks"
@@ -8,6 +8,11 @@
                 (onEdit)="edit($event)"
                 (onComplete)="complete($event)">
             </app-task-panel>
+        </div>
+        <div *ngIf="mostImportantTasks?.length == 0"
+             class="nothing-to-do">
+            <img src="assets/todo/imgs/nothing_to_do.png" />
+            <p>Relax! Nothing else to do.</p>
         </div>
     </section>
 
