@@ -10,16 +10,16 @@ const taskDone = [
 ];
 
 @Component({
-    selector: 'app-task-panel',
-    templateUrl: './task-panel.component.html',
-    styleUrls: ['./task-panel.component.scss'],
+    selector: 'app-todo-task-panel',
+    templateUrl: './todo-task-panel.component.html',
+    styleUrls: ['./todo-task-panel.component.scss'],
     animations: [
         trigger('cardAnimator', [
             transition(':leave', animate(1000, keyframes(taskDone))),
         ])
     ]
 })
-export class TaskPanelComponent {
+export class TodoTaskPanelComponent {
 
     private static MIN_FILL_SIZE = 10;
     private static MAX_FILL_SIZE = 400;
@@ -34,7 +34,7 @@ export class TaskPanelComponent {
     public onComplete: EventEmitter<Task> = new EventEmitter<Task>();
 
     destroyed: boolean;
-    fillSize: number = TaskPanelComponent.MIN_FILL_SIZE;
+    fillSize: number = TodoTaskPanelComponent.MIN_FILL_SIZE;
 
     // id of intervals, keeping them to cancel the intervals when necessary
     private revertFillInterval: number;
@@ -46,10 +46,10 @@ export class TaskPanelComponent {
         let element = this._getElementToCalculateFillSizeOn($event.target);
         let positionOfFinger = $event.center.x - element.getBoundingClientRect().left;
 
-        if (positionOfFinger > TaskPanelComponent.MIN_FILL_SIZE) {
+        if (positionOfFinger > TodoTaskPanelComponent.MIN_FILL_SIZE) {
             this.fillSize = positionOfFinger;
         } else {
-            this.fillSize = TaskPanelComponent.MIN_FILL_SIZE;
+            this.fillSize = TodoTaskPanelComponent.MIN_FILL_SIZE;
         }
     }
 
@@ -61,7 +61,7 @@ export class TaskPanelComponent {
         this._cancelRevertFillInterval();
 
         this.fillCompletelyInterval = setInterval(() => {
-            if (this.fillSize < TaskPanelComponent.MAX_FILL_SIZE) {
+            if (this.fillSize < TodoTaskPanelComponent.MAX_FILL_SIZE) {
                 this.fillSize = this.fillSize + 5;
             } else {
                 callback();
@@ -79,10 +79,10 @@ export class TaskPanelComponent {
             }
 
             this.revertFillInterval = setInterval(() => {
-                if (this.fillSize > TaskPanelComponent.MIN_FILL_SIZE) {
+                if (this.fillSize > TodoTaskPanelComponent.MIN_FILL_SIZE) {
                     this.fillSize = this.fillSize - 1;
                 } else {
-                    this.fillSize = TaskPanelComponent.MIN_FILL_SIZE;
+                    this.fillSize = TodoTaskPanelComponent.MIN_FILL_SIZE;
                     this._cancelRevertFillInterval();
                 }
 

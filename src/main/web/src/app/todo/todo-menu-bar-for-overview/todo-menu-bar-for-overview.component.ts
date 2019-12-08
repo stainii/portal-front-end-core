@@ -6,11 +6,11 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
-    selector: 'app-menu-bar-for-overview',
-    templateUrl: './menu-bar-for-overview.component.html',
-    styleUrls: ['./menu-bar-for-overview.component.scss']
+    selector: 'app-todo-menu-bar-for-overview',
+    templateUrl: './todo-menu-bar-for-overview.component.html',
+    styleUrls: ['./todo-menu-bar-for-overview.component.scss']
 })
-export class MenuBarForOverviewComponent implements OnInit {
+export class TodoMenuBarForOverviewComponent implements OnInit {
 
     contexts$: Observable<string[]>;
     selectedContext: string;

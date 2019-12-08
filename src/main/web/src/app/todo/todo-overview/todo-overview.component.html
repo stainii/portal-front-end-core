@@ -2,12 +2,12 @@
     <section class="tasks-section">
         <h1 *ngIf="mostImportantTasks?.length > 0">Most important todo's</h1>
         <div class="tasks-section-content">
-            <app-task-panel
+            <app-todo-task-panel
                 *ngFor="let task of mostImportantTasks"
                 [task]="task"
                 (onEdit)="edit($event)"
                 (onComplete)="complete($event)">
-            </app-task-panel>
+            </app-todo-task-panel>
         </div>
         <div *ngIf="mostImportantTasks?.length == 0"
              class="nothing-to-do">
@@ -21,12 +21,12 @@
              *ngIf="lessImportantTasks && lessImportantTasks.length > 0">
         <h1>Also... <span *ngIf="!lessImportantTasksVisible">(click to see the tasks)</span></h1>
         <div class="tasks-section-content" [class.disabled]="!lessImportantTasksVisible">
-            <app-task-panel
+            <app-todo-task-panel
                 *ngFor="let task of lessImportantTasks"
                 [task]="task"
                 (onEdit)="edit($event)"
                 (onComplete)="complete($event)">
-            </app-task-panel>
+            </app-todo-task-panel>
         </div>
     </section>
 </div>

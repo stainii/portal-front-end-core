@@ -1,6 +1,6 @@
 <div class="menu-bar">
 
-    <div class="contexts"
+    <div class="group"
         *ngIf="(contexts$ | async).length <= 3 && !(isHandset$ | async)">
         <a (click)="selectContext('')">
             All contexts
@@ -11,7 +11,7 @@
             {{context}}
         </a>
     </div>
-    <div class="contexts"
+    <div class="group"
         *ngIf="(contexts$ | async).length > 3 || (isHandset$ | async)">
         <mat-form-field>
             <mat-select [(value)]="selectedContext" class="menu-bar">
@@ -27,7 +27,12 @@
             </mat-select>
         </mat-form-field>
     </div>
-    <div class="contexts">
+    <div class="group">
         <mat-icon (click)="refreshTasks()" aria-label="Refresh list of tasks">refresh</mat-icon>
+    </div>
+    <div class="group">
+        <a [routerLink]="['/todo', { outlets: { primary: ['settings'], menuBar: ['settings'] } }]">
+            <mat-icon aria-label="Templates and recurring tasks">settings</mat-icon>
+        </a>
     </div>
 </div>

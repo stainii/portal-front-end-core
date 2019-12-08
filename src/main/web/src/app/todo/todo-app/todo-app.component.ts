@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
 import {MatDialog} from "@angular/material/dialog";
-import {TaskDetailsDialogComponent} from "@app/todo/task-details-dialog/task-details-dialog.component";
+import {TodoTaskDetailsDialogComponent} from "@app/todo/todo-task-details-dialog/todo-task-details-dialog.component";
 import {Task} from "@app/todo/task.model";
 import {TaskService} from "@app/todo/task.service";
 
@@ -13,7 +12,6 @@ import {TaskService} from "@app/todo/task.service";
 export class TodoAppComponent implements OnInit {
 
     constructor(private _taskService: TaskService,
-                private _router: Router,
                 public dialog: MatDialog) {
     }
 
@@ -33,13 +31,14 @@ export class TodoAppComponent implements OnInit {
                 data: task
             };
 
-            let dialogRef = this.dialog.open(TaskDetailsDialogComponent, dialogConfig);
+            let dialogRef = this.dialog.open(TodoTaskDetailsDialogComponent, dialogConfig);
 
             dialogRef.afterClosed()
                 .subscribe(result => {
-                    this._taskService.update(result, task)
-                        .subscribe();
-                    this._router.navigate(["todo/overview"])
+                    if (result) {
+                        this._taskService.update(result, task)
+                            .subscribe();
+                    }
                 });
         }, 1);
     }
@@ -47,10 +46,10 @@ export class TodoAppComponent implements OnInit {
     create() {
         setTimeout(() => {
             let dialogConfig = {
-                data: {}
+                data: null
             };
 
-            let dialogRef = this.dialog.open(TaskDetailsDialogComponent, dialogConfig);
+            let dialogRef = this.dialog.open(TodoTaskDetailsDialogComponent, dialogConfig);
 
             dialogRef.afterClosed()
                 .subscribe(result => {
@@ -58,7 +57,6 @@ export class TodoAppComponent implements OnInit {
                         .subscribe(
                             task => console.log("Task created!"),
                             error => console.error(error));
-                    this._router.navigate(["todo/overview"])
                 });
         }, 1);
     }

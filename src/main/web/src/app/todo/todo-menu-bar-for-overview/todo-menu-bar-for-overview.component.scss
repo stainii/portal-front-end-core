@@ -1,0 +1,28 @@
+.menu-bar {
+    .group {
+        padding-right: 10px;
+        height: 100%;
+        overflow: hidden;
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    a {
+        display: inline-block;
+        text-decoration: none;
+        color: white;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    mat-icon {
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    mat-select {
+        font-size: 12pt;
+        max-height: 30px;
+        overflow: hidden;
+    }
+}

@@ -97,11 +97,11 @@ export class TaskService {
 
         //when the connection is lost, retry after 10 seconds
         this._taskTail.onerror = error => {
-            console.error("Connection lost while watching changes to tasks. Retrying in 10 seconds");
+            console.error("Connection lost while watching changes to tasks. Retrying in 10 seconds", error);
             this._taskTail.close();
             setTimeout(() => {
                 this._setup();
-            }, 10000);
+            }, 1000);
         };
     }
 

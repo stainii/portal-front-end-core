@@ -1,7 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {MenuBarForOverviewComponent} from "@app/todo/menu-bar-for-overview/menu-bar-for-overview.component";
+import {TodoMenuBarForOverviewComponent} from "@app/todo/todo-menu-bar-for-overview/todo-menu-bar-for-overview.component";
 import {TodoAppComponent} from "@app/todo/todo-app/todo-app.component";
+import {TodoMenuBarForSettingsComponent} from "@app/todo/todo-menu-bar-for-settings/todo-menu-bar-for-settings.component";
+import {TodoSettingsComponent} from "@app/todo/todo-settings/todo-settings.component";
 
 const routes: Routes = [{
     path: "",
@@ -15,16 +17,16 @@ const routes: Routes = [{
     component: TodoAppComponent
 }, {
     path: "overview",
-    component: MenuBarForOverviewComponent,
+    component: TodoMenuBarForOverviewComponent,
     outlet: "menuBar"
 }, {
-    path: "task/:id",
-        component: TodoAppComponent
+    path: "settings",
+    component: TodoSettingsComponent
 }, {
-    path: "task/:id",
-        component: MenuBarForOverviewComponent,
-        outlet: "menuBar"
-}];
+    path: "settings",
+    component: TodoMenuBarForSettingsComponent,
+    outlet: "menuBar"
+}, ];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],
