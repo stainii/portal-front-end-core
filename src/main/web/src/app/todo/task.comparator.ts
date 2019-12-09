@@ -18,7 +18,7 @@ export const taskComparator = (task1: Task, task2: Task) => {
         if (task.dueDateTime) {
             let today = moment();
             let dueDateOfTask = moment(task.dueDateTime);
-            let numberOfDaysBetweenTasks = dueDateOfTask.diff(today, "day");
+            let numberOfDaysBetweenTasks = dueDateOfTask.diff(today.startOf("day"), "day");
             let pointsForUrgency = 10 - numberOfDaysBetweenTasks;
 
             if (pointsForUrgency > 0) {
