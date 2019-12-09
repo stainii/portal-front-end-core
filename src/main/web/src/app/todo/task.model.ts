@@ -35,7 +35,7 @@ export class Task {
 
     public hasTypeFocus() {
         return this.importance == Importance.VERY_IMPORTANT
-                && (this.dueDateTime == null || this.dueDateIsGettingNear());
+                && (this.dueDateTime != null && this.dueDateIsGettingNear());
     }
 
     public hasTypeGoals() {
@@ -44,7 +44,7 @@ export class Task {
 
     public hasTypeFitIn() {
         return this.importance == Importance.NOT_SO_IMPORTANT
-                && (this.dueDateTime == null || this.dueDateIsGettingNear());
+                && (this.dueDateTime != null && this.dueDateIsGettingNear());
     }
 
     public hasTypeBackBurner() {

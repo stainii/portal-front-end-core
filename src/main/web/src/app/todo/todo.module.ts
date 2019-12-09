@@ -17,6 +17,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatMomentDateModule} from "@angular/material-moment-adapter";
 import {TodoMenuBarForSettingsComponent} from './todo-menu-bar-for-settings/todo-menu-bar-for-settings.component';
 import {TodoSettingsComponent} from './todo-settings/todo-settings.component';
+import {MatTreeModule} from "@angular/material/tree";
 
 @NgModule({
     declarations: [
@@ -41,7 +42,8 @@ import {TodoSettingsComponent} from './todo-settings/todo-settings.component';
         FormsModule,
         MatInputModule,
         MatDatepickerModule,
-        MatMomentDateModule
+        MatMomentDateModule,
+        MatTreeModule
     ],
     entryComponents: [
         TodoTaskDetailsDialogComponent
