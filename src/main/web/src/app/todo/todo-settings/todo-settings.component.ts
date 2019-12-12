@@ -1,8 +1,9 @@
 import {Component} from '@angular/core';
-import {NestedTreeControl} from '@angular/cdk/tree';
-import {MatTreeNestedDataSource} from '@angular/material/tree';
 import {TaskTemplate} from "@app/todo/task-template.model";
-import {Importance} from "@app/todo/importance.model";
+import {MatDialog} from "@angular/material/dialog";
+import {TodoTaskTemplateDetailsDialogComponent} from "@app/todo/todo-task-template-details-dialog/todo-task-template-details-dialog.component";
+import {TaskTemplateService} from "@app/todo/task-template.service";
+import {Observable} from "rxjs";
 
 @Component({
     selector: 'app-todo-settings',
@@ -11,52 +12,31 @@ import {Importance} from "@app/todo/importance.model";
 })
 export class TodoSettingsComponent {
 
-    treeControl = new NestedTreeControl<TaskTemplate>(node => node.subTaskTemplates);
-    dataSource = new MatTreeNestedDataSource<TaskTemplate>();
+    allTaskTemplates$: Observable<TaskTemplate[]>;
 
-    constructor() {
-        this.dataSource.data = [
-            {
-                "id": "5dee647e4fd468674cf4e0ac",
-                "name": "nummer 1",
-                "deviationOfTheMainTaskStartDateTime": null,
-                "deviationOfTheMainTaskDueDateTime": null,
-                "expectedDurationInHours": 3,
-                "context": "Realdolmen",
-                "importance": Importance.NOT_SO_IMPORTANT,
-                "description": null,
-                "subTaskTemplates": [],
-                "variableNames": []
-            },
-            {
-                "id": "5dee65a04fd468674cf4e0ad",
-                "name": "nummer 1",
-                "deviationOfTheMainTaskStartDateTime": null,
-                "deviationOfTheMainTaskDueDateTime": null,
-                "expectedDurationInHours": 3,
-                "context": "Realdolmen",
-                "importance": Importance.NOT_SO_IMPORTANT,
-                "description": null,
-                "subTaskTemplates": [
-                    {
-                        "id": null,
-                        "name": "nummer 2",
-                        "deviationOfTheMainTaskStartDateTime": null,
-                        "deviationOfTheMainTaskDueDateTime": null,
-                        "expectedDurationInHours": 3,
-                        "context": "Realdolmen",
-                        "importance": Importance.NOT_SO_IMPORTANT,
-                        "description": null,
-                        "subTaskTemplates": [],
-                        "variableNames": []
-                    }
-                ],
-                "variableNames": []
-            }
-        ];
+    constructor(public dialog: MatDialog,
+                private _taskTemplateService: TaskTemplateService) {
+        this.allTaskTemplates$ = _taskTemplateService.findAll();
     }
 
-    hasChild = (_: number, node: TaskTemplate) => !!node.subTaskTemplates && node.subTaskTemplates.length > 0;
+    create() {
+        setTimeout(() => {
+            let dialogConfig = {
+                data: null
+            };
 
+            let dialogRef = this.dialog.open(TodoTaskTemplateDetailsDialogComponent, dialogConfig);
+
+            dialogRef.afterClosed()
+                .subscribe(result => {
+                    this._taskTemplateService.create(result).subscribe();
+                });
+        }, 1);
+    }
+
+    delete(taskTemplate: TaskTemplate) {
+        this._taskTemplateService.delete(taskTemplate)
+            .subscribe(() => this.allTaskTemplates$ = this._taskTemplateService.findAll());
+    }
 
 }

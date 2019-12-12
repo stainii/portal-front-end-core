@@ -18,6 +18,8 @@ import {MatMomentDateModule} from "@angular/material-moment-adapter";
 import {TodoMenuBarForSettingsComponent} from './todo-menu-bar-for-settings/todo-menu-bar-for-settings.component';
 import {TodoSettingsComponent} from './todo-settings/todo-settings.component';
 import {MatTreeModule} from "@angular/material/tree";
+import {TodoTaskTemplateDetailsDialogComponent} from "@app/todo/todo-task-template-details-dialog/todo-task-template-details-dialog.component";
+import {TodoTaskTemplatesComponent} from './todo-task-templates/todo-task-templates.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +30,8 @@ import {MatTreeModule} from "@angular/material/tree";
         TodoTaskDetailsDialogComponent,
         TodoMenuBarForSettingsComponent,
         TodoSettingsComponent,
+        TodoTaskTemplateDetailsDialogComponent,
+        TodoTaskTemplatesComponent
     ],
     imports: [
         CommonModule,
@@ -46,7 +50,8 @@ import {MatTreeModule} from "@angular/material/tree";
         MatTreeModule
     ],
     entryComponents: [
-        TodoTaskDetailsDialogComponent
+        TodoTaskDetailsDialogComponent,
+        TodoTaskTemplateDetailsDialogComponent
     ]
 })
 export class TodoModule {
