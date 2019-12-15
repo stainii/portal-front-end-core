@@ -10,20 +10,27 @@ import {MatTreeNestedDataSource} from "@angular/material/tree";
 })
 export class TodoTaskTemplatesComponent {
 
-    treeControl = new NestedTreeControl<TaskTemplate>(node => node.subTaskTemplates);
+    treeControl = new NestedTreeControl<any>(node => node.taskDefinitions);
     dataSource = new MatTreeNestedDataSource<TaskTemplate>();
 
     @Input()
-    public set templates(templates: TaskTemplate[]) {
-        this.dataSource.data = templates;
+    public set taskTemplates(taskTemplates: TaskTemplate[]) {
+        this.dataSource.data = taskTemplates;
     }
+
+    @Output()
+    onEdit: EventEmitter<TaskTemplate> = new EventEmitter<TaskTemplate>();
 
     @Output()
     onDelete: EventEmitter<TaskTemplate> = new EventEmitter<TaskTemplate>();
 
-    hasChild = (_: number, node: TaskTemplate) => !!node.subTaskTemplates && node.subTaskTemplates.length > 0;
+    hasChild = (_: number, node: TaskTemplate) => !!node.taskDefinitions && node.taskDefinitions.length > 0;
 
-    delete(template: TaskTemplate) {
-        this.onDelete.emit(template);
+    deleteTaskTemplate(taskTemplate: TaskTemplate) {
+        this.onDelete.emit(taskTemplate);
+    }
+
+    editTaskTemplate(taskTemplate: TaskTemplate) {
+        this.onEdit.emit(taskTemplate);
     }
 }

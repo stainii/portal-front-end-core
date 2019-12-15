@@ -1,20 +1,4 @@
 <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="tree">
-
-    <!-- This is the tree node template for leaf nodes -->
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-        <li class="mat-tree-node">
-            <span class="name">
-                <!-- use a disabled button to provide padding for tree leaf -->
-                <button mat-icon-button disabled>
-                    <mat-icon></mat-icon>
-                </button>
-                {{node.name}}
-            </span>
-
-            <ng-container *ngTemplateOutlet="buttons; context: {template: node}"></ng-container>
-        </li>
-    </mat-tree-node>
-
     <!-- This is the tree node template for expandable nodes -->
     <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
         <li>
@@ -29,7 +13,14 @@
                     {{node.name}}
                 </span>
 
-                <ng-container *ngTemplateOutlet="buttons; context: {template: node}"></ng-container>
+                <span class="buttons">
+                <button mat-icon-button>
+                    <mat-icon (click)="editTaskTemplate(node)">edit</mat-icon>
+                </button>
+                <button mat-icon-button>
+                    <mat-icon (click)="deleteTaskTemplate(node)">delete</mat-icon>
+                </button>
+            </span>
             </div>
             <ul [class.tree-invisible]="!treeControl.isExpanded(node)">
                 <ng-container matTreeNodeOutlet></ng-container>
@@ -37,17 +28,16 @@
         </li>
     </mat-nested-tree-node>
 
-    <ng-template #buttons let-template="template">
-        <span class="buttons">
-                <button mat-icon-button>
-                    <mat-icon>edit</mat-icon>
+    <!-- This is the tree node template for leaf nodes -->
+    <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
+        <li class="mat-tree-node">
+            <span class="name">
+                <!-- use a disabled button to provide padding for tree leaf -->
+                <button mat-icon-button disabled>
+                    <mat-icon></mat-icon>
                 </button>
-                <button mat-icon-button>
-                    <mat-icon>add_box</mat-icon>
-                </button>
-                <button mat-icon-button>
-                    <mat-icon (click)="delete(template)">delete</mat-icon>
-                </button>
+                {{node.name}}
             </span>
-    </ng-template>
+        </li>
+    </mat-tree-node>
 </mat-tree>

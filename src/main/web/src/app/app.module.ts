@@ -11,10 +11,7 @@ import {AppRoutingModule} from "@app/app-routing.module";
 import {
     MAT_DATE_LOCALE,
     MatButtonModule,
-    MatCardModule,
-    MatFormFieldModule,
     MatIconModule,
-    MatInputModule,
     MatListModule,
     MatSidenavModule,
     MatToolbarModule
@@ -22,25 +19,23 @@ import {
 import {DashboardComponent} from "@app/dashboard/dashboard.component";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {NgxWebstorageModule} from 'ngx-webstorage';
-import {LoginComponent} from "@app/login/login.component";
 import {FormsModule} from "@angular/forms";
-import {LogoutComponent} from './logout/logout.component';
-import {AuthenticationHttpInterceptor} from "@app/authentication.interceptor";
+import {AuthenticationHttpInterceptor} from "@app/user/authentication.interceptor";
 import {MenuComponent} from './menu/menu.component';
 import {NgProgressModule} from "@ngx-progressbar/core";
 import {NgProgressHttpModule} from "@ngx-progressbar/http";
+import {UserModule} from "@app/user/user.module";
 
 @NgModule({
     declarations: [
         AppComponent,
         DashboardComponent,
-        LoginComponent,
-        LogoutComponent,
         MenuComponent,
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        UserModule,
         HttpClientModule,
         ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
         AppRoutingModule,
@@ -52,9 +47,6 @@ import {NgProgressHttpModule} from "@ngx-progressbar/http";
         MatSidenavModule,
         MatIconModule,
         MatListModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatInputModule,
         NgProgressModule,
         NgProgressHttpModule
     ],

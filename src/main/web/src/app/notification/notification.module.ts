@@ -11,7 +11,7 @@ import {SubscriptionListComponent} from "@app/notification/subscription-list/sub
 import {FormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {AuthenticationHttpInterceptor} from "@app/authentication.interceptor";
+import {AuthenticationHttpInterceptor} from "@app/user/authentication.interceptor";
 /* manage font-awesome icons */
 import {library} from '@fortawesome/fontawesome-svg-core';
 import {faBell} from '@fortawesome/free-solid-svg-icons';

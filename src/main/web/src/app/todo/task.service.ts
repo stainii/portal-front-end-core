@@ -7,7 +7,7 @@ import {environment} from "@env/environment";
 import {map} from "rxjs/operators";
 import {TaskPatchService} from '@app/todo/task-patch.service';
 import {TaskPatch} from "@app/todo/task-patch.model";
-import {UserService} from "@app/user.service";
+import {UserService} from "@app/user/user.service";
 import {TaskStatus} from "@app/todo/task-status.model";
 
 @Injectable({

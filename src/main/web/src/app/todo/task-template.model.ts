@@ -1,15 +1,8 @@
-import {Importance} from "@app/todo/importance.model";
+import {TaskDefinition} from "@app/todo/task-definition.model";
 
 export class TaskTemplate {
     public id: string;
     public name: string;
-    public deviationOfTheMainTaskStartDateTime: number;
-    public deviationOfTheMainTaskDueDateTime: number;
-    public expectedDurationInHours: number;
-    public context: string;
-    public importance: Importance;
-    public description: string;
-    public subTaskTemplates: TaskTemplate[];
+    public taskDefinitions: TaskDefinition[];
     public variableNames: string[];
-
 }

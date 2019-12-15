@@ -20,6 +20,8 @@ import {TodoSettingsComponent} from './todo-settings/todo-settings.component';
 import {MatTreeModule} from "@angular/material/tree";
 import {TodoTaskTemplateDetailsDialogComponent} from "@app/todo/todo-task-template-details-dialog/todo-task-template-details-dialog.component";
 import {TodoTaskTemplatesComponent} from './todo-task-templates/todo-task-templates.component';
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatListModule} from "@angular/material/list";
 
 @NgModule({
     declarations: [
@@ -47,7 +49,9 @@ import {TodoTaskTemplatesComponent} from './todo-task-templates/todo-task-templa
         MatInputModule,
         MatDatepickerModule,
         MatMomentDateModule,
-        MatTreeModule
+        MatTreeModule,
+        MatTabsModule,
+        MatListModule
     ],
     entryComponents: [
         TodoTaskDetailsDialogComponent,

@@ -19,7 +19,7 @@ export class TodoSettingsComponent {
         this.allTaskTemplates$ = _taskTemplateService.findAll();
     }
 
-    create() {
+    showCreateDialog() {
         setTimeout(() => {
             let dialogConfig = {
                 data: null
@@ -29,14 +29,34 @@ export class TodoSettingsComponent {
 
             dialogRef.afterClosed()
                 .subscribe(result => {
-                    this._taskTemplateService.create(result).subscribe();
+                    this._taskTemplateService.create(result)
+                        .subscribe(() => this.allTaskTemplates$ = this._taskTemplateService.findAll());;
                 });
         }, 1);
     }
 
+    showEditDialog(taskTemplate: TaskTemplate) {
+        setTimeout(() => {
+            let dialogConfig = {
+                data: taskTemplate
+            };
+
+            let dialogRef = this.dialog.open(TodoTaskTemplateDetailsDialogComponent, dialogConfig);
+
+            dialogRef.afterClosed()
+                .subscribe(result => {
+                    this._taskTemplateService.update(taskTemplate)
+                        .subscribe(() => this.allTaskTemplates$ = this._taskTemplateService.findAll());
+                });
+        }, 1);
+
+    }
+
     delete(taskTemplate: TaskTemplate) {
+        // no dialog shown here, just delete
         this._taskTemplateService.delete(taskTemplate)
             .subscribe(() => this.allTaskTemplates$ = this._taskTemplateService.findAll());
     }
+
 
 }

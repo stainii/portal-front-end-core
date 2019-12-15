@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot} from "@angular/router";
 import {Observable} from "rxjs";
-import {ModuleService} from "@app/module.service";
+import {ModuleService} from "@app/module/module.service";
 import {concatMap, defaultIfEmpty, map, reduce} from "rxjs/operators";
 
 /**

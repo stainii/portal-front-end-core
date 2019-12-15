@@ -1,7 +1,7 @@
 import {inject, TestBed} from '@angular/core/testing';
 
 import {AuthenticationGuardService} from './authentication-guard.service';
-import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from "@angular/router";
+import {ActivatedRouteSnapshot, Router} from "@angular/router";
 import {UserService} from "./user.service";
 
 describe('AuthenticationGuardService', () => {

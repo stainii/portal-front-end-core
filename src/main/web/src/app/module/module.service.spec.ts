@@ -5,8 +5,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {environment} from "@env/environment";
 import {Subject} from "rxjs";
-import {UserService} from "@app/user.service";
-import {Module} from "@app/module.model";
+import {UserService} from "@app/user/user.service";
+import {Module} from "@app/module/module.model";
 
 describe('ModuleService', () => {
     let userService;

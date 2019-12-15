@@ -1,11 +1,11 @@
 import {inject, TestBed} from '@angular/core/testing';
 
 import {AuthenticationGuardService} from './authentication-guard.service';
-import {ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
-import {ModuleService} from "@app/module.service";
-import {AuthorisationGuardService} from "@app/authorisation-guard.service";
+import {ActivatedRouteSnapshot} from "@angular/router";
+import {ModuleService} from "@app/module/module.service";
+import {AuthorisationGuardService} from "@app/user/authorisation-guard.service";
 import {Observable, of} from "rxjs";
-import {Module} from "@app/module.model";
+import {Module} from "@app/module/module.model";
 
 describe('AuthorisationGuardService', () => {
     let moduleService;

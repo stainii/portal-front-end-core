@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MenuComponent} from './menu.component';
 import {MatListModule} from "@angular/material";
-import {ModuleService} from "@app/module.service";
+import {ModuleService} from "@app/module/module.service";
 import {of} from "rxjs";
 import {RouterTestingModule} from "@angular/router/testing";
 

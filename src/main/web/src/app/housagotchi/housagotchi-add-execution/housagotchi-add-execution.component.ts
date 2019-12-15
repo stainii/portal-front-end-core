@@ -24,7 +24,6 @@ export class HousagotchiAddExecutionComponent implements OnInit, OnChanges {
                 private _activatedRoute: ActivatedRoute) {
         this._activatedRoute.queryParams.subscribe(params => {
             let task = params['task'];
-            console.log(task); // Print the parameter to the console.
         });
     }
 

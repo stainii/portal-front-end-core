@@ -13,7 +13,6 @@ export class Task {
     public context: string;
     public importance: Importance;
     public description: string;
-    public subTasks: Task[];
     public status: TaskStatus;
     public history: TaskPatch[];
 

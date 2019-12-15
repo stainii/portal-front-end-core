@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Module} from "@app/module.model";
+import {Module} from "@app/module/module.model";
 import {Observable, of} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "@env/environment";
-import {UserService} from "@app/user.service";
+import {UserService} from "@app/user/user.service";
 import {tap} from "rxjs/operators";
 
 @Injectable({

@@ -17,12 +17,12 @@ import {AppRoutingModule} from "@app/app-routing.module";
 import {LayoutModule} from "@angular/cdk/layout";
 import {FormsModule} from "@angular/forms";
 import {NgxWebstorageModule} from 'ngx-webstorage';
-import {LoginComponent} from "@app/login/login.component";
-import {LogoutComponent} from "@app/logout/logout.component";
+import {LoginComponent} from "@app/user/login/login.component";
+import {LogoutComponent} from "@app/user/logout/logout.component";
 import {APP_BASE_HREF} from "@angular/common";
 import {MenuComponent} from "@app/menu/menu.component";
 import {of} from "rxjs";
-import {ModuleService} from "@app/module.service";
+import {ModuleService} from "@app/module/module.service";
 
 describe('DashboardComponent', () => {
     let component: DashboardComponent;
