@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
-import {TodoTaskDetailsDialogComponent} from "@app/todo/todo-task-details-dialog/todo-task-details-dialog.component";
+import {TodoTaskDetailsComponent} from "@app/todo/todo-task-details/todo-task-details.component";
 import {Task} from "@app/todo/task.model";
 import {TaskService} from "@app/todo/task.service";
 
@@ -31,7 +31,7 @@ export class TodoAppComponent implements OnInit {
                 data: task
             };
 
-            let dialogRef = this.dialog.open(TodoTaskDetailsDialogComponent, dialogConfig);
+            let dialogRef = this.dialog.open(TodoTaskDetailsComponent, dialogConfig);
 
             dialogRef.afterClosed()
                 .subscribe(result => {
@@ -49,7 +49,7 @@ export class TodoAppComponent implements OnInit {
                 data: null
             };
 
-            let dialogRef = this.dialog.open(TodoTaskDetailsDialogComponent, dialogConfig);
+            let dialogRef = this.dialog.open(TodoTaskDetailsComponent, dialogConfig);
 
             dialogRef.afterClosed()
                 .subscribe(result => {

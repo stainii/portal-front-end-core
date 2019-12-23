@@ -3,16 +3,16 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Task} from '@app/todo/task.model';
 
 @Component({
-    selector: 'app-todo-task-details-dialog',
-    templateUrl: './todo-task-details-dialog.component.html',
-    styleUrls: ['./todo-task-details-dialog.component.scss']
+    selector: 'app-todo-task-details',
+    templateUrl: './todo-task-details.component.html',
+    styleUrls: ['./todo-task-details.component.scss']
 })
-export class TodoTaskDetailsDialogComponent implements OnInit {
+export class TodoTaskDetailsComponent implements OnInit {
 
     task: Task;
     dialogContext: string;
 
-    constructor(public dialogRef: MatDialogRef<TodoTaskDetailsDialogComponent>,
+    constructor(public dialogRef: MatDialogRef<TodoTaskDetailsComponent>,
                 @Inject(MAT_DIALOG_DATA) data: Task) {
         if (data) {
             this.task = Object.create(data);

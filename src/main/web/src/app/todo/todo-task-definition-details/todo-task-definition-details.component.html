@@ -1,0 +1,39 @@
+<mat-vertical-stepper>
+    <mat-step [completed]="taskDefinition.name!!">
+        <ng-template matStepLabel>What needs to be done?</ng-template>
+        <mat-form-field>
+            <input matInput [(ngModel)]="taskDefinition.name">
+        </mat-form-field>
+    </mat-step>
+    <mat-step [completed]="taskDefinition.context!!">
+        <ng-template matStepLabel>What is the context?</ng-template>
+        <mat-form-field>
+            <input matInput [(ngModel)]="taskDefinition.context">
+        </mat-form-field>
+    </mat-step>
+    <mat-step [completed]="taskDefinition.expectedDurationInHours!!">
+        <ng-template matStepLabel>How long will it take?</ng-template>
+        <mat-form-field>
+            <input matInput type="number" [(ngModel)]="taskDefinition.expectedDurationInHours">
+        </mat-form-field>
+        <span> hours</span>
+    </mat-step>
+    <mat-step [completed]="taskDefinition.importance!!">
+        <ng-template matStepLabel>How important is the task?</ng-template>
+        <mat-form-field>
+            <mat-select [(ngModel)]="taskDefinition.importance">
+                <mat-option>None</mat-option>
+                <mat-option value="I_DO_NOT_REALLY_CARE">I do not really care</mat-option>
+                <mat-option value="NOT_SO_IMPORTANT">Not so important</mat-option>
+                <mat-option value="VERY_IMPORTANT">Very important</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </mat-step>
+    <mat-step [completed]="taskDefinition.description!!">
+        <ng-template matStepLabel>Extra information?</ng-template>
+        <mat-form-field>
+            <textarea matInput placeholder="What needs to be done, in detail?"
+                      [(ngModel)]="taskDefinition.description"></textarea>
+        </mat-form-field>
+    </mat-step>
+</mat-vertical-stepper>

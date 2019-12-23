@@ -8,7 +8,7 @@ import {MatButtonModule, MatCardModule, MatExpansionModule, MatIconModule} from 
 import {TodoTaskPanelComponent} from './todo-task-panel/todo-task-panel.component';
 import {MatSelectModule} from "@angular/material/select";
 import {TodoAppComponent} from './todo-app/todo-app.component';
-import {TodoTaskDetailsDialogComponent} from './todo-task-details-dialog/todo-task-details-dialog.component';
+import {TodoTaskDetailsComponent} from './todo-task-details/todo-task-details.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatStepperModule} from "@angular/material/stepper";
 import {FormsModule} from "@angular/forms";
@@ -18,10 +18,11 @@ import {MatMomentDateModule} from "@angular/material-moment-adapter";
 import {TodoMenuBarForSettingsComponent} from './todo-menu-bar-for-settings/todo-menu-bar-for-settings.component';
 import {TodoSettingsComponent} from './todo-settings/todo-settings.component';
 import {MatTreeModule} from "@angular/material/tree";
-import {TodoTaskTemplateDetailsDialogComponent} from "@app/todo/todo-task-template-details-dialog/todo-task-template-details-dialog.component";
+import {TodoTaskTemplateDetailsComponent} from "@app/todo/todo-task-template-details/todo-task-template-details.component";
 import {TodoTaskTemplatesComponent} from './todo-task-templates/todo-task-templates.component';
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatListModule} from "@angular/material/list";
+import {TodoTaskDefinitionDetailsComponent} from './todo-task-definition-details/todo-task-definition-details.component';
 
 @NgModule({
     declarations: [
@@ -29,11 +30,12 @@ import {MatListModule} from "@angular/material/list";
         TodoMenuBarForOverviewComponent,
         TodoTaskPanelComponent,
         TodoAppComponent,
-        TodoTaskDetailsDialogComponent,
+        TodoTaskDetailsComponent,
         TodoMenuBarForSettingsComponent,
         TodoSettingsComponent,
-        TodoTaskTemplateDetailsDialogComponent,
-        TodoTaskTemplatesComponent
+        TodoTaskTemplateDetailsComponent,
+        TodoTaskTemplatesComponent,
+        TodoTaskDefinitionDetailsComponent
     ],
     imports: [
         CommonModule,
@@ -54,8 +56,8 @@ import {MatListModule} from "@angular/material/list";
         MatListModule
     ],
     entryComponents: [
-        TodoTaskDetailsDialogComponent,
-        TodoTaskTemplateDetailsDialogComponent
+        TodoTaskDetailsComponent,
+        TodoTaskTemplateDetailsComponent
     ]
 })
 export class TodoModule {

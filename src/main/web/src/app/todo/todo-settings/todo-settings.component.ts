@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {TaskTemplate} from "@app/todo/task-template.model";
 import {MatDialog} from "@angular/material/dialog";
-import {TodoTaskTemplateDetailsDialogComponent} from "@app/todo/todo-task-template-details-dialog/todo-task-template-details-dialog.component";
+import {TodoTaskTemplateDetailsComponent} from "@app/todo/todo-task-template-details/todo-task-template-details.component";
 import {TaskTemplateService} from "@app/todo/task-template.service";
 import {Observable} from "rxjs";
 
@@ -25,7 +25,7 @@ export class TodoSettingsComponent {
                 data: null
             };
 
-            let dialogRef = this.dialog.open(TodoTaskTemplateDetailsDialogComponent, dialogConfig);
+            let dialogRef = this.dialog.open(TodoTaskTemplateDetailsComponent, dialogConfig);
 
             dialogRef.afterClosed()
                 .subscribe(result => {
@@ -41,7 +41,7 @@ export class TodoSettingsComponent {
                 data: taskTemplate
             };
 
-            let dialogRef = this.dialog.open(TodoTaskTemplateDetailsDialogComponent, dialogConfig);
+            let dialogRef = this.dialog.open(TodoTaskTemplateDetailsComponent, dialogConfig);
 
             dialogRef.afterClosed()
                 .subscribe(result => {
