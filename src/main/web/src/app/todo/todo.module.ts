@@ -53,7 +53,7 @@ import {TodoTaskDefinitionDetailsComponent} from './todo-task-definition-details
         MatMomentDateModule,
         MatTreeModule,
         MatTabsModule,
-        MatListModule
+        MatListModule,
     ],
     entryComponents: [
         TodoTaskDetailsComponent,

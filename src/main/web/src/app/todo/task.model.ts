@@ -42,12 +42,12 @@ export class Task {
     }
 
     public hasTypeFitIn() {
-        return this.importance == Importance.NOT_SO_IMPORTANT
+        return (!this.importance || this.importance == Importance.NOT_SO_IMPORTANT)
                 && (this.dueDateTime != null && this.dueDateIsGettingNear());
     }
 
     public hasTypeBackBurner() {
-        return this.importance == Importance.I_DO_NOT_REALLY_CARE
+        return (!this.importance || this.importance == Importance.I_DO_NOT_REALLY_CARE)
             || (this.importance == Importance.NOT_SO_IMPORTANT && !this.hasTypeFitIn());
     }
 

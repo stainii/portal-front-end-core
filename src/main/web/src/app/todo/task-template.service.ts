@@ -15,10 +15,20 @@ export class TaskTemplateService {
     }
 
     create(taskTemplate: TaskTemplate) {
+        for (let taskDefinition of taskTemplate.taskDefinitions) {
+            if (!taskDefinition.context) {
+                taskDefinition.context = environment.defaultTaskContext;
+            }
+        }
         return this._http.post<TaskTemplate>(environment.apiBaseUrl + "todo/template/", taskTemplate);
     }
 
     update(taskTemplate: TaskTemplate) {
+        for (let taskDefinition of taskTemplate.taskDefinitions) {
+            if (!taskDefinition.context) {
+                taskDefinition.context = environment.defaultTaskContext;
+            }
+        }
         return this._http.put<TaskTemplate>(environment.apiBaseUrl + "todo/template/" + taskTemplate.id, taskTemplate);
     }
 

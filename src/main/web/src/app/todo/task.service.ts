@@ -39,6 +39,9 @@ export class TaskService {
     }
 
     create(task: Task) {
+        if (!task.context) {
+            task.context = environment.defaultTaskContext;
+        }
         return this._http.post<Task>(environment.apiBaseUrl + "todo/task/", task);
     }
 
@@ -47,6 +50,9 @@ export class TaskService {
     }
 
     update(updatedTask: Task, originalTask: Task) {
+        if (!updatedTask.context) {
+            updatedTask.context = environment.defaultTaskContext;
+        }
         return this._taskPatchService.update(updatedTask, originalTask);
     }
 

@@ -40,6 +40,23 @@ describe('taskComparator', () => {
         expect(sortedTasks).toEqual([task3, task1, task2]);
     });
 
+    it('should put a task without importance before a non-important task, but after an important task', () => {
+        let task1 = new Task();
+        task1.importance = Importance.NOT_SO_IMPORTANT;
+        task1.dueDateTime = moment().add(1, "day").toDate();
+
+        let task2 = new Task();
+        task2.importance = null;
+        task2.dueDateTime = moment().add(1, "day").toDate();
+
+        let task3 = new Task();
+        task3.importance = Importance.VERY_IMPORTANT;
+        task3.dueDateTime = moment().add(1, "day").toDate();
+
+        let sortedTasks = [task1, task2, task3].sort(taskComparator);
+        expect(sortedTasks).toEqual([task3, task2, task1]);
+    });
+
     it('should put an urgent and important task before an urgent but less important task', () => {
         let task1 = new Task();
         task1.importance = Importance.NOT_SO_IMPORTANT;
@@ -48,7 +65,6 @@ describe('taskComparator', () => {
         let task2 = new Task();
         task2.importance = Importance.VERY_IMPORTANT;
         task2.dueDateTime = moment().add(1, "day").toDate();
-
 
         let sortedTasks = [task1, task2].sort(taskComparator);
 

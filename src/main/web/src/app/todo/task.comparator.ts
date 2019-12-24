@@ -31,6 +31,7 @@ export const taskComparator = (task1: Task, task2: Task) => {
 
         switch (task.importance) {
             case Importance.NOT_SO_IMPORTANT: points += 5; break;
+            case null: points += 7; break;
             case Importance.VERY_IMPORTANT: points += 10; break;
         }
 

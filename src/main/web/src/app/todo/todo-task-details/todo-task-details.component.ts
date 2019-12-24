@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {Task} from '@app/todo/task.model';
+import {environment} from "@env/environment";
 
 @Component({
     selector: 'app-todo-task-details',
@@ -9,6 +10,7 @@ import {Task} from '@app/todo/task.model';
 })
 export class TodoTaskDetailsComponent implements OnInit {
 
+    DEFAULT_TASK_CONTEXT = environment.defaultTaskContext;
     task: Task;
     dialogContext: string;
 
@@ -31,6 +33,8 @@ export class TodoTaskDetailsComponent implements OnInit {
     }
 
     saveAndClose() {
-        this.dialogRef.close(this.task);
+        if (this.task.name) {
+            this.dialogRef.close(this.task);
+        }
     }
 }

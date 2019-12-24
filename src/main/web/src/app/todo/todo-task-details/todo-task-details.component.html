@@ -11,15 +11,28 @@
             </mat-form-field>
         </mat-step>
         <mat-step [completed]="task.name!!">
-            <ng-template matStepLabel>What needs to be done?</ng-template>
+            <ng-template matStepLabel>What needs to be done?*</ng-template>
             <mat-form-field>
-                <input matInput [(ngModel)]="task.name">
+                <input required
+                       matInput
+                       [(ngModel)]="task.name">
             </mat-form-field>
         </mat-step>
-        <mat-step [completed]="task.context!!">
+        <mat-step [completed]="task.context!! && task.context != DEFAULT_TASK_CONTEXT">
             <ng-template matStepLabel>What is the context?</ng-template>
             <mat-form-field>
                 <input matInput [(ngModel)]="task.context">
+            </mat-form-field>
+        </mat-step>
+        <mat-step [completed]="task.importance!!">
+            <ng-template matStepLabel>How important is the task?</ng-template>
+            <mat-form-field>
+                <mat-select [(ngModel)]="task.importance">
+                    <mat-option>I don't know</mat-option>
+                    <mat-option value="I_DO_NOT_REALLY_CARE">I do not really care</mat-option>
+                    <mat-option value="NOT_SO_IMPORTANT">Not so important</mat-option>
+                    <mat-option value="VERY_IMPORTANT">Very important</mat-option>
+                </mat-select>
             </mat-form-field>
         </mat-step>
         <mat-step [completed]="task.dueDateTime!!">
@@ -33,14 +46,7 @@
                 <mat-datepicker touchUi #dueDatePicker></mat-datepicker>
             </mat-form-field>
         </mat-step>
-        <mat-step [completed]="task.expectedDurationInHours!!">
-            <ng-template matStepLabel>How long will it take?</ng-template>
-            <mat-form-field>
-                <input matInput type="number" [(ngModel)]="task.expectedDurationInHours">
-            </mat-form-field>
-            <span> hours</span>
-        </mat-step>
-        <mat-step  [completed]="task.startDateTime!!">
+        <mat-step [completed]="task.startDateTime!!">
             <ng-template matStepLabel>When can we start?</ng-template>
             <mat-form-field>
                 <input matInput
@@ -51,29 +57,28 @@
                 <mat-datepicker touchUi #startDatePicker></mat-datepicker>
             </mat-form-field>
         </mat-step>
-        <mat-step [completed]="task.importance!!">
-            <ng-template matStepLabel>How important is the task?</ng-template>
+        <mat-step [completed]="task.expectedDurationInHours!!">
+            <ng-template matStepLabel>How long will it take?</ng-template>
             <mat-form-field>
-                <mat-select [(ngModel)]="task.importance">
-                    <mat-option>None</mat-option>
-                    <mat-option value="I_DO_NOT_REALLY_CARE">I do not really care</mat-option>
-                    <mat-option value="NOT_SO_IMPORTANT">Not so important</mat-option>
-                    <mat-option value="VERY_IMPORTANT">Very important</mat-option>
-                </mat-select>
+                <input matInput type="number" [(ngModel)]="task.expectedDurationInHours">
             </mat-form-field>
+            <span> hours</span>
         </mat-step>
         <mat-step [completed]="task.description!!">
             <ng-template matStepLabel>Extra information?</ng-template>
             <mat-form-field>
-                <textarea matInput placeholder="What needs to be done, in detail?" [(ngModel)]="task.description"></textarea>
+                <textarea matInput placeholder="What needs to be done, in detail?"
+                          [(ngModel)]="task.description"></textarea>
             </mat-form-field>
         </mat-step>
     </mat-vertical-stepper>
 </div>
 <div class="mat-dialog-actions">
     <button mat-button
-            (click)="close()">No Thanks</button>
+            (click)="close()">No Thanks
+    </button>
     <button mat-flat-button
             class="mat-primary"
-            (click)="saveAndClose()">Save</button>
+            (click)="saveAndClose()">Save
+    </button>
 </div>

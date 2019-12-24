@@ -29,8 +29,10 @@ export class TodoSettingsComponent {
 
             dialogRef.afterClosed()
                 .subscribe(result => {
-                    this._taskTemplateService.create(result)
-                        .subscribe(() => this.allTaskTemplates$ = this._taskTemplateService.findAll());;
+                    if (result) {
+                        this._taskTemplateService.create(result)
+                            .subscribe(() => this.allTaskTemplates$ = this._taskTemplateService.findAll());
+                    }
                 });
         }, 1);
     }
@@ -45,8 +47,10 @@ export class TodoSettingsComponent {
 
             dialogRef.afterClosed()
                 .subscribe(result => {
-                    this._taskTemplateService.update(taskTemplate)
-                        .subscribe(() => this.allTaskTemplates$ = this._taskTemplateService.findAll());
+                    if (result) {
+                        this._taskTemplateService.update(taskTemplate)
+                            .subscribe(() => this.allTaskTemplates$ = this._taskTemplateService.findAll());
+                    }
                 });
         }, 1);
 

@@ -46,7 +46,18 @@ export class TodoTaskTemplateDetailsComponent {
     }
 
     saveAndClose() {
-        this.dialogRef.close(this.taskTemplate);
+        if (this.isValid(this.taskTemplate)) {
+            this.dialogRef.close(this.taskTemplate);
+        }
+    }
+
+    private isValid(taskTemplate: TaskTemplate) {
+        for (let taskDefinition of taskTemplate.taskDefinitions) {
+            if (!!taskDefinition.name) {
+                return false;
+            }
+        }
+        return taskTemplate.name!!;
     }
 
     addTab() {
