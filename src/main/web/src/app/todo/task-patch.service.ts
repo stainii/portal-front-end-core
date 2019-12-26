@@ -20,16 +20,24 @@ export class TaskPatchService {
     }
 
     patch(task: Task, patch: TaskPatch) {
-        Object.keys(patch.changes)
-            .forEach(key => {
-                task[key] = patch.changes[key]
-            });
+        // first, add the patch to the history of the task
+        task.history.push(patch);
+
+        // then, replay all history on the task, in the correct order
+        task.history
+            .sort((a, b) => a.dateTime.valueOf() - b.dateTime.valueOf())
+            .forEach(p => {
+                Object.keys(p.changes)
+                    .forEach(key => {
+                        task[key] = p.changes[key];
+                    });
+            })
     }
 
     update(updatedTask: Task, originalTask: Task) {
         let patch = {
             taskId: originalTask.id,
-            date: moment(),
+            dateTime: moment(),
             changes: {}
         };
 
@@ -47,7 +55,7 @@ export class TaskPatchService {
     complete(task: Task) {
         return this._http.patch<Task>(environment.apiBaseUrl + "todo/task/" + task.id, {
             taskId: task.id,
-            date: moment(),
+            dateTime: moment(),
             status: TaskStatus.COMPLETED
         });
     }
