@@ -4,13 +4,15 @@
         <mat-form-field>
             <input required
                    matInput
-                   [(ngModel)]="taskDefinition.name">
+                   [(ngModel)]="taskDefinition.name"
+                   matTooltip="You can use the variable names, which you've defined above, by using this notation: ${myVariableName}">
         </mat-form-field>
     </mat-step>
     <mat-step [completed]="taskDefinition.context!! && DEFAULT_TASK_CONTEXT">
         <ng-template matStepLabel>What is the context?</ng-template>
         <mat-form-field>
-            <input matInput [(ngModel)]="taskDefinition.context">
+            <input matInput [(ngModel)]="taskDefinition.context"
+                   matTooltip="You can use the variable names, which you've defined above, by using this notation: ${myVariableName}">
         </mat-form-field>
     </mat-step>
     <mat-step [completed]="taskDefinition.importance!!">
@@ -46,8 +48,10 @@
     <mat-step [completed]="taskDefinition.description!!">
         <ng-template matStepLabel>Extra information?</ng-template>
         <mat-form-field>
-            <textarea matInput placeholder="What needs to be done, in detail?"
-                      [(ngModel)]="taskDefinition.description"></textarea>
+            <textarea matInput
+                      placeholder="What needs to be done, in detail?"
+                      [(ngModel)]="taskDefinition.description"
+                      matTooltip="You can use the variable names, which you've defined above, by using this notation: ${myVariableName}"></textarea>
         </mat-form-field>
     </mat-step>
 </mat-vertical-stepper>

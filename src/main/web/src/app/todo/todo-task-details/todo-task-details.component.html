@@ -1,22 +1,19 @@
 <h1 mat-dialog-title>{{task ? task.name : 'New task'}}</h1>
 <div mat-dialog-content>
     <mat-vertical-stepper>
-        <mat-step *ngIf="dialogContext == 'CREATE'"> <!-- todo add completed property -->
-            <ng-template matStepLabel>Do you want to use a template?</ng-template>
-            <mat-form-field>
-                <mat-select>
-                    <mat-option>No</mat-option>
-                    <mat-option value="TODO">TODO</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </mat-step>
         <mat-step [completed]="task.name!!">
             <ng-template matStepLabel>What needs to be done?*</ng-template>
             <mat-form-field>
                 <input required
                        matInput
-                       [(ngModel)]="task.name">
+                       [(ngModel)]="task.name"
+                       [placeholder]="placeholderForTaskName">
             </mat-form-field>
+            <button mat-button
+                    *ngIf="!task.id"
+                    (click)="useATaskTemplateInstead()">
+                or use a template instead
+            </button>
         </mat-step>
         <mat-step [completed]="task.context!! && task.context != DEFAULT_TASK_CONTEXT">
             <ng-template matStepLabel>What is the context?</ng-template>
@@ -64,7 +61,8 @@
             </mat-form-field>
             <span> hours</span>
         </mat-step>
-        <mat-step [completed]="task.description!!">
+        <mat-step
+            [completed]="task.description!!">
             <ng-template matStepLabel>Extra information?</ng-template>
             <mat-form-field>
                 <textarea matInput placeholder="What needs to be done, in detail?"

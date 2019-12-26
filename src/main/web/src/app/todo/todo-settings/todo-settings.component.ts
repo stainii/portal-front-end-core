@@ -22,7 +22,7 @@ export class TodoSettingsComponent {
     showCreateDialog() {
         setTimeout(() => {
             let dialogConfig = {
-                data: null
+                data: new TaskTemplate()
             };
 
             let dialogRef = this.dialog.open(TodoTaskTemplateDetailsComponent, dialogConfig);

@@ -9,6 +9,7 @@ import {TaskPatchService} from '@app/todo/task-patch.service';
 import {TaskPatch} from "@app/todo/task-patch.model";
 import {UserService} from "@app/user/user.service";
 import {TaskStatus} from "@app/todo/task-status.model";
+import {TaskTemplateEntry} from "@app/todo/task-template-entry.model";
 
 @Injectable({
     providedIn: 'root'
@@ -43,6 +44,10 @@ export class TaskService {
             task.context = environment.defaultTaskContext;
         }
         return this._http.post<Task>(environment.apiBaseUrl + "todo/task/", task);
+    }
+
+    createTasksBasedOn(taskTemplateEntry: TaskTemplateEntry) {
+        return this._http.post<Task[]>(environment.apiBaseUrl + "todo/task/from-template/", taskTemplateEntry);
     }
 
     complete(task: Task) {

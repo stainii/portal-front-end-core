@@ -8,7 +8,6 @@ import {MatButtonModule, MatCardModule, MatExpansionModule, MatIconModule} from 
 import {TodoTaskPanelComponent} from './todo-task-panel/todo-task-panel.component';
 import {MatSelectModule} from "@angular/material/select";
 import {TodoAppComponent} from './todo-app/todo-app.component';
-import {TodoTaskDetailsComponent} from './todo-task-details/todo-task-details.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatStepperModule} from "@angular/material/stepper";
 import {FormsModule} from "@angular/forms";
@@ -23,6 +22,9 @@ import {TodoTaskTemplatesComponent} from './todo-task-templates/todo-task-templa
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatListModule} from "@angular/material/list";
 import {TodoTaskDefinitionDetailsComponent} from './todo-task-definition-details/todo-task-definition-details.component';
+import {TodoTaskTemplateEntryDetailsComponent} from './todo-task-template-entry-details/todo-task-template-entry-details.component';
+import {TodoTaskDetailsComponent} from './todo-task-details/todo-task-details.component';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 @NgModule({
     declarations: [
@@ -30,12 +32,13 @@ import {TodoTaskDefinitionDetailsComponent} from './todo-task-definition-details
         TodoMenuBarForOverviewComponent,
         TodoTaskPanelComponent,
         TodoAppComponent,
-        TodoTaskDetailsComponent,
         TodoMenuBarForSettingsComponent,
         TodoSettingsComponent,
         TodoTaskTemplateDetailsComponent,
         TodoTaskTemplatesComponent,
-        TodoTaskDefinitionDetailsComponent
+        TodoTaskDefinitionDetailsComponent,
+        TodoTaskTemplateEntryDetailsComponent,
+        TodoTaskDetailsComponent
     ],
     imports: [
         CommonModule,
@@ -54,10 +57,12 @@ import {TodoTaskDefinitionDetailsComponent} from './todo-task-definition-details
         MatTreeModule,
         MatTabsModule,
         MatListModule,
+        MatTooltipModule,
     ],
     entryComponents: [
         TodoTaskDetailsComponent,
-        TodoTaskTemplateDetailsComponent
+        TodoTaskTemplateDetailsComponent,
+        TodoTaskTemplateEntryDetailsComponent
     ]
 })
 export class TodoModule {

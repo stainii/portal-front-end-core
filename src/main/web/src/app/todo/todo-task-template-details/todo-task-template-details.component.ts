@@ -18,7 +18,6 @@ export class TodoTaskTemplateDetailsComponent {
     taskTemplate: TaskTemplate;
     newVariableName: string;
 
-    dialogContext: string;
     isHandset$: Observable<boolean> = this._breakpointObserver.observe(Breakpoints.Handset)
         .pipe(map(result => result.matches));
     selectedTaskDefinition = new FormControl(0);
@@ -29,14 +28,7 @@ export class TodoTaskTemplateDetailsComponent {
                 private _breakpointObserver: BreakpointObserver,
                 private _randomAdjective: RandomAdjectiveService,
                 @Inject(MAT_DIALOG_DATA) data: TaskTemplate) {
-        if (data) {
-            this.taskTemplate = Object.create(data);
-            this.dialogContext = "UPDATE";
-        } else {
-            this.taskTemplate = new TaskTemplate();
-            this.dialogContext = "CREATE";
-        }
-
+        this.taskTemplate = data;
         this.placeholderForTaskTemplateName = "My " + this._randomAdjective.lowercase() + " task template";
         this.placeholderForVariableName = "my" + this._randomAdjective.capitalized() + "Variable";
     }
@@ -53,11 +45,17 @@ export class TodoTaskTemplateDetailsComponent {
 
     private isValid(taskTemplate: TaskTemplate) {
         for (let taskDefinition of taskTemplate.taskDefinitions) {
-            if (!!taskDefinition.name) {
+            if (!taskDefinition.name) {
+                console.error("Task definition has no name;");
                 return false;
             }
         }
-        return taskTemplate.name!!;
+        if (!taskTemplate.name) {
+            console.error("Task template has no name.");
+            return false;
+        }
+
+        return true;
     }
 
     addTab() {
