@@ -20,13 +20,17 @@ export class AuthenticationHttpInterceptor implements HttpInterceptor {
             });
         }
 
-        //if response code is "unauthorized", assume that the token has expired and log out
-        return next.handle(request).pipe(catchError((error: HttpResponse<string>) => {
-            if (error.status == 401) {
-                this._userService.logOut();
-            }
-            return of(error);
-        }));
+        if (this._userService.isLoggedIn()) {
+            //if response code is "unauthorized", assume that the token has expired and log out
+            return next.handle(request).pipe(catchError((error: HttpResponse<string>) => {
+                if (error.status == 401) {
+                    this._userService.logOut();
+                }
+                return of(error);
+            }));
+        } else {
+            return next.handle(request);
+        }
 
     }
 

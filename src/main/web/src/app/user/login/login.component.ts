@@ -12,6 +12,7 @@ export class LoginComponent {
     username: string;
     password: string;
     error: string;
+    hasError: boolean;
 
     constructor(private _userService: UserService, private _router: Router) {
 
@@ -19,10 +20,15 @@ export class LoginComponent {
 
     logIn($event: Event) {
         $event.preventDefault();
+        this.hasError = false;
+        this.error = null;
         this._userService.logIn(this.username, this.password)
             .subscribe(
                 () => this._router.navigate(["/notifications"]),
-                error => this.error = error.message);
+                error => {
+                    this.hasError = true;
+                    this.error = error.message
+                });
     }
 
 }

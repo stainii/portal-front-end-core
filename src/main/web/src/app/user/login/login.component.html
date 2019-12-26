@@ -1,6 +1,6 @@
 <div class="login">
     <form (ngSubmit)="logIn($event)" #logInForm="ngForm">
-        <mat-card>
+        <mat-card [class.shake]="hasError">
             <mat-card-header>
                 <mat-card-title>Log in</mat-card-title>
             </mat-card-header>
