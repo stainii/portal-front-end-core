@@ -7,6 +7,7 @@ import {map} from "rxjs/operators";
 import {FormControl} from "@angular/forms";
 import {RandomAdjectiveService} from "@app/funny-details/random-adjective.service";
 import {TaskDefinition} from "@app/todo/task-definition.model";
+import {ErrorService} from "@app/error/error.service";
 
 @Component({
     selector: 'app-todo-task-template-details',
@@ -27,6 +28,7 @@ export class TodoTaskTemplateDetailsComponent {
     constructor(public dialogRef: MatDialogRef<TodoTaskTemplateDetailsComponent>,
                 private _breakpointObserver: BreakpointObserver,
                 private _randomAdjective: RandomAdjectiveService,
+                private _errorService: ErrorService,
                 @Inject(MAT_DIALOG_DATA) data: TaskTemplate) {
         this.taskTemplate = data;
         this.placeholderForTaskTemplateName = "My " + this._randomAdjective.lowercase() + " task template";
@@ -46,12 +48,12 @@ export class TodoTaskTemplateDetailsComponent {
     private isValid(taskTemplate: TaskTemplate) {
         for (let taskDefinition of taskTemplate.taskDefinitions) {
             if (!taskDefinition.name) {
-                console.error("Task definition has no name;");
+                this._errorService.notify(new Error("Task definition has no name."));
                 return false;
             }
         }
         if (!taskTemplate.name) {
-            console.error("Task template has no name.");
+            this._errorService.notify(new Error("Task template has no name."));
             return false;
         }
 

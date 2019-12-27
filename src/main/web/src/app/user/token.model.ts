@@ -5,9 +5,6 @@ export class Token {
 
     constructor(public value) {
         try {
-            if (value == "token") {
-                console.log("STIJN TOKEN " + value);
-            }
             this._data = jwt_decode(value);
         } catch (e) {
             throw new Error(`Could not parse token ${value}. ` + e);

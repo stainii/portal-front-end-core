@@ -8,6 +8,7 @@ import {TodoTaskDetailsComponent} from "@app/todo/todo-task-details/todo-task-de
 import {TaskTemplateEntry} from "@app/todo/task-template-entry.model";
 import {TodoTaskTemplateEntryDetailsComponent} from "@app/todo/todo-task-template-entry-details/todo-task-template-entry-details.component";
 import {DialogResultNextAction} from "@app/todo/dialog-result.model";
+import {ErrorService} from "@app/error/error.service";
 
 @Component({
     selector: 'app-todo-app',
@@ -20,14 +21,15 @@ export class TodoAppComponent {
 
     constructor(private _taskService: TaskService,
                 private _route: ActivatedRoute,
-                public dialog: MatDialog) {
+                public dialog: MatDialog,
+                private _errorService: ErrorService) {
         this.tasks$ = this._taskService.watchTasks();
     }
 
     complete(task: Task) {
         this._taskService.complete(task).subscribe(
             nothing => console.log("Task " + task.id + " completed!"),
-            error => console.error(error));
+            error => this._errorService.notify(error));
     }
 
     showDetails(task: Task) {
@@ -42,7 +44,8 @@ export class TodoAppComponent {
                 .subscribe(result => {
                     if (result.nextAction == DialogResultNextAction.SAVE_TASK) {
                         this._taskService.update(result.data, task)
-                            .subscribe();
+                            .subscribe(result => {},
+                            error => this._errorService.notify(error));
                     }
                 });
         }, 1);
@@ -62,7 +65,7 @@ export class TodoAppComponent {
                         this._taskService.create(result.data)
                             .subscribe(
                                 task => console.log("Task created!"),
-                                error => console.error(error));
+                                error => this._errorService.notify(error));
                     } else if (result.nextAction == DialogResultNextAction.USE_A_TASK_TEMPLATE) {
                         this.createTaskWithTaskTemplate();
                     }
@@ -86,7 +89,7 @@ export class TodoAppComponent {
                         this._taskService.createTasksBasedOn(result.data)
                             .subscribe(
                                 task => console.log("Tasks created!"),
-                                error => console.error(error));
+                                error => this._errorService.notify(error));
                     }
                 });
         }, 1);

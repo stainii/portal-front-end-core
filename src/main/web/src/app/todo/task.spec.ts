@@ -1,28 +1,8 @@
-import {inject, TestBed} from '@angular/core/testing';
-
-import {HttpClientModule} from "@angular/common/http";
-import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {Task} from './task.model';
-import {TaskPatchService} from "@app/todo/task-patch.service";
 
-describe('TaskPatchService', () => {
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            providers: [
-                TaskPatchService,
-            ],
-            imports: [
-                HttpClientModule,
-                HttpClientTestingModule
-            ]
-        });
-    });
+describe('TaskService', () => {
 
-    it('should be created', inject([TaskPatchService], (service: TaskPatchService) => {
-        expect(service).toBeTruthy();
-    }));
-
-    it('should apply patches in the correct order, when an newer patch is submitted', inject([TaskPatchService, HttpTestingController], (service: TaskPatchService, backend: HttpTestingController) => {
+    it('should apply patches in the correct order, when an newer patch is submitted', () => {
         const task = new Task();
         task.id = "12";
         task.name = 'test';
@@ -46,7 +26,7 @@ describe('TaskPatchService', () => {
             }
         ];
 
-        service.patch(task, {
+        task.patch({
             id: "3",
             taskId: "12",
             dateTime: new Date("2019-12-26 10:00:00Z"),
@@ -59,9 +39,9 @@ describe('TaskPatchService', () => {
         expect(task.id).toEqual("12");
         expect(task.name).toEqual("test");
         expect(task.context).toEqual("new context")
-    }));
+    });
 
-    it('should apply patches in the correct order, even when an older patch is submitted', inject([TaskPatchService, HttpTestingController], (service: TaskPatchService, backend: HttpTestingController) => {
+    it('should apply patches in the correct order, even when an older patch is submitted', () => {
         const task = new Task();
         task.id = "12";
         task.name = 'test';
@@ -85,7 +65,7 @@ describe('TaskPatchService', () => {
             }
         ];
 
-        service.patch(task, {
+        task.patch({
             id: "3",
             taskId: "12",
             dateTime: new Date("2019-12-24 10:00:00Z"),
@@ -98,6 +78,7 @@ describe('TaskPatchService', () => {
         expect(task.id).toEqual("12");
         expect(task.name).toEqual("test");
         expect(task.context).toEqual("myContext")
-    }));
+    });
+
 
 });

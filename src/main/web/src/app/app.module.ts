@@ -25,6 +25,9 @@ import {MenuComponent} from './menu/menu.component';
 import {NgProgressModule} from "@ngx-progressbar/core";
 import {NgProgressHttpModule} from "@ngx-progressbar/http";
 import {UserModule} from "@app/user/user.module";
+import {OfflineInterceptor} from "@app/offline/offline.interceptor";
+import {OfflineModule} from "@app/offline/offline.module";
+import {ErrorModule} from "@app/error/error.module";
 
 @NgModule({
     declarations: [
@@ -48,16 +51,23 @@ import {UserModule} from "@app/user/user.module";
         MatIconModule,
         MatListModule,
         NgProgressModule,
-        NgProgressHttpModule
+        NgProgressHttpModule,
+        OfflineModule,
+        ErrorModule
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,
         useClass: AuthenticationHttpInterceptor,
         multi: true
     }, {
+        provide: HTTP_INTERCEPTORS,
+        useClass: OfflineInterceptor,
+        multi: true
+    }, {
         provide: MAT_DATE_LOCALE, useValue: 'nl-BE'
     }],
     bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

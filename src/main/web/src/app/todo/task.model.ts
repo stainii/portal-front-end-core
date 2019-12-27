@@ -51,7 +51,9 @@ export class Task {
             || (this.importance == Importance.NOT_SO_IMPORTANT && !this.hasTypeFitIn());
     }
 
-    private dueDateIsGettingNear = () => moment(this.dueDateTime).diff(moment(), "days") < 7;
+    private dueDateIsGettingNear() {
+        return moment(this.dueDateTime).diff(moment(), "days") < 7;
+    }
 
     getRemainingTime() {
         if (!this.dueDateTime) {
@@ -64,5 +66,41 @@ export class Task {
         } else {
             return "Due!";
         }
+    }
+
+    patch(patch: TaskPatch) {
+        // first, add the patch to the history of the task
+        if (this.history) {
+            this.history.push(patch)
+        } else {
+            this.history = [patch];
+        }
+
+        // sort history
+        this.history = this.history
+            .sort((a, b) => a.dateTime.valueOf() - b.dateTime.valueOf())
+
+        this._replayHistory();
+    }
+
+    rollback(patch: TaskPatch) {
+        this.history = this.history.filter(p => p != patch);
+        this._replayHistory();
+    }
+
+    private _replayHistory() {
+        // clear all properties
+        Object.keys(this)
+            .filter(key => key != "history" && key != "id")
+            .forEach(key => this[key] = null);
+
+        // then, replay all history
+        this.history
+            .forEach(p => {
+                Object.keys(p.changes)
+                    .forEach(key => {
+                        this[key] = p.changes[key];
+                    });
+            });
     }
 }

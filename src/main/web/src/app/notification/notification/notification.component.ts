@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Notification} from "../notification.model";
-import {DateService} from "@app/date.service";
+import {DateService} from "@app/util/date.service";
 import {NotificationService} from "../notification.service";
 
 @Component({
