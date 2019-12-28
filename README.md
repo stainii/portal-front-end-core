@@ -124,6 +124,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ### Release
 #### Maven release
 To release a module, this project makes use of the JGitflow plugin.
+**Do use the Maven profile `-Pproduction`**.
+
 More information can be found [here](https://gist.github.com/lemiorhan/97b4f827c08aed58a9d8).
 
 At the moment, releases are made on a local machine. No Jenkins job has been made (yet).
@@ -132,4 +134,4 @@ At the moment, releases are made on a local machine. No Jenkins job has been mad
 No npm release is made, only a Maven release.
 
 #### Docker release
-A Docker release is made, by running `mvn clean deploy` on the Maven release branch.
+A Docker release is made, by running `mvn clean deploy -Pproduction` on the Maven release branch.
