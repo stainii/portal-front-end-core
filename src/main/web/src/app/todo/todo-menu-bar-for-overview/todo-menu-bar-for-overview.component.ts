@@ -1,0 +1,47 @@
+import {Component, OnInit} from '@angular/core';
+import {TaskService} from "@app/todo/task.service";
+import {map} from "rxjs/operators";
+import {Observable} from "rxjs";
+import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
+import {ActivatedRoute, Router} from "@angular/router";
+
+@Component({
+    selector: 'app-todo-menu-bar-for-overview',
+    templateUrl: './todo-menu-bar-for-overview.component.html',
+    styleUrls: ['./todo-menu-bar-for-overview.component.scss']
+})
+export class TodoMenuBarForOverviewComponent implements OnInit {
+
+    contexts$: Observable<string[]>;
+    selectedContext: string;
+
+    isHandset$: Observable<boolean> = this._breakpointObserver.observe(Breakpoints.Handset)
+        .pipe(map(result => result.matches));
+
+    constructor(private _taskService: TaskService, private _breakpointObserver: BreakpointObserver,
+                private _route: ActivatedRoute, private _router: Router) {
+    }
+
+    ngOnInit() {
+        this.contexts$ = this._taskService.watchTasks()
+            .pipe(
+                map(tasks => tasks.map(task => task.context)),
+                map(contexts => Array.from(new Set(contexts)))
+            );
+
+        this._route
+            .queryParams
+            .subscribe(params => this.selectedContext = params.context || 'all');
+    }
+
+    refreshTasks() {
+        this._taskService.refreshTasks();
+    }
+
+    selectContext(context: string) {
+        this._router.navigate([
+                '/todo',
+                {outlets: {primary: ['overview'], menuBar: ['overview']}}
+            ], {queryParams: {context: context}});
+    }
+}

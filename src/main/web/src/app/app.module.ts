@@ -11,62 +11,63 @@ import {AppRoutingModule} from "@app/app-routing.module";
 import {
     MAT_DATE_LOCALE,
     MatButtonModule,
-    MatCardModule,
-    MatFormFieldModule,
     MatIconModule,
-    MatInputModule,
     MatListModule,
     MatSidenavModule,
     MatToolbarModule
 } from '@angular/material';
 import {DashboardComponent} from "@app/dashboard/dashboard.component";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {Ng2Webstorage} from 'ngx-webstorage';
-import {LoginComponent} from "@app/login/login.component";
+import {NgxWebstorageModule} from 'ngx-webstorage';
 import {FormsModule} from "@angular/forms";
-import {LogoutComponent} from './logout/logout.component';
-import {AuthenticationHttpInterceptor} from "@app/authentication.interceptor";
+import {AuthenticationHttpInterceptor} from "@app/user/authentication.interceptor";
 import {MenuComponent} from './menu/menu.component';
 import {NgProgressModule} from "@ngx-progressbar/core";
 import {NgProgressHttpModule} from "@ngx-progressbar/http";
-
+import {UserModule} from "@app/user/user.module";
+import {OfflineInterceptor} from "@app/offline/offline.interceptor";
+import {OfflineModule} from "@app/offline/offline.module";
+import {ErrorModule} from "@app/error/error.module";
 
 @NgModule({
     declarations: [
         AppComponent,
         DashboardComponent,
-        LoginComponent,
-        LogoutComponent,
         MenuComponent,
     ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
+        UserModule,
         HttpClientModule,
         ServiceWorkerModule.register('/ngsw-worker.js', {enabled: environment.production}),
         AppRoutingModule,
         LayoutModule,
         FormsModule,
-        Ng2Webstorage,
+        NgxWebstorageModule.forRoot(),
         MatToolbarModule,
         MatButtonModule,
         MatSidenavModule,
         MatIconModule,
         MatListModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatInputModule,
-        NgProgressModule.forRoot(),
-        NgProgressHttpModule.forRoot()
+        NgProgressModule,
+        NgProgressHttpModule,
+        OfflineModule,
+        ErrorModule
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,
         useClass: AuthenticationHttpInterceptor,
         multi: true
     }, {
+        provide: HTTP_INTERCEPTORS,
+        useClass: OfflineInterceptor,
+        multi: true
+    }, {
         provide: MAT_DATE_LOCALE, useValue: 'nl-BE'
     }],
     bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }

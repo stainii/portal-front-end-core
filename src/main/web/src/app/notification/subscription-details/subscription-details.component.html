@@ -31,14 +31,25 @@
     </mat-form-field>
 
     <mat-form-field>
-        <mat-select id="urgency"
-                    name="urgency"
-                    [(ngModel)]="subscription.urgency"
+        <mat-select id="publishStrategy"
+                    name="publishStrategy"
+                    [(ngModel)]="subscription.publishStrategy"
                     required
-                    placeholder="Urgency">
+                    placeholder="When should the notification be published?">
             <mat-option value="PUBLISH_IMMEDIATELY">Publish immediately</mat-option>
             <mat-option value="PUBLISH_WITHIN_24_HOURS">Publish within 24 hours</mat-option>
+            <mat-option value="PUBLISH_AT_SPECIFIC_DATE_TIME">Publish at a specific date time</mat-option>
         </mat-select>
+    </mat-form-field>
+
+    <mat-form-field *ngIf="subscription.publishStrategy == 'PUBLISH_AT_SPECIFIC_DATE_TIME'">
+        <input id="scheduleDateTime"
+               name="scheduleDateTime"
+               matInput
+               [(ngModel)]="subscription.mappingToNotification.mappingOfScheduleDateTime"
+               placeholder="Schedule date time"
+               required/>
+        <mat-hint>Something like data['dueDate'].</mat-hint>
     </mat-form-field>
 
     <h3>Mapping</h3>

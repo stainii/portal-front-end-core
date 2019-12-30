@@ -1,0 +1,27 @@
+.mat-dialog-actions {
+    justify-content: flex-end;
+}
+mat-list-item {
+    width: 100%;
+
+    mat-form-field, p {
+        flex-grow: 1;
+        width: 100%;
+    }
+    mat-icon {
+        flex-grow: 0;
+        cursor: pointer;
+    }
+}
+.tab-delete {
+    margin-left: 20px;
+    cursor: pointer;
+}
+.add-task-definition {
+    float: right;
+    cursor: pointer;
+    margin-right: 15px;
+}
+.block {
+    margin: 5px 20px 30px;
+}

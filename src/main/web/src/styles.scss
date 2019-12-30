@@ -3,6 +3,10 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: 'Roboto', sans-serif; }
 
+@import '~material-design-icons/iconfont/material-icons.css';
+@import "~roboto-fontface/css/roboto/roboto-fontface.css";
+@import "~typeface-indie-flower/index.css";
+
 /* rolling a custom Angular Material theme */
 @import '~@angular/material/theming';
 @include mat-core();
@@ -13,4 +17,3 @@ $portal-warn:    mat-palette($mat-deep-orange);
 
 $portal-theme: mat-light-theme($portal-primary, $portal-accent, $portal-warn);
 @include angular-material-theme($portal-theme);
-

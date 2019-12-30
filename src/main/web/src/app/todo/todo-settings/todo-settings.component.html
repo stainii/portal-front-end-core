@@ -1,0 +1,15 @@
+<div class="settings">
+    <h2>Templates</h2>
+
+    <app-todo-task-templates
+        [taskTemplates]="allTaskTemplates$ | async"
+        (onDelete)="delete($event)"
+        (onEdit)="showEditDialog($event)">
+    </app-todo-task-templates>
+
+    <button class="create"
+            mat-fab
+            (click)="showCreateDialog()">
+        +
+    </button>
+</div>

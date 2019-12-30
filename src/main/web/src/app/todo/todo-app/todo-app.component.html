@@ -1,0 +1,11 @@
+<app-todo-overview
+    [tasks]="tasks$ | async"
+    (onEdit)="showDetails($event)"
+    (onComplete)="complete($event)"
+></app-todo-overview>
+
+<button class="create"
+        mat-fab
+        (click)="create()">
+    +
+</button>

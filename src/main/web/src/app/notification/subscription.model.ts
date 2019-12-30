@@ -1,5 +1,5 @@
 import {SubscriptionMappingToNotification} from "./subscription-mapping-to-notification.model";
-import {NotificationUrgency} from "./notification-urgency.model";
+import {PublishStrategy} from "./publish-strategy";
 
 export class Subscription {
 
@@ -30,6 +30,6 @@ export class Subscription {
 
     mappingToNotification: SubscriptionMappingToNotification;
 
-    urgency: NotificationUrgency;
+    publishStrategy: PublishStrategy;
 
 }

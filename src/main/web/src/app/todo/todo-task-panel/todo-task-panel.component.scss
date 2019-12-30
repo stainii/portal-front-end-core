@@ -1,0 +1,50 @@
+mat-expansion-panel {
+    width: 400px;
+    max-width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+    background-size: 10px 100%;
+    background-repeat: no-repeat;
+
+    ::ng-deep .mat-action-row {
+        border-top-style: none;
+    }
+
+    .task-panel-header {
+        display: flex;
+        width: 100%;
+
+        .name {
+            flex-grow: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 300px;
+            padding-top: 3px;
+        }
+
+        .remaining-time {
+            text-align: right;
+            width: 50px;
+            flex-shrink: 0;
+            color: #3f51b5;
+        }
+
+    }
+}
+
+.focus {
+    background-image: linear-gradient(to right, red, red);
+}
+
+.goals {
+    background-image: linear-gradient(to right, greenyellow, greenyellow);
+}
+
+.fit-in {
+    background-image: linear-gradient(to right, orange, orange);
+}
+
+.back-burner {
+    background-image: linear-gradient(to right, darkgray, darkgray);
+}

@@ -1,7 +1,7 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {NotificationComponent} from './notification.component';
-import {DateService} from "@app/date.service";
+import {DateService} from "@app/util/date.service";
 import {NotificationService} from "../notification.service";
 import {FormsModule} from "@angular/forms";
 import {

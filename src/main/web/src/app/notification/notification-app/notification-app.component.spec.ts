@@ -16,7 +16,7 @@ import {
     MatListModule,
     MatSelectModule
 } from "@angular/material";
-import {TokenService} from "@app/token.service";
+import {TokenService} from "@app/user/token.service";
 import {HttpClientTestingModule} from "@angular/common/http/testing";
 
 describe('NotificationAppComponent', () => {

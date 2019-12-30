@@ -1,0 +1,7 @@
+export enum PublishStrategy {
+
+    PUBLISH_IMMEDIATELY,
+    PUBLISH_WITHIN_24_HOURS,
+    PUBLISH_AT_SPECIFIC_DATE_TIME,
+
+}

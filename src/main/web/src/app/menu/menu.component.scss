@@ -5,3 +5,6 @@
 .mat-list, .mat-nav-list, .mat-selection-list {
     padding-top: 0; // default is 8px
 }
+.mat-toolbar.mat-primary {
+    line-height: 1;
+}

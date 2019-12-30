@@ -18,7 +18,10 @@
             ],
             "@env/*": [
                 "src/environments/*"
-            ]
+            ],
+            "core-js/es7/reflect": [
+                "node_modules/core-js/proposals/reflect-metadata"
+            ] //https://github.com/zloirock/core-js/issues/412
         },
         "lib": [
             "es2017",
