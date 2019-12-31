@@ -25,6 +25,7 @@ export class TodoMenuBarForOverviewComponent implements OnInit {
     ngOnInit() {
         this.contexts$ = this._taskService.watchTasks()
             .pipe(
+                map(tasks => tasks.filter(task => task.isActive())),
                 map(tasks => tasks.map(task => task.context)),
                 map(contexts => Array.from(new Set(contexts)))
             );
