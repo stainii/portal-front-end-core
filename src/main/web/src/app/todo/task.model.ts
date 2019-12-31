@@ -33,12 +33,12 @@ export class Task {
     }
 
     public hasTypeFocus() {
-        return this.importance == Importance.VERY_IMPORTANT
+        return (this.importance == Importance.IMPORTANT || this.importance == Importance.VERY_IMPORTANT)
                 && (this.dueDateTime != null && this.dueDateIsGettingNear());
     }
 
     public hasTypeGoals() {
-        return this.importance == Importance.VERY_IMPORTANT && !this.hasTypeFocus();
+        return (this.importance == Importance.IMPORTANT || this.importance == Importance.VERY_IMPORTANT) && !this.hasTypeFocus();
     }
 
     public hasTypeFitIn() {

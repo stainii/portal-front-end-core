@@ -56,16 +56,34 @@ describe('task', () => {
         expect(task3.hasTypeGoals()).toEqual(true);
 
         let task4 = new Task();
-        task4.importance = Importance.NOT_SO_IMPORTANT;
+        task4.importance = Importance.IMPORTANT;
         task4.dueDateTime = moment().add(1, "day").toDate();
         expect(task4.hasType("goals")).toEqual(false);
         expect(task4.hasTypeGoals()).toEqual(false);
 
         let task5 = new Task();
-        task5.importance = null;
-        task5.dueDateTime = moment().add(1, "day").toDate();
-        expect(task5.hasType("goals")).toEqual(false);
-        expect(task5.hasTypeGoals()).toEqual(false);
+        task5.importance = Importance.IMPORTANT;
+        task5.dueDateTime = moment().add(10, "day").toDate();
+        expect(task5.hasType("goals")).toEqual(true);
+        expect(task5.hasTypeGoals()).toEqual(true);
+
+        let task6 = new Task();
+        task6.importance = Importance.IMPORTANT;
+        task6.dueDateTime = null;
+        expect(task6.hasType("goals")).toEqual(true);
+        expect(task6.hasTypeGoals()).toEqual(true);
+
+        let task7 = new Task();
+        task7.importance = Importance.NOT_SO_IMPORTANT;
+        task7.dueDateTime = moment().add(1, "day").toDate();
+        expect(task7.hasType("goals")).toEqual(false);
+        expect(task7.hasTypeGoals()).toEqual(false);
+
+        let task8 = new Task();
+        task8.importance = null;
+        task8.dueDateTime = moment().add(1, "day").toDate();
+        expect(task8.hasType("goals")).toEqual(false);
+        expect(task8.hasTypeGoals()).toEqual(false);
     });
 
     it('should tell whether it has the type fit-in', () => {
@@ -94,10 +112,22 @@ describe('task', () => {
         expect(task4.hasTypeFitIn()).toEqual(false);
 
         let task5 = new Task();
-        task5.importance = null;
+        task5.importance = Importance.IMPORTANT;
         task5.dueDateTime = moment().add(1, "day").toDate();
-        expect(task5.hasType("fit-in")).toEqual(true);
-        expect(task5.hasTypeFitIn()).toEqual(true);
+        expect(task5.hasType("fit-in")).toEqual(false);
+        expect(task5.hasTypeFitIn()).toEqual(false);
+
+        let task6 = new Task();
+        task6.importance = Importance.I_DO_NOT_REALLY_CARE;
+        task6.dueDateTime = moment().add(1, "day").toDate();
+        expect(task6.hasType("fit-in")).toEqual(false);
+        expect(task6.hasTypeFitIn()).toEqual(false);
+
+        let task7 = new Task();
+        task7.importance = null;
+        task7.dueDateTime = moment().add(1, "day").toDate();
+        expect(task7.hasType("fit-in")).toEqual(true);
+        expect(task7.hasTypeFitIn()).toEqual(true);
     });
 
     it('should tell whether it has the type back-burner', () => {
@@ -126,22 +156,28 @@ describe('task', () => {
         expect(task4.hasTypeBackBurner()).toEqual(false);
 
         let task5 = new Task();
-        task5.importance = Importance.NOT_SO_IMPORTANT;
-        task5.dueDateTime = moment().add(10, "day").toDate();
-        expect(task5.hasType("back-burner")).toEqual(true);
-        expect(task5.hasTypeBackBurner()).toEqual(true);
+        task5.importance = Importance.IMPORTANT;
+        task5.dueDateTime = moment().add(1, "day").toDate();
+        expect(task5.hasType("back-burner")).toEqual(false);
+        expect(task5.hasTypeBackBurner()).toEqual(false);
 
         let task6 = new Task();
         task6.importance = Importance.NOT_SO_IMPORTANT;
-        task6.dueDateTime = null;
+        task6.dueDateTime = moment().add(10, "day").toDate();
         expect(task6.hasType("back-burner")).toEqual(true);
         expect(task6.hasTypeBackBurner()).toEqual(true);
 
         let task7 = new Task();
-        task7.importance = null;
-        task7.dueDateTime = moment().add(10, "day").toDate();
+        task7.importance = Importance.NOT_SO_IMPORTANT;
+        task7.dueDateTime = null;
         expect(task7.hasType("back-burner")).toEqual(true);
         expect(task7.hasTypeBackBurner()).toEqual(true);
+
+        let task8 = new Task();
+        task8.importance = null;
+        task8.dueDateTime = moment().add(10, "day").toDate();
+        expect(task8.hasType("back-burner")).toEqual(true);
+        expect(task8.hasTypeBackBurner()).toEqual(true);
     });
 
     it('should return the remaining time', () => {
