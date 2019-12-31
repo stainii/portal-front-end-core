@@ -57,6 +57,7 @@ export class TodoOverviewComponent implements OnInit {
     private watchTasks() {
         let sortedTasks = this._allTasks
             .filter(task => !this.context || this.context == 'all' || task.context == this.context)
+            .filter(task => task.isActive())
             .sort(taskComparator);
         this.mostImportantTasks = sortedTasks.slice(0,5);
         this.lessImportantTasks = sortedTasks.slice(5);

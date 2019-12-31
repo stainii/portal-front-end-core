@@ -197,4 +197,27 @@ describe('task', () => {
         task.dueDateTime = moment().subtract(5, "day").toDate();
         expect(task.getRemainingTime()).toEqual("Due!");
     });
+
+    it("should tell that the task is active when it has no start datetime", () => {
+       let task = new Task();
+       expect(task.isActive()).toBe(true);
+    });
+
+    it("should tell that the task is active when its start date is in the past", () => {
+        let task = new Task();
+        task.startDateTime = moment().subtract(1, "day").toDate();
+        expect(task.isActive()).toBe(true);
+    });
+
+    it("should tell that the task is active when its start date is today", () => {
+        let task = new Task();
+        task.startDateTime = moment().startOf("day").toDate();
+        expect(task.isActive()).toBe(true);
+    });
+
+    it("should tell that the task is not active when its start date is tomorrow", () => {
+        let task = new Task();
+        task.startDateTime = moment().add(1, "day").toDate();
+        expect(task.isActive()).toBe(false);
+    });
 });
