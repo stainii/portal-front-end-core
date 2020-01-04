@@ -19,21 +19,26 @@ export const taskComparator = (task1: Task, task2: Task) => {
             let today = moment();
             let dueDateOfTask = moment(task.dueDateTime);
             let numberOfDaysBetweenTasks = dueDateOfTask.diff(today.startOf("day"), "day");
-            let pointsForUrgency = 10 - numberOfDaysBetweenTasks;
 
-            if (pointsForUrgency > 0) {
-                points += pointsForUrgency;
+            if (numberOfDaysBetweenTasks < 0) {
+                points += 100;
+            } else {
+                let extraPoints = 40 + (task.expectedDurationInHours ? task.expectedDurationInHours/4 : 0) - numberOfDaysBetweenTasks;
+                if (extraPoints <= 0) {
+                    extraPoints = 15;
+                }
+                points += extraPoints;
             }
         } else {
-            // if a task has no due date time, we cannot know how urgent it is. Let's take an average
-            points += 5;
+            // if a task has no due date time, we cannot know how urgent it is. We take a default value.
+            points += 10;
         }
 
         switch (task.importance) {
-            case Importance.NOT_SO_IMPORTANT: points += 5; break;
-            case null: points += 7; break;
-            case Importance.IMPORTANT: points += 8; break;
-            case Importance.VERY_IMPORTANT: points += 10; break;
+            case Importance.NOT_SO_IMPORTANT: points += 10; break;
+            case null: points += 20; break;
+            case Importance.IMPORTANT: points += 30; break;
+            case Importance.VERY_IMPORTANT: points += 40; break;
         }
 
         return points;
