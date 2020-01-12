@@ -6,13 +6,13 @@
             "installMode": "prefetch",
             "resources": {
                 "files": [
-                    "/favicon.ico",
-                    "/index.html",
-                    "/*.css",
-                    "/*.js",
-                    "/*.woff",
-                    "/*.woff2",
-                    "/*.ttf"
+                    "/**/favicon.ico",
+                    "/**/index.html",
+                    "/**/*.css",
+                    "/**/*.js",
+                    "/**/*.woff",
+                    "/**/*.woff2",
+                    "/**/*.ttf"
                 ]
             }
         },
@@ -22,7 +22,7 @@
             "updateMode": "prefetch",
             "resources": {
                 "files": [
-                    "/assets/**"
+                    "/**/assets/**"
                 ]
             }
         }
@@ -30,7 +30,7 @@
     "dataGroups": [
         {
             "name": "front-end api",
-            "urls": ["/front-end/api/module/**"],
+            "urls": ["**/front-end/api/module/**"],
             "cacheConfig": {
                 "maxSize": 3,
                 "maxAge": "1d",
