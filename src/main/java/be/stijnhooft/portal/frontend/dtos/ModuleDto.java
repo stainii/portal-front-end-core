@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @Data
-public class ModuleDTO {
+public class ModuleDto {
 
     private String name;
 

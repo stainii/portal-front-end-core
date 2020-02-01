@@ -1,6 +1,6 @@
 package be.stijnhooft.portal.frontend.services;
 
-import be.stijnhooft.portal.frontend.dtos.ModuleDTO;
+import be.stijnhooft.portal.frontend.dtos.ModuleDto;
 import be.stijnhooft.portal.frontend.exceptions.ModuleCollectionNotFoundException;
 import be.stijnhooft.portal.frontend.mappers.ModuleMapper;
 import be.stijnhooft.portal.frontend.model.Module;
@@ -32,7 +32,7 @@ public class ModuleService {
         this.moduleMapper = moduleMapper;
     }
 
-    public List<ModuleDTO> findForUser(String user) {
+    public List<ModuleDto> findForUser(String user) {
         ModuleCollection moduleCollection =
                 moduleCollectionRepository.findForUser(user)
                                           .orElseThrow(() -> new ModuleCollectionNotFoundException(user));

@@ -50,10 +50,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- default parameters used in the application. Override these with a Maven profile -->
-        <context.path>portal/core</context.path>
         <environment>dev</environment>
-        <database.host>localhost</database.host>
-        <database.port>5432</database.port>
         <npm-build-command>run build</npm-build-command>
     </properties>
 
@@ -303,8 +300,6 @@
             <id>production</id>
             <properties>
                 <environment>production</environment>
-                <database.host>portal-front-end-db</database.host>
-                <database.port>5432</database.port>
                 <npm-build-command>run build-prod</npm-build-command>
             </properties>
             <build>

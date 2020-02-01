@@ -1,7 +1,7 @@
 package be.stijnhooft.portal.frontend.controllers;
 
 import be.stijnhooft.portal.frontend.PortalFrontEnd;
-import be.stijnhooft.portal.frontend.dtos.ModuleDTO;
+import be.stijnhooft.portal.frontend.dtos.ModuleDto;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
 import com.github.springtestdbunit.annotation.DatabaseSetup;
 import com.github.springtestdbunit.annotation.DatabaseTearDown;
@@ -38,12 +38,12 @@ public class ModuleControllerIntTest {
     @DatabaseSetup("/datasets/ModuleController-findforLoggedInUser-initial.xml")
     @DatabaseTearDown("/datasets/clear.xml")
     public void findForLoggedInUser() throws Exception {
-        List<ModuleDTO> expectedModules = Arrays.asList(
-                new ModuleDTO("test1",  true, 0),
-                new ModuleDTO("test2", false,1));
+        List<ModuleDto> expectedModules = Arrays.asList(
+                new ModuleDto("test1",  true, 0),
+                new ModuleDto("test2", false,1));
         Principal principal = () -> "test";
 
-        List<ModuleDTO> actualModules = moduleController.findForLoggedInUser(principal);
+        List<ModuleDto> actualModules = moduleController.findForLoggedInUser(principal);
 
         assertEquals(expectedModules, actualModules);
     }
