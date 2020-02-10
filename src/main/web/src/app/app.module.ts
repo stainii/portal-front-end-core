@@ -25,7 +25,7 @@ import {MenuComponent} from './menu/menu.component';
 import {NgProgressModule} from "@ngx-progressbar/core";
 import {NgProgressHttpModule} from "@ngx-progressbar/http";
 import {UserModule} from "@app/user/user.module";
-import {OfflineInterceptor} from "@app/offline/offline.interceptor";
+import {RetryInterceptor} from "@app/retry.interceptor";
 import {OfflineModule} from "@app/offline/offline.module";
 import {ErrorModule} from "@app/error/error.module";
 
@@ -61,7 +61,7 @@ import {ErrorModule} from "@app/error/error.module";
         multi: true
     }, {
         provide: HTTP_INTERCEPTORS,
-        useClass: OfflineInterceptor,
+        useClass: RetryInterceptor,
         multi: true
     }, {
         provide: MAT_DATE_LOCALE, useValue: 'nl-BE'
