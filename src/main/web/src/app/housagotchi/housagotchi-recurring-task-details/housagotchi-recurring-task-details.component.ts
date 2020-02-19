@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
-import {RecurringTask} from "@app/housagotchi/recurring-task.model";
+import {RecurringTask} from "@app/recurring-tasks/recurring-task.model";
 
 @Component({
     selector: 'app-housagotchi-recurring-task-details',

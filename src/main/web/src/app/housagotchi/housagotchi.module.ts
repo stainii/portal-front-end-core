@@ -25,11 +25,13 @@ import {
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatMomentDateModule} from "@angular/material-moment-adapter";
 import {HousagotchiRecurringTaskDetailsComponent} from './housagotchi-recurring-task-details/housagotchi-recurring-task-details.component';
+import {RecurringTasksModule} from "@app/recurring-tasks/recurring-tasks.module";
 
 @NgModule({
     imports: [
         CommonModule,
         HousagotchiRoutingModule,
+        RecurringTasksModule,
         FormsModule,
         MatCardModule,
         MatButtonModule,
@@ -60,4 +62,5 @@ import {HousagotchiRecurringTaskDetailsComponent} from './housagotchi-recurring-
     ]
 })
 export class HousagotchiModule {
+
 }

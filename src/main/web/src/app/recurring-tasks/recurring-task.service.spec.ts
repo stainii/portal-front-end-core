@@ -4,7 +4,7 @@ import {RecurringTaskService} from './recurring-task.service';
 import {HttpClientModule} from "@angular/common/http";
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {environment} from "@env/environment";
-import {RecurringTask} from "@app/housagotchi/recurring-task.model";
+import {RecurringTask} from "@app/recurring-tasks/recurring-task.model";
 
 describe('RecurringTaskService', () => {
     beforeEach(() => {
@@ -22,15 +22,17 @@ describe('RecurringTaskService', () => {
     }));
 
     it('should find all recurring tasks', inject([RecurringTaskService, HttpTestingController], (service: RecurringTaskService, backend: HttpTestingController) => {
-        service.findAll().subscribe();
+        const deploymentName = "Housagotchi";
+        service.findAll(deploymentName).subscribe();
 
         backend.expectOne({
-            url: environment.apiBaseUrl + 'housagotchi/api/recurring-task/',
+            url: `${environment.apiBaseUrl}${deploymentName}/api/recurring-task/`,
             method: 'GET'
         });
     }));
 
     it('should delete a recurring task', inject([RecurringTaskService, HttpTestingController], (service: RecurringTaskService, backend: HttpTestingController) => {
+        const deploymentName = "Housagotchi";
         const recurringTask: RecurringTask = {
             id: 12,
             name: 'test',
@@ -38,10 +40,10 @@ describe('RecurringTaskService', () => {
             maxNumberOfDaysBetweenExecutions: 10,
             lastExecution: null
         };
-        service.delete(recurringTask).subscribe();
+        service.delete(deploymentName, recurringTask).subscribe();
 
         backend.expectOne({
-            url: environment.apiBaseUrl + 'housagotchi/api/recurring-task/12/',
+            url: `${environment.apiBaseUrl}${deploymentName}/api/recurring-task/12/`,
             method: 'DELETE'
         });
     }));
@@ -54,10 +56,12 @@ describe('RecurringTaskService', () => {
             maxNumberOfDaysBetweenExecutions: 10,
             lastExecution: null
         };
-        service.update(recurringTask).subscribe();
+        const deploymentName = "Housagotchi";
+
+        service.update(deploymentName, recurringTask).subscribe();
 
         let request = backend.expectOne({
-            url: environment.apiBaseUrl + 'housagotchi/api/recurring-task/12/',
+            url: `${environment.apiBaseUrl}${deploymentName}/api/recurring-task/12/`,
             method: 'PUT'
         });
         request.flush(recurringTask);
@@ -71,10 +75,12 @@ describe('RecurringTaskService', () => {
             maxNumberOfDaysBetweenExecutions: 10,
             lastExecution: null
         };
-        service.create(recurringTask).subscribe();
+        const deploymentName = "Housagotchi";
+
+        service.create(deploymentName, recurringTask).subscribe();
 
         let request = backend.expectOne({
-            url: environment.apiBaseUrl + 'housagotchi/api/recurring-task/',
+            url: `${environment.apiBaseUrl}${deploymentName}/api/recurring-task/`,
             method: 'POST'
         });
         request.flush(recurringTask);

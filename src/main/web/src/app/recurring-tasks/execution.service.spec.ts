@@ -29,9 +29,10 @@ describe('ExecutionService', () => {
             recurringTaskId: 100,
             date: moment("2011-10-31", "YYYY-MM-DD")
         };
-        service.addExecution(execution).subscribe();
+        const deploymentName = "Housagotchi";
+        service.addExecution(deploymentName, execution).subscribe();
 
-        const req = httpMock.expectOne(`${environment.apiBaseUrl}housagotchi/api/recurring-task/100/execution/`);
+        const req = httpMock.expectOne(`${environment.apiBaseUrl}${deploymentName}/api/recurring-task/100/execution/`);
         expect(req.request.method).toBe("POST");
         req.flush({ date: "2011-10-31T00:00:00" });
     }));

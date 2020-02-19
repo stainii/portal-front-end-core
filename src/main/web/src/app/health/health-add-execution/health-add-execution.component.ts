@@ -1,16 +1,16 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import * as moment from "moment";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {RecurringTask} from "@app/recurring-tasks/recurring-task.model";
 import {Execution} from "@app/recurring-tasks/execution.model";
 import {ActivatedRoute} from "@angular/router";
+import * as moment from "moment";
 
 @Component({
-    selector: 'app-housagotchi-add-execution',
-    templateUrl: './housagotchi-add-execution.component.html',
-    styleUrls: ['./housagotchi-add-execution.component.scss']
+  selector: 'app-health-add-execution',
+  templateUrl: './health-add-execution.component.html',
+  styleUrls: ['./health-add-execution.component.scss']
 })
-export class HousagotchiAddExecutionComponent implements OnInit, OnChanges {
+export class HealthAddExecutionComponent implements OnInit, OnChanges {
 
     addExecutionFormGroup: FormGroup;
 
@@ -58,7 +58,7 @@ export class HousagotchiAddExecutionComponent implements OnInit, OnChanges {
         if (this.addExecutionFormGroup.valid) {
             this.onAddExecution.emit({
                 recurringTaskId: this.addExecutionFormGroup.value.selectedRecurringTask.id,
-                    date: this.addExecutionFormGroup.value.selectedDate
+                date: this.addExecutionFormGroup.value.selectedDate
             });
         }
     }

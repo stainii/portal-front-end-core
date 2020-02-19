@@ -1,21 +1,21 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {HousagotchiReportService} from "@app/housagotchi/housagotchi-report.service";
-import {Report} from "@app/housagotchi/report.model";
 import {RecurringTask} from "@app/recurring-tasks/recurring-task.model";
+import {Report} from "@app/health/report.model";
+import {HealthReportService} from "@app/health/health-report.service";
 
 @Component({
-    selector: 'app-housagotchi-creature',
-    templateUrl: './housagotchi-creature.component.html',
-    styleUrls: ['./housagotchi-creature.component.scss']
+  selector: 'app-health-sporty-spies',
+  templateUrl: './health-sporty-spies.component.html',
+  styleUrls: ['./health-sporty-spies.component.scss']
 })
-export class HousagotchiCreatureComponent implements OnInit, OnChanges {
+export class HealthSportySpiesComponent implements OnInit, OnChanges {
 
     @Input()
     recurringTasks: RecurringTask[];
 
     report: Report;
 
-    constructor(private _reportService: HousagotchiReportService) {
+    constructor(private _reportService: HealthReportService) {
     }
 
     ngOnInit() {
@@ -33,5 +33,6 @@ export class HousagotchiCreatureComponent implements OnInit, OnChanges {
     updateReport() {
         this.report = this._reportService.assemble(this.recurringTasks);
     }
+
 
 }

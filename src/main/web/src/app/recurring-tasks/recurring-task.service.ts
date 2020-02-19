@@ -1,0 +1,30 @@
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {environment} from "@env/environment";
+import {RecurringTask} from "@app/recurring-tasks/recurring-task.model";
+import {Observable} from "rxjs";
+
+@Injectable({
+    providedIn: 'root'
+})
+export class RecurringTaskService {
+
+    constructor(private _http: HttpClient) {
+    }
+
+    findAll(deploymentName: string): Observable<RecurringTask[]> {
+        return this._http.get<RecurringTask[]>(`${environment.apiBaseUrl}${deploymentName}/api/recurring-task/`);
+    }
+
+    create(deploymentName: string, recurringTask: RecurringTask) {
+        return this._http.post<RecurringTask[]>(`${environment.apiBaseUrl}${deploymentName}/api/recurring-task/`, recurringTask);
+    }
+
+    update(deploymentName: string, recurringTask: RecurringTask) {
+        return this._http.put<RecurringTask[]>(`${environment.apiBaseUrl}${deploymentName}/api/recurring-task/${recurringTask.id}/`, recurringTask);
+    }
+
+    delete(deploymentName: string, recurringTask: RecurringTask) {
+        return this._http.delete<RecurringTask[]>(`${environment.apiBaseUrl}${deploymentName}/api/recurring-task/${recurringTask.id}/`);
+    }
+}

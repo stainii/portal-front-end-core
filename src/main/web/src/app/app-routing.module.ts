@@ -21,6 +21,10 @@ const routes: Routes = [
         loadChildren: './todo/todo.module#TodoModule',
         canActivate: [AuthenticationGuardService, AuthorisationGuardService]
     }, {
+        path: 'health',
+        loadChildren: './health/health.module#HealthModule',
+        canActivate: [AuthenticationGuardService, AuthorisationGuardService]
+    }, {
         path: "**",
         redirectTo: "notifications",
         canActivate: [AuthenticationGuardService, AuthorisationGuardService]

@@ -1,17 +1,17 @@
 import {Component, OnInit} from '@angular/core';
+import {RecurringTask} from "@app/recurring-tasks/recurring-task.model";
 import {ExecutionService} from "@app/recurring-tasks/execution.service";
-import {MatSnackBar} from "@angular/material";
 import {RecurringTaskService} from "@app/recurring-tasks/recurring-task.service";
 import {Execution} from "@app/recurring-tasks/execution.model";
-import {RecurringTask} from "@app/recurring-tasks/recurring-task.model";
-import {DEPLOYMENT_NAME} from "@app/housagotchi/housagotchi-constants";
+import {DEPLOYMENT_NAME} from "@app/health/health-constants";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
-    selector: 'app-housagotchi-app',
-    templateUrl: './housagotchi-app.component.html',
-    styleUrls: ['./housagotchi-app.component.scss']
+  selector: 'app-health-app',
+  templateUrl: './health-app.component.html',
+  styleUrls: ['./health-app.component.scss']
 })
-export class HousagotchiAppComponent implements OnInit {
+export class HealthAppComponent implements OnInit {
 
     recurringTasks: RecurringTask[];
 
@@ -39,5 +39,6 @@ export class HousagotchiAppComponent implements OnInit {
             .findAll(DEPLOYMENT_NAME)
             .subscribe(recurringTasks => this.recurringTasks = recurringTasks);
     }
+
 
 }

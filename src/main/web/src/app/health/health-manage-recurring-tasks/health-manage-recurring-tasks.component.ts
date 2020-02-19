@@ -1,18 +1,19 @@
 import {Component, OnInit} from '@angular/core';
-import {RecurringTaskService} from "@app/recurring-tasks/recurring-task.service";
 import {RecurringTask} from "@app/recurring-tasks/recurring-task.model";
-import {MatDialog, MatSnackBar} from "@angular/material";
-import {HousagotchiRecurringTaskDetailsComponent} from "@app/housagotchi/housagotchi-recurring-task-details/housagotchi-recurring-task-details.component";
-import {DEPLOYMENT_NAME} from "@app/housagotchi/housagotchi-constants";
+import {RecurringTaskService} from "@app/recurring-tasks/recurring-task.service";
+import {DEPLOYMENT_NAME} from "@app/health/health-constants";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatDialog} from "@angular/material/dialog";
+import {HealthRecurringTaskDetailsComponent} from "@app/health/health-recurring-task-details/health-recurring-task-details.component";
 
 @Component({
-    selector: 'app-housagotchi-manage-recurring-tasks',
-    templateUrl: './housagotchi-manage-recurring-tasks.component.html',
-    styleUrls: ['./housagotchi-manage-recurring-tasks.component.scss']
+  selector: 'app-health-manage-recurring-tasks',
+  templateUrl: './health-manage-recurring-tasks.component.html',
+  styleUrls: ['./health-manage-recurring-tasks.component.scss']
 })
-export class HousagotchiManageRecurringTasksComponent implements OnInit {
+export class HealthManageRecurringTasksComponent implements OnInit {
 
-    displayedColumns: string[] = ['name', 'minNumberOfDaysBetweenExecutions', 'maxNumberOfDaysBetweenExecutions', 'edit', 'delete',];
+    displayedColumns: string[] = ['activity', 'restDays', 'edit', 'delete',];
     recurringTasks: RecurringTask[];
 
     constructor(private _recurringTaskService: RecurringTaskService,
@@ -51,7 +52,7 @@ export class HousagotchiManageRecurringTasksComponent implements OnInit {
     }
 
     private _showDialog(recurringTask: RecurringTask) {
-        const dialogRef = this._dialog.open(HousagotchiRecurringTaskDetailsComponent, {
+        const dialogRef = this._dialog.open(HealthRecurringTaskDetailsComponent, {
             width: '250px',
             data: {recurringTask: recurringTask}
         });
@@ -75,4 +76,5 @@ export class HousagotchiManageRecurringTasksComponent implements OnInit {
             }
         });
     }
+
 }

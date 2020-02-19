@@ -1,4 +1,4 @@
-import {RecurringTask} from "@app/housagotchi/recurring-task.model";
+import {RecurringTask} from "@app/recurring-tasks/recurring-task.model";
 
 export class Report {
 
