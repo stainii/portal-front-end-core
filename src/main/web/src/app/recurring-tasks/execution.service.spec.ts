@@ -3,7 +3,7 @@ import {getTestBed, inject, TestBed} from '@angular/core/testing';
 import {ExecutionService} from './execution.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {environment} from "@env/environment";
-import moment = require("moment");
+import * as moment from "moment";
 
 describe('ExecutionService', () => {
     let injector: TestBed;

@@ -2,7 +2,7 @@ import {inject, TestBed} from '@angular/core/testing';
 
 import {HousagotchiReportService} from './housagotchi-report.service';
 import {Mood} from "@app/housagotchi/mood.model";
-import moment = require("moment");
+import * as moment from "moment";
 
 describe('HousagotchiReportService', () => {
     // data set
