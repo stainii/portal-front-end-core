@@ -22,7 +22,7 @@
             "updateMode": "prefetch",
             "resources": {
                 "files": [
-                    "/**/assets/**"
+                    "/**/assets/**/*"
                 ]
             }
         }
@@ -30,7 +30,7 @@
     "dataGroups": [
         {
             "name": "front-end api",
-            "urls": ["/front-end/api/module/**"],
+            "urls": ["/front-end/api/module/**/*"],
             "cacheConfig": {
                 "maxSize": 3,
                 "maxAge": "1d",
@@ -39,7 +39,16 @@
         },
         {
             "name": "notifications",
-            "urls": ["/notifications/api/**"],
+            "urls": ["/notifications/api/**/*"],
+            "cacheConfig": {
+                "maxSize": 10,
+                "maxAge": "7d",
+                "strategy": "freshness"
+            }
+        },
+        {
+            "name": "health",
+            "urls": ["/health/api/**/*"],
             "cacheConfig": {
                 "maxSize": 10,
                 "maxAge": "7d",
@@ -48,7 +57,7 @@
         },
         {
             "name": "housagotchi",
-            "urls": ["/housagotchi/api/**"],
+            "urls": ["/housagotchi/api/**/*"],
             "cacheConfig": {
                 "maxSize": 10,
                 "maxAge": "7d",
@@ -57,7 +66,7 @@
         },
         {
             "name": "todo",
-            "urls": ["/todo/**"],
+            "urls": ["/todo/**/*"],
             "cacheConfig": {
                 "maxSize": 10,
                 "maxAge": "7d",
