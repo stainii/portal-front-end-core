@@ -5,11 +5,10 @@ export class Report {
     public status: string;
 
     constructor(public lateTasks: RecurringTask[]) {
-        this.status = this.calculateMood(lateTasks);
+        this.status = this.calculateStatus(lateTasks);
     }
 
-
-    private calculateMood(lateTasks: RecurringTask[]) {
+    private calculateStatus(lateTasks: RecurringTask[]) {
         if (lateTasks.length > 0) {
             return Status.FAT;
         } else {
