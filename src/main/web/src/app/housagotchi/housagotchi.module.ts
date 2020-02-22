@@ -9,19 +9,17 @@ import {HousagotchiCreatureComponent} from './housagotchi-creature/housagotchi-c
 import {HousagotchiManageRecurringTasksComponent} from './housagotchi-manage-recurring-tasks/housagotchi-manage-recurring-tasks.component';
 import {HousagotchiMenuBarForCreatureComponent} from './housagotchi-menu-bar-for-creature/housagotchi-menu-bar-for-creature.component';
 import {HousagotchiMenuBarForManageRecurringTasksComponent} from './housagotchi-menu-bar-for-manage-recurring-tasks/housagotchi-menu-bar-for-manage-recurring-tasks.component';
-import {
-    MatButtonModule,
-    MatCardModule,
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatInputModule,
-    MatListModule,
-    MatRadioModule,
-    MatSelectModule,
-    MatSnackBarModule,
-    MatTableModule,
-} from "@angular/material";
+import {MatButtonModule} from "@angular/material/button";
+import {MatCardModule} from "@angular/material/card";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatIconModule} from "@angular/material/icon";
+import {MatInputModule} from "@angular/material/input";
+import {MatListModule} from "@angular/material/list";
+import {MatRadioModule} from "@angular/material/radio";
+import {MatSelectModule} from "@angular/material/select";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {MatTableModule} from "@angular/material/table";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatMomentDateModule} from "@angular/material-moment-adapter";
 import {HousagotchiRecurringTaskDetailsComponent} from './housagotchi-recurring-task-details/housagotchi-recurring-task-details.component';

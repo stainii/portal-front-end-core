@@ -2,7 +2,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {LogoutComponent} from './logout.component';
 import {UserService} from "../user.service";
-import {MatIconModule} from "@angular/material";
+import {MatIconModule} from "@angular/material/icon";
 import {Router} from "@angular/router";
 
 describe('LogoutComponent', () => {

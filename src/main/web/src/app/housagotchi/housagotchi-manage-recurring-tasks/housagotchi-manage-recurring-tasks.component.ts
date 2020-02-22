@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {RecurringTaskService} from "@app/recurring-tasks/recurring-task.service";
 import {RecurringTask} from "@app/recurring-tasks/recurring-task.model";
-import {MatDialog, MatSnackBar} from "@angular/material";
+import {MatDialog} from "@angular/material/dialog";
+import {MatSnackBar} from "@angular/material/snack-bar";
 import {HousagotchiRecurringTaskDetailsComponent} from "@app/housagotchi/housagotchi-recurring-task-details/housagotchi-recurring-task-details.component";
 import {DEPLOYMENT_NAME} from "@app/housagotchi/housagotchi-constants";
 

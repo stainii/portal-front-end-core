@@ -1,4 +1,4 @@
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, HammerModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from '@app/app.component';
@@ -8,14 +8,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {LayoutModule} from '@angular/cdk/layout';
 import {AppRoutingModule} from "@app/app-routing.module";
 
-import {
-    MAT_DATE_LOCALE,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatSidenavModule,
-    MatToolbarModule
-} from '@angular/material';
+import {MatButtonModule} from '@angular/material/button';
+import {MAT_DATE_LOCALE} from '@angular/material/core';
+import {MatIconModule} from '@angular/material/icon';
+import {MatListModule} from '@angular/material/list';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
 import {DashboardComponent} from "@app/dashboard/dashboard.component";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {NgxWebstorageModule} from 'ngx-webstorage';
@@ -53,7 +51,8 @@ import {ErrorModule} from "@app/error/error.module";
         NgProgressModule,
         NgProgressHttpModule,
         OfflineModule,
-        ErrorModule
+        ErrorModule,
+        HammerModule
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,
