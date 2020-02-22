@@ -25,8 +25,15 @@ export class RetryInterceptor implements HttpInterceptor {
             src.pipe(
                 retryWhen((errors: Observable<any>) => errors.pipe(
                     mergeMap(error => {
-                        remainingAttempts--;
+                        if (error.status == 401 || error.status == 403) {
+                            remainingAttempts = 0; // give up immediately when we're getting an "unauthorized" or a "not allowed"
+                            console.log("Unauthorized");
+                        } else {
+                            remainingAttempts--;
+                        }
+
                         if (remainingAttempts > 0) {
+                            console.log("Retrying failed HTTP call, remaining attempts " + remainingAttempts);
                             const backoffTime = delayInMilliseconds + (maxAttempts - remainingAttempts) * backoffInMilliseconds;
                             return of(error).pipe(delay(backoffTime));
                         }
