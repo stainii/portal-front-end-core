@@ -28,6 +28,7 @@ import {TodoTaskDefinitionDetailsComponent} from './todo-task-definition-details
 import {TodoTaskTemplateEntryDetailsComponent} from './todo-task-template-entry-details/todo-task-template-entry-details.component';
 import {TodoTaskDetailsComponent} from './todo-task-details/todo-task-details.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
+import {HammerModule} from "@angular/platform-browser";
 
 @NgModule({
     declarations: [
@@ -61,6 +62,7 @@ import {MatTooltipModule} from "@angular/material/tooltip";
         MatTabsModule,
         MatListModule,
         MatTooltipModule,
+        HammerModule
     ],
     entryComponents: [
         TodoTaskDetailsComponent,
