@@ -30,46 +30,51 @@
     "dataGroups": [
         {
             "name": "front-end api",
-            "urls": ["/front-end/api/module/**/*"],
+            "urls": ["http*://**/front-end/api/module/**/*"],
             "cacheConfig": {
                 "maxSize": 3,
                 "maxAge": "1d",
+                "timeout": "10s",
                 "strategy": "performance"
             }
         },
         {
             "name": "notifications",
-            "urls": ["/notifications/api/**/*"],
+            "urls": ["http*://**/notifications/api/**/*"],
             "cacheConfig": {
                 "maxSize": 10,
                 "maxAge": "7d",
+                "timeout": "10s",
                 "strategy": "freshness"
             }
         },
         {
             "name": "health",
-            "urls": ["/health/api/**/*"],
+            "urls": ["http*://**/health/api/**/*"],
             "cacheConfig": {
                 "maxSize": 10,
                 "maxAge": "7d",
+                "timeout": "10s",
                 "strategy": "freshness"
             }
         },
         {
             "name": "housagotchi",
-            "urls": ["/housagotchi/api/**/*"],
+            "urls": ["http*://**/housagotchi/api/**/*"],
             "cacheConfig": {
                 "maxSize": 10,
                 "maxAge": "7d",
+                "timeout": "10s",
                 "strategy": "freshness"
             }
         },
         {
             "name": "todo",
-            "urls": ["/todo/**/*"],
+            "urls": ["http*://**/todo/**/*"],
             "cacheConfig": {
                 "maxSize": 10,
                 "maxAge": "7d",
+                "timeout": "10s",
                 "strategy": "freshness"
             }
         }
