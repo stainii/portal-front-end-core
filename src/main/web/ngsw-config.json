@@ -10,9 +10,7 @@
                     "/**/index.html",
                     "/**/*.css",
                     "/**/*.js",
-                    "/**/*.woff",
-                    "/**/*.woff2",
-                    "/**/*.ttf"
+                    "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani|json)"
                 ]
             }
         },
@@ -70,7 +68,7 @@
         },
         {
             "name": "todo",
-            "urls": ["http*://**/todo/**/*"],
+            "urls": ["http*://**/todo/api/**/*"],
             "cacheConfig": {
                 "maxSize": 10,
                 "maxAge": "7d",
