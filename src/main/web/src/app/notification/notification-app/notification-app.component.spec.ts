@@ -2,10 +2,10 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {NotificationAppComponent} from './notification-app.component';
 import {NotificationListComponent} from "@app/notification/notification-list/notification-list.component";
-import {SubscriptionEditorComponent} from "@app/notification/subscription-editor/subscription-editor.component";
+import {NotificationSubscriptionEditorComponent} from "@app/notification/notification-subscription-editor/notification-subscription-editor.component";
 import {NotificationComponent} from "@app/notification/notification/notification.component";
-import {SubscriptionListComponent} from "@app/notification/subscription-list/subscription-list.component";
-import {SubscriptionDetailsComponent} from "@app/notification/subscription-details/subscription-details.component";
+import {NotificationSubscriptionListComponent} from "@app/notification/notification-subscription-list/notification-subscription-list.component";
+import {NotificationSubscriptionDetailsComponent} from "@app/notification/notification-subscription-details/notification-subscription-details.component";
 import {FormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
 import {MatCardModule} from "@angular/material/card";
@@ -28,10 +28,10 @@ describe('NotificationAppComponent', () => {
         TestBed.configureTestingModule({
             declarations: [NotificationAppComponent,
                 NotificationListComponent,
-                SubscriptionEditorComponent,
+                NotificationSubscriptionEditorComponent,
                 NotificationComponent,
-                SubscriptionListComponent,
-                SubscriptionDetailsComponent],
+                NotificationSubscriptionListComponent,
+                NotificationSubscriptionDetailsComponent],
             imports: [
                 FormsModule,
                 MatIconModule,

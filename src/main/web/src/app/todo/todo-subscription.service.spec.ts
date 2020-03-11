@@ -1,15 +1,15 @@
 import {async, inject, TestBed} from '@angular/core/testing';
 
-import {SubscriptionService} from './subscription.service';
+import {TodoSubscriptionService} from './todo-subscription.service';
 import {HttpClientTestingModule, HttpTestingController} from "@angular/common/http/testing";
 import {HttpClientModule} from "@angular/common/http";
-import {Subscription} from "./subscription.model";
+import {TodoSubscription} from "./todo-subscription.model";
 import {environment} from "@env/environment";
 
-describe('SubscriptionService', () => {
+describe('TodoSubscriptionService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [SubscriptionService],
+            providers: [TodoSubscriptionService],
             imports: [
                 HttpClientModule,
                 HttpClientTestingModule
@@ -17,18 +17,18 @@ describe('SubscriptionService', () => {
         });
     });
 
-    it('should be created', inject([SubscriptionService], (service: SubscriptionService) => {
+    it('should be created', inject([TodoSubscriptionService], (service: TodoSubscriptionService) => {
         expect(service).toBeTruthy();
     }));
 
     it("should call the webservice when finding all subscriptions",
         async(
-            inject([SubscriptionService, HttpTestingController], (subscriptionService: SubscriptionService, backend: HttpTestingController) => {
+            inject([TodoSubscriptionService, HttpTestingController], (subscriptionService: TodoSubscriptionService, backend: HttpTestingController) => {
 
                 subscriptionService.findAll().subscribe();
 
                 backend.expectOne({
-                    url: environment.apiBaseUrl + 'notifications/api/subscription/',
+                    url: environment.apiBaseUrl + 'todo/api/subscription/',
                     method: 'GET'
                 });
             })
@@ -37,12 +37,12 @@ describe('SubscriptionService', () => {
 
     it("should call the webservice when creating a subscription",
         async(
-            inject([SubscriptionService, HttpTestingController], (subscriptionService: SubscriptionService, backend: HttpTestingController) => {
-                let subscription: Subscription = new Subscription();
+            inject([TodoSubscriptionService, HttpTestingController], (subscriptionService: TodoSubscriptionService, backend: HttpTestingController) => {
+                let subscription: TodoSubscription = new TodoSubscription();
                 subscriptionService.create(subscription).subscribe();
 
                 backend.expectOne({
-                    url: environment.apiBaseUrl + 'notifications/api/subscription/',
+                    url: environment.apiBaseUrl + 'todo/api/subscription/',
                     method: 'POST',
                 });
             })
@@ -51,13 +51,13 @@ describe('SubscriptionService', () => {
 
     it("should call the webservice when updating a subscription",
         async(
-            inject([SubscriptionService, HttpTestingController], (subscriptionService: SubscriptionService, backend: HttpTestingController) => {
-                let subscription: Subscription = new Subscription();
+            inject([TodoSubscriptionService, HttpTestingController], (subscriptionService: TodoSubscriptionService, backend: HttpTestingController) => {
+                let subscription: TodoSubscription = new TodoSubscription();
                 subscription.id = 100;
                 subscriptionService.update(subscription).subscribe();
 
                 backend.expectOne({
-                    url: environment.apiBaseUrl + 'notifications/api/subscription/100/',
+                    url: environment.apiBaseUrl + 'todo/api/subscription/100/',
                     method: 'PUT'
                 });
             })

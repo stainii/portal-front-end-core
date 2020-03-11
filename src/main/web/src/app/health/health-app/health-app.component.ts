@@ -27,7 +27,7 @@ export class HealthAppComponent implements OnInit {
     addExecution(execution: Execution) {
         this._executionService.addExecution(DEPLOYMENT_NAME, execution)
             .subscribe(() => {
-                this._snackBar.open("Done!", "Thank you!", {
+                this._snackBar.open("Done!", "Ow yeah!", {
                     duration: 2000,
                 });
                 this._findAllRecurringTasks();

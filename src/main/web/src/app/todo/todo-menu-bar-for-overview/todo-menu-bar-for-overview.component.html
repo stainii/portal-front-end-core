@@ -31,8 +31,13 @@
         <mat-icon (click)="refreshTasks()" aria-label="Refresh list of tasks">refresh</mat-icon>
     </div>
     <div class="group">
-        <a [routerLink]="['/todo', { outlets: { primary: ['settings'], menuBar: ['settings'] } }]">
-            <mat-icon aria-label="Templates and recurring tasks">settings</mat-icon>
+        <a [routerLink]="['/todo', { outlets: { primary: ['templates'], menuBar: ['templates'] } }]">
+            <mat-icon aria-label="Templates">settings</mat-icon>
+        </a>
+    </div>
+    <div class="group">
+        <a [routerLink]="['/todo', { outlets: { primary: ['subscriptions'], menuBar: ['subscriptions'] } }]">
+            <mat-icon aria-label="Subscriptions">mailbox</mat-icon>
         </a>
     </div>
 </div>

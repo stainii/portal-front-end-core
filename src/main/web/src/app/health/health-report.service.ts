@@ -22,6 +22,7 @@ export class HealthReportService {
 
             if (moment(recurringTask.lastExecution)
                 .add(recurringTask.minNumberOfDaysBetweenExecutions, "days")
+                .subtract(1, "days") // x rest days = x + 1 min days between executions
                 .isBefore(now)) {
 
                 lateTasks.push(recurringTask);

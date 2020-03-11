@@ -11,7 +11,7 @@ export class TaskTemplateService {
   constructor(private _http: HttpClient) { }
 
     findAll() {
-        return this._http.get<TaskTemplate[]>(environment.apiBaseUrl + "todo/template/");
+        return this._http.get<TaskTemplate[]>(environment.apiBaseUrl + "todo/api/template/");
     }
 
     create(taskTemplate: TaskTemplate) {
@@ -20,7 +20,7 @@ export class TaskTemplateService {
                 taskDefinition.context = environment.defaultTaskContext;
             }
         }
-        return this._http.post<TaskTemplate>(environment.apiBaseUrl + "todo/template/", taskTemplate);
+        return this._http.post<TaskTemplate>(environment.apiBaseUrl + "todo/api/template/", taskTemplate);
     }
 
     update(taskTemplate: TaskTemplate) {
@@ -29,10 +29,10 @@ export class TaskTemplateService {
                 taskDefinition.context = environment.defaultTaskContext;
             }
         }
-        return this._http.put<TaskTemplate>(environment.apiBaseUrl + "todo/template/" + taskTemplate.id, taskTemplate);
+        return this._http.put<TaskTemplate>(environment.apiBaseUrl + "todo/api/template/" + taskTemplate.id, taskTemplate);
     }
 
     delete(taskTemplate: TaskTemplate) {
-        return this._http.delete<TaskTemplate>(environment.apiBaseUrl + "todo/template/" + taskTemplate.id);
+        return this._http.delete<TaskTemplate>(environment.apiBaseUrl + "todo/api/template/" + taskTemplate.id);
     }
 }

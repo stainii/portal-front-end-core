@@ -6,11 +6,11 @@ import {TaskTemplateService} from "@app/todo/task-template.service";
 import {Observable} from "rxjs";
 
 @Component({
-    selector: 'app-todo-settings',
-    templateUrl: './todo-settings.component.html',
-    styleUrls: ['./todo-settings.component.scss']
+    selector: 'app-todo-templates',
+    templateUrl: './todo-templates.component.html',
+    styleUrls: ['./todo-templates.component.scss']
 })
-export class TodoSettingsComponent {
+export class TodoTemplatesComponent {
 
     allTaskTemplates$: Observable<TaskTemplate[]>;
 

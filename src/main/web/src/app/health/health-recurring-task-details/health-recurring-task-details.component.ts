@@ -24,14 +24,14 @@ export class HealthRecurringTaskDetailsComponent implements OnInit {
     ngOnInit() {
         this.editorFormGroup = this._formBuilder.group({
             activity: this._recurringTask.name,
-            restDays: this._recurringTask.minNumberOfDaysBetweenExecutions,
+            restDays: this._recurringTask.minNumberOfDaysBetweenExecutions - 1, // x rest days = x + 1 min days between executions
         });
     }
 
     save() {
         this._recurringTask.name = this.editorFormGroup.value.activity;
-        this._recurringTask.minNumberOfDaysBetweenExecutions = this.editorFormGroup.value.restDays;
-        this._recurringTask.maxNumberOfDaysBetweenExecutions = this.editorFormGroup.value.restDays;
+        this._recurringTask.minNumberOfDaysBetweenExecutions = this.editorFormGroup.value.restDays + 1; // x rest days = x + 1 min days between executions
+        this._recurringTask.maxNumberOfDaysBetweenExecutions = this.editorFormGroup.value.restDays + 1;
         if (this.editorFormGroup.valid) {
             this.dialogRef.close(this._recurringTask);
         }

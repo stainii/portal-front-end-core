@@ -17,8 +17,8 @@ import {FormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatMomentDateModule} from "@angular/material-moment-adapter";
-import {TodoMenuBarForSettingsComponent} from './todo-menu-bar-for-settings/todo-menu-bar-for-settings.component';
-import {TodoSettingsComponent} from './todo-settings/todo-settings.component';
+import {TodoMenuBarForTemplatesComponent} from './todo-menu-bar-for-templates/todo-menu-bar-for-templates.component';
+import {TodoTemplatesComponent} from './todo-templates/todo-templates.component';
 import {MatTreeModule} from "@angular/material/tree";
 import {TodoTaskTemplateDetailsComponent} from "@app/todo/todo-task-template-details/todo-task-template-details.component";
 import {TodoTaskTemplatesComponent} from './todo-task-templates/todo-task-templates.component';
@@ -29,6 +29,10 @@ import {TodoTaskTemplateEntryDetailsComponent} from './todo-task-template-entry-
 import {TodoTaskDetailsComponent} from './todo-task-details/todo-task-details.component';
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {HammerModule} from "@angular/platform-browser";
+import {TodoSubscriptionDetailsComponent} from './todo-subscription-details/todo-subscription-details.component';
+import {TodoSubscriptionEditorComponent} from './todo-subscription-editor/todo-subscription-editor.component';
+import {TodoSubscriptionListComponent} from './todo-subscription-list/todo-subscription-list.component';
+import {TodoMenuBarForSubscriptionsComponent} from './todo-menu-bar-for-subscriptions/todo-menu-bar-for-subscriptions.component';
 
 @NgModule({
     declarations: [
@@ -36,13 +40,17 @@ import {HammerModule} from "@angular/platform-browser";
         TodoMenuBarForOverviewComponent,
         TodoTaskPanelComponent,
         TodoAppComponent,
-        TodoMenuBarForSettingsComponent,
-        TodoSettingsComponent,
+        TodoMenuBarForTemplatesComponent,
+        TodoTemplatesComponent,
         TodoTaskTemplateDetailsComponent,
         TodoTaskTemplatesComponent,
         TodoTaskDefinitionDetailsComponent,
         TodoTaskTemplateEntryDetailsComponent,
-        TodoTaskDetailsComponent
+        TodoTaskDetailsComponent,
+        TodoSubscriptionDetailsComponent,
+        TodoSubscriptionEditorComponent,
+        TodoSubscriptionListComponent,
+        TodoMenuBarForSubscriptionsComponent
     ],
     imports: [
         CommonModule,

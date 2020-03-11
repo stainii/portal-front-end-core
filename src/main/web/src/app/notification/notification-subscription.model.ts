@@ -1,7 +1,7 @@
 import {SubscriptionMappingToNotification} from "./subscription-mapping-to-notification.model";
 import {PublishStrategy} from "./publish-strategy";
 
-export class Subscription {
+export class NotificationSubscription {
 
     constructor() {
         this.mappingToNotification = new SubscriptionMappingToNotification();

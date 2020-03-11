@@ -14,15 +14,15 @@ h1 {
     display: flex;
 }
 
-.subscription-editor .grid app-subscription-list {
+.subscription-editor .grid app-notification-subscription-list {
     flex-grow: 1;
 }
 
-.subscription-editor .grid app-subscription-details {
+.subscription-editor .grid app-notification-subscription-details {
     flex-grow: 4;
 }
 
-app-subscription-list, app-subscription-details {
+app-notification-subscription-list, app-notification-subscription-details {
     margin-top: 20px;
 }
 
