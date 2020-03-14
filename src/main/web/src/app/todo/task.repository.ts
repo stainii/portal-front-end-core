@@ -150,13 +150,11 @@ export class TaskRepository {
 
         console.info("Watching changes to tasks (sent by server).");
 
-        //when the connection is lost, retry after 10 seconds
+        //when the connection is lost, reconnect
         this._taskTail.onerror = error => {
-            console.error("Connection lost while watching changes to tasks. Retrying in 10 seconds", error);
+            console.error("Connection lost while watching changes to tasks. Reconnecting.", error);
             this._taskTail.close();
-            setTimeout(() => {
-                this._setup();
-            }, 10000);
+            this._watchChangesToTasks();
         };
     }
 
