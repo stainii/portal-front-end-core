@@ -156,7 +156,7 @@ export class TaskRepository {
             this._taskTail.close();
             setTimeout(() => {
                 this._setup();
-            }, 1000);
+            }, 10000);
         };
     }
 
