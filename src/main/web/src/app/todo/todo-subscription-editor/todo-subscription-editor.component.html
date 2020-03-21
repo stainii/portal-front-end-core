@@ -1,0 +1,11 @@
+<div class="subscription-editor">
+    <h1>Subscriptions</h1>
+    <div class="grid">
+        <app-todo-subscription-list [subscriptions]="subscriptions"
+                                    (subscriptionSelected)="selectSubscription($event)">
+        </app-todo-subscription-list>
+        <app-todo-subscription-details [subscription]="currentlyEditing"
+                                       (onSave)="save($event)">
+        </app-todo-subscription-details>
+    </div>
+</div>

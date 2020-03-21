@@ -1,6 +1,6 @@
 package be.stijnhooft.portal.frontend.services;
 
-import be.stijnhooft.portal.frontend.dtos.ModuleDTO;
+import be.stijnhooft.portal.frontend.dtos.ModuleDto;
 import be.stijnhooft.portal.frontend.exceptions.ModuleCollectionNotFoundException;
 import be.stijnhooft.portal.frontend.mappers.ModuleMapper;
 import be.stijnhooft.portal.frontend.model.Module;
@@ -32,7 +32,7 @@ public class ModuleServiceTest {
 
     @Mock
     private ModuleCollectionRepository moduleCollectionRepository;
-    
+
     @Mock
     private ModuleMapper moduleMapper;
 
@@ -42,17 +42,17 @@ public class ModuleServiceTest {
 
     private Module module1;
     private Module module2;
-    private ModuleDTO moduleDTO1;
-    private ModuleDTO moduleDTO2;
-    private List<ModuleDTO> moduleDTOs;
+    private ModuleDto moduleDto1;
+    private ModuleDto moduleDto2;
+    private List<ModuleDto> moduleDtos;
 
     @Before
     public void init() {
         module1 = new Module("module1",  true);
         module2 = new Module("module2",  false);
-        moduleDTO1 = new ModuleDTO("module1", true, 0);
-        moduleDTO2 = new ModuleDTO("module2",  false, 1);
-        moduleDTOs = Arrays.asList(moduleDTO1, moduleDTO2);
+        moduleDto1 = new ModuleDto("module1", true, 0);
+        moduleDto2 = new ModuleDto("module2",  false, 1);
+        moduleDtos = Arrays.asList(moduleDto1, moduleDto2);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class ModuleServiceTest {
     @Test
     public void findAllWhenSuccess() {
         //data set
-        List<ModuleDTO> modules = Arrays.asList(moduleDTO1, moduleDTO2);
+        List<ModuleDto> modules = Arrays.asList(moduleDto1, moduleDto2);
 
         //mock
         doReturn(Optional.of(moduleCollection)).when(moduleCollectionRepository).findForUser("test");

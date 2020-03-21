@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ExecutionService} from "@app/housagotchi/execution.service";
-import {MatSnackBar} from "@angular/material";
-import {RecurringTaskService} from "@app/housagotchi/recurring-task.service";
-import {Execution} from "@app/housagotchi/execution.model";
-import {RecurringTask} from "@app/housagotchi/recurring-task.model";
+import {ExecutionService} from "@app/recurring-tasks/execution.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
+import {RecurringTaskService} from "@app/recurring-tasks/recurring-task.service";
+import {Execution} from "@app/recurring-tasks/execution.model";
+import {RecurringTask} from "@app/recurring-tasks/recurring-task.model";
+import {DEPLOYMENT_NAME} from "@app/housagotchi/housagotchi-constants";
 
 @Component({
     selector: 'app-housagotchi-app',
@@ -24,7 +25,7 @@ export class HousagotchiAppComponent implements OnInit {
     }
 
     addExecution(execution: Execution) {
-        this._executionService.addExecution(execution)
+        this._executionService.addExecution(DEPLOYMENT_NAME, execution)
             .subscribe(() => {
                 this._snackBar.open("Done!", "Thank you!", {
                     duration: 2000,
@@ -35,7 +36,7 @@ export class HousagotchiAppComponent implements OnInit {
 
     _findAllRecurringTasks() {
         this._recurringTaskService
-            .findAll()
+            .findAll(DEPLOYMENT_NAME)
             .subscribe(recurringTasks => this.recurringTasks = recurringTasks);
     }
 

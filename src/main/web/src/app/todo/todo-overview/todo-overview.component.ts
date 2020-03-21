@@ -21,6 +21,7 @@ export class TodoOverviewComponent implements OnInit {
     set tasks(tasks: Task[]) {
         this._allTasks = tasks;
         this.watchTasks();
+        this.refreshTasksWhenPageRegainsFocus();
     };
 
     @Output()
@@ -57,9 +58,18 @@ export class TodoOverviewComponent implements OnInit {
     private watchTasks() {
         let sortedTasks = this._allTasks
             .filter(task => !this.context || this.context == 'all' || task.context == this.context)
+            .filter(task => task.isActive())
             .sort(taskComparator);
         this.mostImportantTasks = sortedTasks.slice(0,5);
         this.lessImportantTasks = sortedTasks.slice(5);
     }
 
+    private refreshTasksWhenPageRegainsFocus() {
+        document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "visible") {
+                console.info("The page lost focus and regained it, recalculating filter on tasks.");
+                this.watchTasks();
+            }
+        });
+    }
 }

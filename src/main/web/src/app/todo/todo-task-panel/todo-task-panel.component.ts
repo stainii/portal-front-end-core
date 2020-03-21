@@ -37,8 +37,8 @@ export class TodoTaskPanelComponent {
     fillSize: number = TodoTaskPanelComponent.MIN_FILL_SIZE;
 
     // id of intervals, keeping them to cancel the intervals when necessary
-    private revertFillInterval: number;
-    private fillCompletelyInterval: number;
+    private revertFillInterval: any;
+    private fillCompletelyInterval: any;
 
     fill($event) {
         this._cancelRevertFillInterval();

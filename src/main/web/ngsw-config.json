@@ -6,13 +6,11 @@
             "installMode": "prefetch",
             "resources": {
                 "files": [
-                    "/favicon.ico",
-                    "/index.html",
-                    "/*.css",
-                    "/*.js",
-                    "/*.woff",
-                    "/*.woff2",
-                    "/*.ttf"
+                    "/**/favicon.ico",
+                    "/**/index.html",
+                    "/**/*.css",
+                    "/**/*.js",
+                    "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani|json)"
                 ]
             }
         },
@@ -22,7 +20,7 @@
             "updateMode": "prefetch",
             "resources": {
                 "files": [
-                    "/assets/**"
+                    "/**/assets/**/*"
                 ]
             }
         }
@@ -30,28 +28,51 @@
     "dataGroups": [
         {
             "name": "front-end api",
-            "urls": ["/front-end/api/module/**"],
+            "urls": ["http*://**/front-end/api/module/**/*"],
             "cacheConfig": {
                 "maxSize": 3,
                 "maxAge": "1d",
+                "timeout": "10s",
                 "strategy": "performance"
             }
         },
         {
             "name": "notifications",
-            "urls": ["**/notifications/api/**"],
+            "urls": ["http*://**/notifications/api/**/*"],
             "cacheConfig": {
                 "maxSize": 10,
                 "maxAge": "7d",
+                "timeout": "10s",
+                "strategy": "freshness"
+            }
+        },
+        {
+            "name": "health",
+            "urls": ["http*://**/health/api/**/*"],
+            "cacheConfig": {
+                "maxSize": 10,
+                "maxAge": "7d",
+                "timeout": "10s",
                 "strategy": "freshness"
             }
         },
         {
             "name": "housagotchi",
-            "urls": ["**/housagotchi/api/**"],
+            "urls": ["http*://**/housagotchi/api/**/*"],
             "cacheConfig": {
                 "maxSize": 10,
                 "maxAge": "7d",
+                "timeout": "10s",
+                "strategy": "freshness"
+            }
+        },
+        {
+            "name": "todo",
+            "urls": ["http*://**/todo/api/**/*"],
+            "cacheConfig": {
+                "maxSize": 10,
+                "maxAge": "7d",
+                "timeout": "10s",
                 "strategy": "freshness"
             }
         }

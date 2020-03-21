@@ -1,6 +1,6 @@
 package be.stijnhooft.portal.frontend.controllers;
 
-import be.stijnhooft.portal.frontend.dtos.ModuleDTO;
+import be.stijnhooft.portal.frontend.dtos.ModuleDto;
 import be.stijnhooft.portal.frontend.services.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +21,7 @@ public class ModuleController {
     }
 
     @RequestMapping("/")
-    public List<ModuleDTO> findForLoggedInUser(Principal activeUser) {
+    public List<ModuleDto> findForLoggedInUser(Principal activeUser) {
         return moduleService.findForUser(activeUser.getName());
     }
 

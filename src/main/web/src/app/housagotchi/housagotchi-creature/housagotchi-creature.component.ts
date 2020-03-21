@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {ReportService} from "@app/housagotchi/report.service";
+import {HousagotchiReportService} from "@app/housagotchi/housagotchi-report.service";
 import {Report} from "@app/housagotchi/report.model";
-import {RecurringTask} from "@app/housagotchi/recurring-task.model";
+import {RecurringTask} from "@app/recurring-tasks/recurring-task.model";
 
 @Component({
     selector: 'app-housagotchi-creature',
@@ -15,7 +15,7 @@ export class HousagotchiCreatureComponent implements OnInit, OnChanges {
 
     report: Report;
 
-    constructor(private _reportService: ReportService) {
+    constructor(private _reportService: HousagotchiReportService) {
     }
 
     ngOnInit() {

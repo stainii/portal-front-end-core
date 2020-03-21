@@ -10,15 +10,19 @@ const routes: Routes = [
         component: LoginComponent,
     }, {
         path: 'notifications',
-        loadChildren: './notification/notification.module#NotificationModule',
+        loadChildren: () => import('./notification/notification.module').then(m => m.NotificationModule),
         canActivate: [AuthenticationGuardService, AuthorisationGuardService]
     }, {
         path: 'housagotchi',
-        loadChildren: './housagotchi/housagotchi.module#HousagotchiModule',
+        loadChildren: () => import('./housagotchi/housagotchi.module').then(m => m.HousagotchiModule),
         canActivate: [AuthenticationGuardService, AuthorisationGuardService]
     }, {
         path: 'todo',
-        loadChildren: './todo/todo.module#TodoModule',
+        loadChildren: () => import('./todo/todo.module').then(m => m.TodoModule),
+        canActivate: [AuthenticationGuardService, AuthorisationGuardService]
+    }, {
+        path: 'health',
+        loadChildren: () => import('./health/health.module').then(m => m.HealthModule),
         canActivate: [AuthenticationGuardService, AuthorisationGuardService]
     }, {
         path: "**",

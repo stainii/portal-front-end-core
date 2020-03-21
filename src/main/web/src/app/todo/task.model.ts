@@ -33,22 +33,20 @@ export class Task {
     }
 
     public hasTypeFocus() {
-        return this.importance == Importance.VERY_IMPORTANT
+        return (this.importance == Importance.IMPORTANT || this.importance == Importance.VERY_IMPORTANT)
                 && (this.dueDateTime != null && this.dueDateIsGettingNear());
     }
 
     public hasTypeGoals() {
-        return this.importance == Importance.VERY_IMPORTANT && !this.hasTypeFocus();
+        return (this.importance == Importance.IMPORTANT || this.importance == Importance.VERY_IMPORTANT) && !this.hasTypeFocus();
     }
 
     public hasTypeFitIn() {
-        return (!this.importance || this.importance == Importance.NOT_SO_IMPORTANT)
-                && (this.dueDateTime != null && this.dueDateIsGettingNear());
+        return (!this.importance || this.importance == Importance.I_DO_NOT_REALLY_CARE || this.importance == Importance.NOT_SO_IMPORTANT) && this.dueDateTime != null && this.dueDateIsGettingNear();
     }
 
     public hasTypeBackBurner() {
-        return (!this.importance || this.importance == Importance.I_DO_NOT_REALLY_CARE)
-            || (this.importance == Importance.NOT_SO_IMPORTANT && !this.hasTypeFitIn());
+        return !this.hasTypeFitIn() && (!this.importance || this.importance == Importance.I_DO_NOT_REALLY_CARE || this.importance == Importance.NOT_SO_IMPORTANT)
     }
 
     private dueDateIsGettingNear() {
@@ -102,5 +100,9 @@ export class Task {
                         this[key] = p.changes[key];
                     });
             });
+    }
+
+    isActive() {
+        return !this.startDateTime || moment(this.startDateTime).isBefore(moment().add(1, "day").startOf("day"));
     }
 }

@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import * as moment from "moment";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {RecurringTask} from "@app/housagotchi/recurring-task.model";
-import {Execution} from "@app/housagotchi/execution.model";
+import {RecurringTask} from "@app/recurring-tasks/recurring-task.model";
+import {Execution} from "@app/recurring-tasks/execution.model";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({

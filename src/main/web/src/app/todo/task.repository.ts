@@ -55,7 +55,7 @@ export class TaskRepository {
         this._publishTasksOfLocalStorage();
 
         // then, create task on server
-        return this._http.post<Task>(environment.apiBaseUrl + "todo/task/", task)
+        return this._http.post<Task>(environment.apiBaseUrl + "todo/api/task/", task)
             .pipe(catchError(error => {
                 // if we get an error that is not handled by the offline interceptor, revert changes in local history
                 this._removeTaskFromLocalStorage(task);
@@ -65,12 +65,12 @@ export class TaskRepository {
     }
 
     createTasksBasedOn(taskTemplateEntry: TaskTemplateEntry) {
-        return this._http.post<Task[]>(environment.apiBaseUrl + "todo/task/from-template/", taskTemplateEntry);
+        return this._http.post<Task[]>(environment.apiBaseUrl + "todo/api/task/from-template/", taskTemplateEntry);
     }
 
     findPatchesSince(date: Date) {
         console.info("Looking for patches to tasks since " + date);
-        return this._http.get<TaskPatch[]>(environment.apiBaseUrl + "todo/task/patch/?since=" + date.toISOString());
+        return this._http.get<TaskPatch[]>(environment.apiBaseUrl + "todo/api/task/patch/?since=" + date.toISOString());
     }
 
     patch(task: Task, patch: TaskPatch) {
@@ -80,7 +80,7 @@ export class TaskRepository {
         this._publishTasksOfLocalStorage();
 
         // then, send patch to server
-        return this._http.patch<Task>(environment.apiBaseUrl + "todo/task/" + task.id, patch)
+        return this._http.patch<Task>(environment.apiBaseUrl + "todo/api/task/" + task.id, patch)
             .pipe(catchError(error => {
                 // if we get an error that is not handled by the offline interceptor, revert changes in local history
                 task.rollback(patch);
@@ -91,6 +91,7 @@ export class TaskRepository {
     }
 
     private _setup() {
+        this._publishTasksOfLocalStorage();
         this._retrieveUpToDateTasks()
             .subscribe(tasks => {
                     this._storeTasksInLocalStorage(tasks);
@@ -129,7 +130,7 @@ export class TaskRepository {
 
     private _watchChangesToTasks() {
         this._taskTail = new EventSource(
-            environment.apiBaseUrl + "todo/task/patch/?tail&jwt=" + this._userService.getLoggedInUser().token.value);
+            environment.apiBaseUrl + "todo/api/task/patch/?tail&jwt=" + this._userService.getLoggedInUser().token.value);
 
         this._taskTail.addEventListener('message', (event: MessageEvent) => {
             console.info("New task patches were sent by the server.");
@@ -149,13 +150,11 @@ export class TaskRepository {
 
         console.info("Watching changes to tasks (sent by server).");
 
-        //when the connection is lost, retry after 10 seconds
+        //when the connection is lost, reconnect
         this._taskTail.onerror = error => {
-            console.error("Connection lost while watching changes to tasks. Retrying in 10 seconds", error);
+            console.error("Connection lost while watching changes to tasks. Reconnecting.", error);
             this._taskTail.close();
-            setTimeout(() => {
-                this._setup();
-            }, 1000);
+            this._watchChangesToTasks();
         };
     }
 
@@ -173,7 +172,7 @@ export class TaskRepository {
     }
 
     private _findTasksFromServer() {
-        return this._http.get<Task[]>(environment.apiBaseUrl + "todo/task/")
+        return this._http.get<Task[]>(environment.apiBaseUrl + "todo/api/task/")
             .pipe(
                 map(tasks => tasks.map(
                     task => Object.assign(new Task(), task)))

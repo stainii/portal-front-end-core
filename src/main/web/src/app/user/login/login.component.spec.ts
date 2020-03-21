@@ -2,17 +2,11 @@ import {async, TestBed} from '@angular/core/testing';
 import {RouterTestingModule} from "@angular/router/testing";
 import {LoginComponent} from "./login.component";
 import {FormsModule} from "@angular/forms";
-import {
-    MatButton,
-    MatCard,
-    MatCardActions,
-    MatCardContent,
-    MatCardHeader,
-    MatCardTitle,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRippleModule
-} from "@angular/material";
+import {MatButton} from "@angular/material/button";
+import {MatCard, MatCardActions, MatCardContent, MatCardHeader, MatCardTitle} from "@angular/material/card";
+import {MatRippleModule} from "@angular/material/core";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
 import {UserService} from "../user.service";
 import {of} from "rxjs";
 import {Token} from "../token.model";

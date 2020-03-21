@@ -1,0 +1,11 @@
+<div class="subscription-editor">
+    <h1>Subscriptions</h1>
+    <div class="grid">
+        <app-notification-subscription-list [subscriptions]="subscriptions"
+                                            (subscriptionSelected)="selectSubscription($event)">
+        </app-notification-subscription-list>
+        <app-notification-subscription-details [subscription]="currentlyEditing"
+                                               (onSave)="save($event)">
+        </app-notification-subscription-details>
+    </div>
+</div>

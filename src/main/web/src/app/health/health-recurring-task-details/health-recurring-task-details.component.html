@@ -1,0 +1,24 @@
+
+<form #editorForm="ngForm" [formGroup]="editorFormGroup"
+      (submit)="save()">
+    <mat-form-field>
+        <input matInput
+               formControlName="activity"
+               placeholder="Activity"
+               required>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+               formControlName="restDays"
+               placeholder="Rest days"
+               required
+               type="number">
+    </mat-form-field>
+    <button type="submit"
+            mat-button
+            [disabled]="!editorForm.form.valid"
+            class="btn btn-primary"
+            color="primary">
+        Save
+    </button>
+</form>
