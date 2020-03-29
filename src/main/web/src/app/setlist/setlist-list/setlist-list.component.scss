@@ -1,0 +1,29 @@
+$cursive-font: "Indie Flower", cursive;
+$halftone: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAHElEQVQYV2NUVFT8f//+fUYGBgYGMAEDcA5IBQCKJQVmn76DhAAAAABJRU5ErkJggg==");
+
+li {
+    font-family: $cursive-font;
+    list-style: none;
+    font-size: 20pt;
+    color: #5f5f5f;
+    margin: 20px 0;
+}
+
+li.overdue {
+    background-image: linear-gradient(to right, rgb(250, 112, 154) 0%, rgb(254, 225, 64) 100%);
+    background-repeat: no-repeat;
+    background-size: 100% 0.1em;
+    background-position: 0 88%;
+}
+
+h1 {
+    font-family: $cursive-font;
+    font-size: 40pt;
+    text-align: center;
+
+    background: $halftone #009688;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    color: transparent;
+}

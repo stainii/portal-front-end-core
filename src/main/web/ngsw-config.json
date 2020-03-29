@@ -10,7 +10,7 @@
                     "/**/index.html",
                     "/**/*.css",
                     "/**/*.js",
-                    "/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani|json)"
+                    "/**/*.(eot|svg|cur|jpg|png|webp|gif|otf|ttf|woff|woff2|ani|json)"
                 ]
             }
         },

@@ -1,0 +1,33 @@
+<form #addExecutionForm="ngForm" [formGroup]="addExecutionFormGroup"
+      (submit)="addExecution()">
+    <mat-form-field>
+        <mat-select id="task"
+                    name="task"
+                    formControlName="selectedSong"
+                    required
+                    placeholder="What did you do?">
+            <mat-option *ngFor="let song of setlist?.songs"
+                        [value]="song">{{song.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput
+               formControlName="selectedDate"
+               [matDatepicker]="dateExecuted"
+               placeholder="When did you do it?"
+               required>
+        <mat-datepicker-toggle matSuffix
+                               [for]="dateExecuted">
+        </mat-datepicker-toggle>
+        <mat-datepicker touchUi
+                        #dateExecuted>
+        </mat-datepicker>
+
+    </mat-form-field>
+    <button type="submit"
+            mat-button
+            [disabled]="!addExecutionForm.form.valid"
+            class="btn btn-primary"
+            color="primary">Done!
+    </button>
+</form>
