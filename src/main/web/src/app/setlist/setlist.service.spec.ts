@@ -32,7 +32,7 @@ describe('SetlistService', () => {
             name: "song 2",
             minNumberOfDaysBetweenExecutions: 5,
             maxNumberOfDaysBetweenExecutions: 10,
-            lastExecution: moment().add(-5, "days").toISOString()
+            lastExecution: moment().add(-4, "days").toISOString()
         };
 
         const song3 = {
