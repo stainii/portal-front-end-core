@@ -1,0 +1,9 @@
+<div class="setlist">
+
+    <app-setlist-list [setlist]="setlist"></app-setlist-list>
+
+    <app-setlist-add-execution
+        [setlist]="setlist"
+        (onAddExecution)="addExecution($event)">
+    </app-setlist-add-execution>
+</div>

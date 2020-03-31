@@ -13,6 +13,8 @@ export class TodoOverviewComponent implements OnInit {
     mostImportantTasks: Task[];
     lessImportantTasks: Task[];
     lessImportantTasksVisible: boolean;
+    futureTasks: Task[];
+    futureTasksVisible: boolean;
 
     private _allTasks: Task[];
     private context: string;
@@ -47,6 +49,10 @@ export class TodoOverviewComponent implements OnInit {
         this.lessImportantTasksVisible = true;
     }
 
+    makeFutureTasksVisible() {
+        this.futureTasksVisible = true;
+    }
+
     edit(task: Task) {
         this.onEdit.emit(task);
     }
@@ -58,10 +64,13 @@ export class TodoOverviewComponent implements OnInit {
     private watchTasks() {
         let sortedTasks = this._allTasks
             .filter(task => !this.context || this.context == 'all' || task.context == this.context)
-            .filter(task => task.isActive())
             .sort(taskComparator);
-        this.mostImportantTasks = sortedTasks.slice(0,5);
-        this.lessImportantTasks = sortedTasks.slice(5);
+
+        let activeTasks = sortedTasks.filter(task => task.isActive());
+        this.mostImportantTasks = activeTasks.slice(0,5);
+        this.lessImportantTasks = activeTasks.slice(5);
+
+        this.futureTasks = sortedTasks.filter(task => !task.isActive());
     }
 
     private refreshTasksWhenPageRegainsFocus() {
