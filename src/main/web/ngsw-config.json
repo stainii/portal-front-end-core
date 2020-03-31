@@ -35,8 +35,7 @@
                 "timeout": "10s",
                 "strategy": "performance"
             }
-        },
-        {
+        }, {
             "name": "notifications",
             "urls": ["http*://**/notifications/api/**/*"],
             "cacheConfig": {
@@ -45,8 +44,7 @@
                 "timeout": "10s",
                 "strategy": "freshness"
             }
-        },
-        {
+        }, {
             "name": "health",
             "urls": ["http*://**/health/api/**/*"],
             "cacheConfig": {
@@ -55,8 +53,7 @@
                 "timeout": "10s",
                 "strategy": "freshness"
             }
-        },
-        {
+        }, {
             "name": "housagotchi",
             "urls": ["http*://**/housagotchi/api/**/*"],
             "cacheConfig": {
@@ -65,8 +62,16 @@
                 "timeout": "10s",
                 "strategy": "freshness"
             }
-        },
-        {
+        }, {
+            "name": "setlist",
+            "urls": ["http*://**/setlist/api/**/*"],
+            "cacheConfig": {
+                "maxSize": 10,
+                "maxAge": "7d",
+                "timeout": "10s",
+                "strategy": "freshness"
+            }
+        }, {
             "name": "todo",
             "urls": ["http*://**/todo/api/**/*"],
             "cacheConfig": {
