@@ -7,15 +7,15 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class RetryInterceptor implements HttpInterceptor {
 
-    static DEFAULT_MAX_ATTEMPTS = 5;
-    static DEFAULT_BACKOFF = 1000;
+    static DEFAULT_MAX_ATTEMPTS = 10;
+    static DEFAULT_BACKOFF = 10000;
 
     constructor(private _errorService: ErrorService) {
     }
 
     intercept(req, next) {
         return next.handle(req)
-            .pipe(this.retryWithBackoff(5000, 100, 1000));
+            .pipe(this.retryWithBackoff(RetryInterceptor.DEFAULT_BACKOFF, RetryInterceptor.DEFAULT_MAX_ATTEMPTS, RetryInterceptor.DEFAULT_BACKOFF));
     }
 
     retryWithBackoff(delayInMilliseconds: number, maxAttempts = RetryInterceptor.DEFAULT_MAX_ATTEMPTS, backoffInMilliseconds = RetryInterceptor.DEFAULT_BACKOFF) {
