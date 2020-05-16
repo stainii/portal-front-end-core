@@ -1,0 +1,39 @@
+mat-card {
+    width: 300px;
+    padding: 10px;
+    margin: 20px;
+
+    .card-image {
+        background-size: cover;
+        width: 80px;
+        height: 80px;
+        background-position: center center;
+    }
+
+    .card-content {
+        display: flex;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .card-text {
+        flex-direction: row;
+    }
+
+    .days-between-contacts {
+        margin: 0 20px;
+        flex-direction: column;
+        display: flex;
+
+        .days-between-contacts-container {
+            flex-grow: 1;
+            margin-right: 2px;
+        }
+
+        .days-between-contacts-container-header {
+            font-weight: bold;
+            margin-right: 2px;
+        }
+    }
+
+}

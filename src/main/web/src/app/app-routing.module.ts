@@ -29,6 +29,10 @@ const routes: Routes = [
         loadChildren: () => import('./setlist/setlist.module').then(m => m.SetlistModule),
         canActivate: [AuthenticationGuardService, AuthorisationGuardService]
     }, {
+        path: 'social',
+        loadChildren: () => import('./social/social.module').then(m => m.SocialModule),
+        canActivate: [AuthenticationGuardService, AuthorisationGuardService]
+    }, {
         path: "**",
         redirectTo: "notifications",
         canActivate: [AuthenticationGuardService, AuthorisationGuardService]

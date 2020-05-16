@@ -1,0 +1,6 @@
+<app-social-polaroid
+    *ngFor="let person of people"
+    [person]="person"
+    (onSave)="save($event)"
+    [old]="person.shouldContact">
+</app-social-polaroid>
