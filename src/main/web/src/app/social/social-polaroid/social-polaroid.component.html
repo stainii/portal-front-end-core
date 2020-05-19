@@ -5,7 +5,7 @@
          [class.flipped]="flipped"
          [class.old]="old">
         <div class="face front" (click)="flip()">
-            <img [src]="person.imageName"/>
+            <img [src]="getImageUrl()"/>
             <h1>{{person.name}}</h1>
             <h2>{{getLastContactInDaysAgo(person)}}</h2>
         </div>

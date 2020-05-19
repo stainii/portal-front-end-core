@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {Person} from "@app/social/person.model";
 import {MAT_DIALOG_DATA, MatDialogConfig, MatDialogRef} from "@angular/material/dialog";
 import {DomSanitizer} from "@angular/platform-browser";
+import {SocialService} from "@app/social/social.service";
 
 @Component({
     selector: 'app-social-person-settings-edit',
@@ -15,11 +16,12 @@ export class SocialPersonSettingsEditComponent implements OnInit {
 
     constructor(private _sanitizer: DomSanitizer,
                 public dialogRef: MatDialogRef<SocialPersonSettingsEditComponent>,
+                private _socialService: SocialService,
                 @Inject(MAT_DIALOG_DATA) public data: any) {
         this.person = Object.assign({}, data.person);
 
         if (this.person && this.person.imageName) {
-            this.image = this.person.imageName;
+            this.image = this._socialService.getImageUrl(this.person.imageName);
         } else {
             this.image = "assets/social/no-photo.jpg";
         }

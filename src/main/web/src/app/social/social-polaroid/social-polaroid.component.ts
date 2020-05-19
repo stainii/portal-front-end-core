@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Person} from "@app/social/person.model";
 import * as moment from "moment";
 import {Contact} from "@app/social/contact.model";
+import {SocialService} from "@app/social/social.service";
 
 @Component({
     selector: 'app-social-polaroid',
@@ -23,7 +24,7 @@ export class SocialPolaroidComponent {
     rotateLeft: boolean;
     rotateRight: boolean;
 
-    constructor() {
+    constructor(private _socialService: SocialService) {
         if (Math.random() < 0.5) {
             this.rotateLeft = true;
         } else {
@@ -51,5 +52,9 @@ export class SocialPolaroidComponent {
     save($event) {
         this.flipped = false;
         this.onSave.emit($event);
+    }
+
+    getImageUrl() {
+        return this._socialService.getImageUrl(this.person.imageName);
     }
 }

@@ -36,4 +36,8 @@ export class SocialService {
             lastContact:  moment(contact.lastContact).format("YYYY-MM-DDT00:00:00")
         });
     }
+
+    getImageUrl(imageName) {
+        return `${environment.apiBaseUrl}image/api/retrieve/${imageName}`;
+    }
 }
