@@ -6,10 +6,10 @@ import {HealthAppComponent} from './health-app/health-app.component';
 import {HealthMenuBarForManageRecurringTasksComponent} from './health-menu-bar-for-manage-recurring-tasks/health-menu-bar-for-manage-recurring-tasks.component';
 import {HealthManageRecurringTasksComponent} from './health-manage-recurring-tasks/health-manage-recurring-tasks.component';
 import {HealthRecurringTaskDetailsComponent} from './health-recurring-task-details/health-recurring-task-details.component';
-import {HealthSportySpiesComponent} from './health-sporty-spies/health-sporty-spies.component';
+import {HealthSportySpiceComponent} from './health-sporty-spice/health-sporty-spice.component';
 import {HealthBalloonComponent} from './health-balloon/health-balloon.component';
 import {HealthAddExecutionComponent} from './health-add-execution/health-add-execution.component';
-import {HealthMenuBarForSportySpiesComponent} from './health-menu-bar-for-sporty-spies/health-menu-bar-for-sporty-spies.component';
+import {HealthMenuBarForSportySpiceComponent} from './health-menu-bar-for-sporty-spice/health-menu-bar-for-sporty-spice.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatMomentDateModule} from "@angular/material-moment-adapter";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -31,10 +31,10 @@ import {MatButtonModule} from "@angular/material/button";
         HealthMenuBarForManageRecurringTasksComponent,
         HealthManageRecurringTasksComponent,
         HealthRecurringTaskDetailsComponent,
-        HealthSportySpiesComponent,
+        HealthSportySpiceComponent,
         HealthBalloonComponent,
         HealthAddExecutionComponent,
-        HealthMenuBarForSportySpiesComponent],
+        HealthMenuBarForSportySpiceComponent],
     imports: [
         CommonModule,
         HealthRoutingModule,
