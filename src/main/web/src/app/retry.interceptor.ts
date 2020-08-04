@@ -3,6 +3,7 @@ import {Observable, of, throwError} from "rxjs";
 import {HttpInterceptor} from "@angular/common/http";
 import {ErrorService} from "@app/error/error.service";
 import {Injectable} from "@angular/core";
+import {UserService} from "@app/user/user.service";
 
 @Injectable()
 export class RetryInterceptor implements HttpInterceptor {
@@ -10,7 +11,7 @@ export class RetryInterceptor implements HttpInterceptor {
     static DEFAULT_MAX_ATTEMPTS = 10;
     static DEFAULT_BACKOFF = 10000;
 
-    constructor(private _errorService: ErrorService) {
+    constructor(private _errorService: ErrorService, private _userService: UserService) {
     }
 
     intercept(req, next) {
@@ -25,21 +26,32 @@ export class RetryInterceptor implements HttpInterceptor {
             src.pipe(
                 retryWhen((errors: Observable<any>) => errors.pipe(
                     mergeMap(error => {
-                        if (error.status == 401 || error.status == 403) {
-                            remainingAttempts = 0; // give up immediately when we're getting an "unauthorized" or a "not allowed"
-                            console.log("Unauthorized");
-                        } else {
-                            remainingAttempts--;
+                        // first, check if the user token is still valid
+                        this._userService.checkTokenValidity();
+                        if (!this._userService.isLoggedIn()) {
+                            return this.logAndThrowError("User token was expired.", error);
                         }
 
+                        // something went wrong, let's retry
+                        remainingAttempts--;
                         if (remainingAttempts > 0) {
-                            console.log("Retrying failed HTTP call, remaining attempts " + remainingAttempts);
+                            this._errorService.notify(new Error(`Retrying failed HTTP call, ${remainingAttempts} remaining attempts.`));
                             const backoffTime = delayInMilliseconds + (maxAttempts - remainingAttempts) * backoffInMilliseconds;
                             return of(error).pipe(delay(backoffTime));
                         }
-                        return throwError(`Giving up after ${maxAttempts} attempts due to error ${error}`);
+
+                        // we've tried enough times, let's give up
+                        return this.logAndThrowError(`Giving up after ${maxAttempts} attempts due to error ${error}`, error);
                     })
                 ))
             );
     }
+
+    logAndThrowError(message: string, stack: Error) {
+        let error = new Error(message);
+        this._errorService.notify(error);
+        console.error(message, stack);
+        return throwError(error);
+    }
+
 }
