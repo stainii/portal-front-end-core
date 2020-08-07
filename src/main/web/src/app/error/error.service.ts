@@ -12,6 +12,7 @@ export class ErrorService {
     }
 
     public notify(error: Error) {
+        console.error(error);
         this.errors$.next(error);
     }
 }

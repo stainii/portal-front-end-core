@@ -1,0 +1,7 @@
+<div class="health-sporty-spice" *ngIf="report">
+    <img [src]="'assets/health/sporty-spice/' + report.status + '.png'" />
+    <app-health-balloon>
+        <p *ngIf="report.status == 'bodybuilder'">Sporty spice!</p>
+        <p *ngFor="let task of report.lateTasks">{{task.name}}</p>
+    </app-health-balloon>
+</div>

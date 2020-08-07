@@ -4,11 +4,11 @@ import {Report} from "@app/health/report.model";
 import {HealthReportService} from "@app/health/health-report.service";
 
 @Component({
-  selector: 'app-health-sporty-spies',
-  templateUrl: './health-sporty-spies.component.html',
-  styleUrls: ['./health-sporty-spies.component.scss']
+  selector: 'app-health-sporty-spice',
+  templateUrl: './health-sporty-spice.component.html',
+  styleUrls: ['./health-sporty-spice.component.scss']
 })
-export class HealthSportySpiesComponent implements OnInit, OnChanges {
+export class HealthSportySpiceComponent implements OnInit, OnChanges {
 
     @Input()
     recurringTasks: RecurringTask[];

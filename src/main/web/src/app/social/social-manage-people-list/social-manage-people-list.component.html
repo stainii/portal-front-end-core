@@ -1,0 +1,6 @@
+<div class="list">
+    <app-social-person-settings *ngFor="let person of people"
+                               [person]="person"
+                               (click)="clicked(person, $event)">
+    </app-social-person-settings>
+</div>

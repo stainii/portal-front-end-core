@@ -1,0 +1,10 @@
+<div class="container">
+    <app-social-manage-people-list
+        [people]="people"
+        (onClick)="edit($event)"
+    ></app-social-manage-people-list>
+</div>
+<button id="add"
+        mat-fab
+        (click)="create()">+
+</button>
