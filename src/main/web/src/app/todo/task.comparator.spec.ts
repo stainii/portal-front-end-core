@@ -134,16 +134,65 @@ describe('taskComparator', () => {
         expect(sortedTasks).toEqual([task1, task2]);
     });
 
-    it('should take iput a task with a due date in the future still before a task without a due date', () => {
+    it('should, when a task that has no due date set, of a task that has no due date set, as the creation date + 1 year and so the task without due date should come before the task with due date', () => {
         let task1 = new Task();
         task1.importance = Importance.IMPORTANT;
-        task1.dueDateTime = moment().add(150, "day").toDate();
+        task1.creationDateTime = moment().toDate();
+        task1.dueDateTime = moment().add(2, "days").toDate();
 
         let task2 = new Task();
+        task2.creationDateTime = moment().subtract(1, "year").toDate();
+        task2.importance = Importance.IMPORTANT;
+
+        let sortedTasks = [task1, task2].sort(taskComparator);
+
+        expect(sortedTasks).toEqual([task2, task1]);
+    });
+
+    it('should, when a task that has no due date set, consider the due date as the creation date + 1 year, but in this case the task without due date should still come after the task with due date', () => {
+        let task1 = new Task();
+        task1.importance = Importance.IMPORTANT;
+        task1.creationDateTime = moment().toDate();
+        task1.dueDateTime = moment().add(10, "day").toDate();
+
+        let task2 = new Task();
+        task2.creationDateTime = moment().subtract(5, "months").toDate();
         task2.importance = Importance.IMPORTANT;
 
         let sortedTasks = [task1, task2].sort(taskComparator);
 
         expect(sortedTasks).toEqual([task1, task2]);
+    });
+
+    it('should, if both tasks have the same importance and urgency, put the earliest created task first (in this case task 1)', () => {
+        let task1 = new Task();
+        task1.importance = Importance.IMPORTANT;
+        task1.creationDateTime = moment().subtract(2, "days").toDate();
+        task1.dueDateTime = moment().add(10, "day").toDate();
+
+        let task2 = new Task();
+        task2.importance = Importance.IMPORTANT;
+        task2.creationDateTime = moment().subtract(1, "day").toDate();
+        task2.dueDateTime = moment().add(10, "day").toDate();
+
+        let sortedTasks = [task1, task2].sort(taskComparator);
+
+        expect(sortedTasks).toEqual([task1, task2]);
+    });
+
+    it('should, if both tasks have the same importance and urgency, put the earliest created task first (in this case task 2)', () => {
+        let task1 = new Task();
+        task1.importance = Importance.IMPORTANT;
+        task1.creationDateTime = moment().subtract(2, "days").toDate();
+        task1.dueDateTime = moment().add(10, "day").toDate();
+
+        let task2 = new Task();
+        task2.importance = Importance.IMPORTANT;
+        task2.creationDateTime = moment().subtract(5, "days").toDate();
+        task2.dueDateTime = moment().add(10, "day").toDate();
+
+        let sortedTasks = [task1, task2].sort(taskComparator);
+
+        expect(sortedTasks).toEqual([task2, task1]);
     });
 });
