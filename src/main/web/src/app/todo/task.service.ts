@@ -7,6 +7,7 @@ import {TaskRepository} from "@app/todo/task.repository";
 import {TaskStatus} from "@app/todo/task-status.model";
 import {TaskPatchService} from "@app/todo/task-patch.service";
 import {Guid} from "guid-typescript";
+import {TaskPatch} from "@app/todo/task-patch.model";
 
 @Injectable({
     providedIn: 'root'
@@ -58,5 +59,8 @@ export class TaskService {
         return this._taskRepository.patch(originalTask, patch);
     }
 
+    undo(taskPatch: TaskPatch) {
+        return this._taskRepository.undo(taskPatch);
+    }
 
 }

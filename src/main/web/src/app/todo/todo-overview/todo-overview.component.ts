@@ -63,6 +63,7 @@ export class TodoOverviewComponent implements OnInit {
 
     private watchTasks() {
         let sortedTasks = this._allTasks
+            .filter(task => task.status != "COMPLETED")
             .filter(task => !this.context || this.context == 'all' || task.context == this.context)
             .sort(taskComparator);
 
