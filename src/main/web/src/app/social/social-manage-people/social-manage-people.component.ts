@@ -24,7 +24,8 @@ export class SocialManagePeopleComponent {
     create() {
         this._showDialog({
             id: null,
-            imageName: null,
+            colorThumbnail: null,
+            sepiaThumbnail: null,
             lastContact: null,
             maxNumberOfDaysBetweenContacts: null,
             minNumberOfDaysBetweenContacts: null,

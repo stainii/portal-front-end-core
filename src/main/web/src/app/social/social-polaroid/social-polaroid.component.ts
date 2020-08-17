@@ -55,6 +55,7 @@ export class SocialPolaroidComponent {
     }
 
     getImageUrl() {
-        return this._socialService.getImageUrl(this.person.imageName);
+        let thumbnail = this.old ? this.person.sepiaThumbnail : this.person.colorThumbnail;
+        return this._socialService.getImageUrl(thumbnail);
     }
 }

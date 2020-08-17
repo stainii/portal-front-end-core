@@ -25,6 +25,6 @@ export class SocialPersonSettingsComponent {
     };
 
     getImageUrl() {
-        return this._socialService.getImageUrl(this.person.imageName);
+        return this._socialService.getImageUrl(this.person.colorThumbnail);
     }
 }
