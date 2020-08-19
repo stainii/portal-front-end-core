@@ -20,8 +20,8 @@ export class SocialPersonSettingsEditComponent implements OnInit {
                 @Inject(MAT_DIALOG_DATA) public data: any) {
         this.person = Object.assign({}, data.person);
 
-        if (this.person && this.person.imageName) {
-            this.image = this._socialService.getImageUrl(this.person.imageName);
+        if (this.person && this.person.colorThumbnail) {
+            this.image = this._socialService.getImageUrl(this.person.colorThumbnail);
         } else {
             this.image = "assets/social/no-photo.jpg";
         }

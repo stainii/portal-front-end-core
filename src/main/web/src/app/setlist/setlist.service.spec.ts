@@ -47,7 +47,7 @@ describe('SetlistService', () => {
         expect(report.songs).toEqual([new Song(2, "song 2", false), new Song(1, "song 1", false), new Song(3, "song 3", false)]);
     }));
 
-    it('should put songs that should be played regularly first, taking max ate in consideration if min dates are equal', inject([SetlistService], (service: SetlistService) => {
+    it('should put songs that should be played regularly first, taking max date in consideration if min dates are equal', inject([SetlistService], (service: SetlistService) => {
         const song1 = {
             id: 1,
             name: "song 1",
@@ -61,10 +61,11 @@ describe('SetlistService', () => {
             name: "song 2",
             minNumberOfDaysBetweenExecutions: 5,
             maxNumberOfDaysBetweenExecutions: 10,
-            lastExecution: moment().add(-5, "days").toISOString()
+            lastExecution: moment().add(-7, "days").toISOString()
         };
+
         const report = service.assemble([song1, song2]);
-        expect(report.songs).toEqual([new Song(2, "song 2", false), new Song(1, "song 1", true)]);
+        expect(report.songs).toEqual([new Song(2, "song 2", true), new Song(1, "song 1", true)]);
     }));
 
     it('should mark overdue tasks', inject([SetlistService], (service: SetlistService) => {

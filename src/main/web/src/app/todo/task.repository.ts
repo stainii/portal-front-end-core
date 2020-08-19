@@ -9,9 +9,9 @@ import {catchError, map, tap} from "rxjs/operators";
 import {UserService} from "@app/user/user.service";
 import {TaskPatch} from "@app/todo/task-patch.model";
 import * as moment from "moment";
-import {TaskStatus} from "@app/todo/task-status.model";
 import {TaskPatchService} from "@app/todo/task-patch.service";
 import {ErrorService} from "@app/error/error.service";
+import {TaskPatchResult} from "@app/todo/task-patch-result.model";
 
 /**
  * This repository is the single source of truth regarding the current state of tasks and their patches.
@@ -80,7 +80,7 @@ export class TaskRepository {
         this._publishTasksOfLocalStorage();
 
         // then, send patch to server
-        return this._http.patch<Task>(environment.apiBaseUrl + "todo/api/task/" + task.id, patch)
+        return this._http.patch<TaskPatchResult>(environment.apiBaseUrl + "todo/api/task/" + task.id, patch)
             .pipe(catchError(error => {
                 // if we get an error that is not handled by the offline interceptor, revert changes in local history
                 task.rollback(patch);
@@ -88,6 +88,10 @@ export class TaskRepository {
                 this._publishTasksOfLocalStorage();
                 throw error;
             }));
+    }
+
+    undo(taskPatch: TaskPatch) {
+        return this._http.delete<TaskPatch>(environment.apiBaseUrl + "todo/api/task/patch/" + taskPatch.id);
     }
 
     private _setup() {
@@ -209,8 +213,6 @@ export class TaskRepository {
         } else {
             tasks[index] = updatedOrNewTask;
         }
-
-        tasks = tasks.filter(task => task.status != TaskStatus.COMPLETED);
 
         this._storeTasksInLocalStorage(tasks);
     }

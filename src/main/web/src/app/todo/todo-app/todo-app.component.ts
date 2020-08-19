@@ -9,6 +9,7 @@ import {TaskTemplateEntry} from "@app/todo/task-template-entry.model";
 import {TodoTaskTemplateEntryDetailsComponent} from "@app/todo/todo-task-template-entry-details/todo-task-template-entry-details.component";
 import {DialogResultNextAction} from "@app/todo/dialog-result.model";
 import {ErrorService} from "@app/error/error.service";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
     selector: 'app-todo-app',
@@ -22,14 +23,21 @@ export class TodoAppComponent {
     constructor(private _taskService: TaskService,
                 private _route: ActivatedRoute,
                 public dialog: MatDialog,
-                private _errorService: ErrorService) {
+                private _errorService: ErrorService,
+                private _snackBar: MatSnackBar) {
         this.tasks$ = this._taskService.watchTasks();
     }
 
     complete(task: Task) {
         this._taskService.complete(task).subscribe(
-            nothing => console.log("Task " + task.id + " completed!"),
-            error => this._errorService.notify(error));
+            taskPatchResult => {
+                this._snackBar.open("Task completed", "Undo", {
+                    duration: 5000,
+                }).onAction()
+                    .subscribe(() => this._taskService.undo(taskPatchResult.taskPatch)
+                        .subscribe(() => console.info("Task patch reverted")));
+                console.log("Task " + task.id + " completed!");
+            }, error => this._errorService.notify(error));
     }
 
     showDetails(task: Task) {
@@ -44,8 +52,14 @@ export class TodoAppComponent {
                 .subscribe(result => {
                     if (result.nextAction == DialogResultNextAction.SAVE_TASK) {
                         this._taskService.update(result.data, task)
-                            .subscribe(result => {},
-                            error => this._errorService.notify(error));
+                            .subscribe(taskPatchResult => {
+                                this._snackBar.open("Task updated", "Undo", {
+                                    duration: 5000,
+                                }).onAction()
+                                    .subscribe(() => this._taskService.undo(taskPatchResult.taskPatch)
+                                        .subscribe(() => console.info("Task patch reverted")));
+                                console.log("Task updated", result);
+                            }, error => this._errorService.notify(error));
                     }
                 });
         }, 1);
@@ -64,8 +78,14 @@ export class TodoAppComponent {
                     if (result.nextAction == DialogResultNextAction.SAVE_TASK) {
                         this._taskService.create(result.data)
                             .subscribe(
-                                task => console.log("Task created!"),
-                                error => this._errorService.notify(error));
+                                task => {
+                                    this._snackBar.open("Task created", "Undo", {
+                                        duration: 5000,
+                                    }).onAction()
+                                        .subscribe(() => this._taskService.undo(task.history[0])
+                                            .subscribe(() => console.info("Task patch reverted")));
+                                    console.log("Task created", task)
+                                }, error => this._errorService.notify(error));
                     } else if (result.nextAction == DialogResultNextAction.USE_A_TASK_TEMPLATE) {
                         this.createTaskWithTaskTemplate();
                     }

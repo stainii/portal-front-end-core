@@ -4,7 +4,8 @@ export interface Person {
 
     id: number;
     name: string;
-    imageName: string;
+    colorThumbnail: string;
+    sepiaThumbnail: string;
     newImageContent: string | ArrayBuffer;
     minNumberOfDaysBetweenContacts: number;
     maxNumberOfDaysBetweenContacts: number;
