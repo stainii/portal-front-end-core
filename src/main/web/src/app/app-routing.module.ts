@@ -34,7 +34,7 @@ const routes: Routes = [
         canActivate: [AuthenticationGuardService, AuthorisationGuardService]
     }, {
         path: "**",
-        redirectTo: "notifications",
+        redirectTo: 'todo',
         canActivate: [AuthenticationGuardService, AuthorisationGuardService]
     }
 ];
