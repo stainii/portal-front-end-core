@@ -33,6 +33,7 @@ import {TodoSubscriptionDetailsComponent} from './todo-subscription-details/todo
 import {TodoSubscriptionEditorComponent} from './todo-subscription-editor/todo-subscription-editor.component';
 import {TodoSubscriptionListComponent} from './todo-subscription-list/todo-subscription-list.component';
 import {TodoMenuBarForSubscriptionsComponent} from './todo-menu-bar-for-subscriptions/todo-menu-bar-for-subscriptions.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 @NgModule({
     declarations: [
@@ -70,6 +71,7 @@ import {TodoMenuBarForSubscriptionsComponent} from './todo-menu-bar-for-subscrip
         MatTabsModule,
         MatListModule,
         MatTooltipModule,
+        MatAutocompleteModule,
         HammerModule
     ],
     entryComponents: [

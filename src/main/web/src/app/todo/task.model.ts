@@ -105,4 +105,5 @@ export class Task {
     isActive() {
         return !this.startDateTime || moment(this.startDateTime).isBefore(moment().add(1, "day").startOf("day"));
     }
+
 }

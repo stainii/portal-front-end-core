@@ -18,7 +18,16 @@
         <mat-step [completed]="task.context!! && task.context != DEFAULT_TASK_CONTEXT">
             <ng-template matStepLabel>What is the context?</ng-template>
             <mat-form-field>
-                <input matInput [(ngModel)]="task.context">
+                <input type="text"
+                       aria-label="Number"
+                       matInput
+                       [(ngModel)]="task.context"
+                       [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let context of contexts$ | async" [value]="context">
+                        {{context}}
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
         </mat-step>
         <mat-step [completed]="task.importance!!">
