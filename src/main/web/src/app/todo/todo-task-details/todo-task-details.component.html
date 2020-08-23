@@ -44,7 +44,7 @@
         </mat-step>
         <mat-step [completed]="task.dueDateTime!!">
             <ng-template matStepLabel>When should it be finished?</ng-template>
-            <mat-form-field>
+            <mat-form-field class="dateTime">
                 <input matInput
                        [matDatepicker]="dueDatePicker"
                        placeholder="Choose a date"
