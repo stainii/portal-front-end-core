@@ -55,7 +55,7 @@
         </mat-step>
         <mat-step [completed]="task.startDateTime!!">
             <ng-template matStepLabel>When can we start?</ng-template>
-            <mat-form-field>
+            <mat-form-field class="dateTime">
                 <input matInput
                        [matDatepicker]="startDatePicker"
                        placeholder="Choose a date"
@@ -75,7 +75,7 @@
             [completed]="task.description!!">
             <ng-template matStepLabel>Extra information?</ng-template>
             <mat-form-field>
-                <textarea matInput placeholder="What needs to be done, in detail?"
+                <textarea class="description" matInput placeholder="What needs to be done, in detail?"
                           [(ngModel)]="task.description"></textarea>
             </mat-form-field>
         </mat-step>
