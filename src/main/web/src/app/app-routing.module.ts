@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthenticationGuardService} from "@app/user/authentication-guard.service";
 import {LoginComponent} from "@app/user/login/login.component";
 import {AuthorisationGuardService} from "@app/user/authorisation-guard.service";
+import {DefaultRouteGuardService} from "@app/default-route-guard.service";
 
 const routes: Routes = [
     {
@@ -34,8 +35,8 @@ const routes: Routes = [
         canActivate: [AuthenticationGuardService, AuthorisationGuardService]
     }, {
         path: "**",
-        redirectTo: 'todo',
-        canActivate: [AuthenticationGuardService, AuthorisationGuardService]
+        component: LoginComponent,
+        canActivate: [AuthenticationGuardService, AuthorisationGuardService, DefaultRouteGuardService]
     }
 ];
 
