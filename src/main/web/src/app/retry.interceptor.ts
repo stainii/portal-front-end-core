@@ -1,6 +1,6 @@
 import {delay, mergeMap, retryWhen} from "rxjs/operators";
 import {Observable, of, throwError} from "rxjs";
-import {HttpInterceptor} from "@angular/common/http";
+import {HttpErrorResponse, HttpInterceptor} from "@angular/common/http";
 import {ErrorService} from "@app/error/error.service";
 import {Injectable} from "@angular/core";
 import {UserService} from "@app/user/user.service";
@@ -25,7 +25,7 @@ export class RetryInterceptor implements HttpInterceptor {
         return (src: Observable<any>) =>
             src.pipe(
                 retryWhen((errors: Observable<any>) => errors.pipe(
-                    mergeMap(error => {
+                    mergeMap((error: HttpErrorResponse) => {
                         // first, check if the user token is still valid
                         this._userService.checkTokenValidity();
                         if (!this._userService.isLoggedIn()) {
@@ -41,7 +41,7 @@ export class RetryInterceptor implements HttpInterceptor {
                         }
 
                         // we've tried enough times, let's give up
-                        return this.logAndThrowError(`Giving up after ${maxAttempts} attempts due to error ${error}`, error);
+                        return this.logAndThrowError(`Giving up after ${maxAttempts} attempts due to error ${error.message}`, error);
                     })
                 ))
             );

@@ -34,6 +34,10 @@ const routes: Routes = [
         loadChildren: () => import('./social/social.module').then(m => m.SocialModule),
         canActivate: [AuthenticationGuardService, AuthorisationGuardService]
     }, {
+        path: 'activity',
+        loadChildren: () => import('./activity/activity.module').then(m => m.ActivityModule),
+        canActivate: [AuthenticationGuardService, AuthorisationGuardService]
+    }, {
         path: "**",
         component: LoginComponent,
         canActivate: [AuthenticationGuardService, AuthorisationGuardService, DefaultRouteGuardService]

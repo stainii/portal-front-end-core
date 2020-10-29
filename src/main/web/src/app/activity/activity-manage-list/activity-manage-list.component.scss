@@ -1,0 +1,32 @@
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+
+td, th {
+    width: 25%;
+}
+
+.list {
+    margin: 15px;
+}
+
+mat-icon {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+.create {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+}

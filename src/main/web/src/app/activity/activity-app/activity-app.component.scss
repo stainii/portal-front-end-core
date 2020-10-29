@@ -1,0 +1,36 @@
+@import "../../../styles";
+
+h1 {
+    margin: 10px;
+    font-size: 14pt;
+    color: white;
+}
+
+.flex-grid {
+    display: flex;
+}
+
+.col {
+    flex: 1;
+}
+
+.cards {
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+app-activity-location {
+    margin-right: 15px;
+}
+
+app-activity-search-results {
+    width: 100%;
+    max-width: 600px;
+}
+
+@media all and (max-width: 600px) {
+    .flex-grid {
+        display: block;
+    }
+}

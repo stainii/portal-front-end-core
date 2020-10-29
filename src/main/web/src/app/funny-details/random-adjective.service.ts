@@ -71,7 +71,6 @@ export class RandomAdjectiveService {
         "impartial",
         "smoggy",
         "animated",
-        "second",
         "nutritious",
         "somber",
         "marked",
