@@ -95,8 +95,8 @@ describe('taskComparator', () => {
         task1.dueDateTime = moment().subtract(5, "day").toDate();
 
         let task2 = new Task();
-        task2.importance = Importance.VERY_IMPORTANT;
-        task2.dueDateTime = moment().add(2, "day").toDate();
+        task2.importance = Importance.IMPORTANT;
+        task2.dueDateTime = moment().add(5, "day").toDate();
 
         let sortedTasks = [task1, task2].sort(taskComparator);
 
@@ -134,36 +134,6 @@ describe('taskComparator', () => {
         expect(sortedTasks).toEqual([task1, task2]);
     });
 
-    it('should, when a task that has no due date set, of a task that has no due date set, as the creation date + 1 year and so the task without due date should come before the task with due date', () => {
-        let task1 = new Task();
-        task1.importance = Importance.IMPORTANT;
-        task1.creationDateTime = moment().toDate();
-        task1.dueDateTime = moment().add(2, "days").toDate();
-
-        let task2 = new Task();
-        task2.creationDateTime = moment().subtract(1, "year").toDate();
-        task2.importance = Importance.IMPORTANT;
-
-        let sortedTasks = [task1, task2].sort(taskComparator);
-
-        expect(sortedTasks).toEqual([task2, task1]);
-    });
-
-    it('should, when a task that has no due date set, consider the due date as the creation date + 1 year, but in this case the task without due date should still come after the task with due date', () => {
-        let task1 = new Task();
-        task1.importance = Importance.IMPORTANT;
-        task1.creationDateTime = moment().toDate();
-        task1.dueDateTime = moment().add(10, "day").toDate();
-
-        let task2 = new Task();
-        task2.creationDateTime = moment().subtract(5, "months").toDate();
-        task2.importance = Importance.IMPORTANT;
-
-        let sortedTasks = [task1, task2].sort(taskComparator);
-
-        expect(sortedTasks).toEqual([task1, task2]);
-    });
-
     it('should, if both tasks have the same importance and urgency, put the earliest created task first (in this case task 1)', () => {
         let task1 = new Task();
         task1.importance = Importance.IMPORTANT;
@@ -194,5 +164,53 @@ describe('taskComparator', () => {
         let sortedTasks = [task1, task2].sort(taskComparator);
 
         expect(sortedTasks).toEqual([task2, task1]);
+    });
+
+    it('should put a not so important but urgent task before an important task that is not urgent at all', () => {
+        let task1 = new Task();
+        task1.importance = Importance.IMPORTANT;
+        task1.creationDateTime = moment().toDate();
+        task1.dueDateTime = undefined;
+
+        let task2 = new Task();
+        task2.importance = Importance.NOT_SO_IMPORTANT;
+        task2.creationDateTime = moment().toDate();
+        task2.dueDateTime = moment().add(5, "day").toDate();
+
+        let sortedTasks = [task1, task2].sort(taskComparator);
+
+        expect(sortedTasks).toEqual([task2, task1]);
+    });
+
+    it('should put a not so important task with non-urgent due date after an important task without end date', () => {
+        let task1 = new Task();
+        task1.importance = Importance.IMPORTANT;
+        task1.creationDateTime = moment().toDate();
+        task1.dueDateTime = undefined;
+
+        let task2 = new Task();
+        task2.importance = Importance.NOT_SO_IMPORTANT;
+        task2.creationDateTime = moment().toDate();
+        task2.dueDateTime = moment().add(10, "day").toDate();
+
+        let sortedTasks = [task1, task2].sort(taskComparator);
+
+        expect(sortedTasks).toEqual([task1, task2]);
+    });
+
+    it('should put an important task that should be finished tomorrow before an overdue non-important task', () => {
+        let task1 = new Task();
+        task1.importance = Importance.IMPORTANT;
+        task1.creationDateTime = moment().toDate();
+        task1.dueDateTime = moment().add(1, "day").toDate();
+
+        let task2 = new Task();
+        task2.importance = Importance.NOT_SO_IMPORTANT;
+        task2.creationDateTime = moment().toDate();
+        task2.dueDateTime = moment().subtract(1, "day").toDate();
+
+        let sortedTasks = [task1, task2].sort(taskComparator);
+
+        expect(sortedTasks).toEqual([task1, task2]);
     });
 });

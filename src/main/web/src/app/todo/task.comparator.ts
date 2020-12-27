@@ -12,42 +12,77 @@ import * as moment from "moment";
  *                  Number > 1 means that task1 is less urgent/important than task2 and should be put after task 2 in the list.
  */
 export const taskComparator = (task1: Task, task2: Task) => {
+    let pointsForUrgency = (task: Task) => {
+        if (!task.dueDateTime) {
+            return 25;
+        }
+
+        let today = moment();
+        let dueDateOfTask = moment(task.dueDateTime);
+        let numberOfDaysBetweenTasks = dueDateOfTask.diff(today.startOf("day"), "day");
+
+        if (numberOfDaysBetweenTasks < 0) { // it should have been done already!
+            return 50;
+        }
+
+        let points = 50 + (task.expectedDurationInHours ? task.expectedDurationInHours / 4 : 0) - numberOfDaysBetweenTasks;
+
+        if (points < 0) {
+            return 0;
+        }
+        if (points > 50) {
+            return 50;
+        }
+        return points;
+
+    }
+
+    let pointsForImportance = (task: Task) => {
+        switch (task.importance) {
+            case Importance.I_DO_NOT_REALLY_CARE:
+                return 0;
+            case Importance.NOT_SO_IMPORTANT:
+                return 15;
+            case null:
+                return 20;
+            case Importance.IMPORTANT:
+                return 30;
+            case Importance.VERY_IMPORTANT:
+                return 50;
+        }
+    }
+
+    let pointsForExceptions = (task: Task) => {
+        // if a task is overdue, assign more points
+        let today = moment();
+        if (task.dueDateTime && moment(task.dueDateTime).isBefore(today)) {
+            switch (task.importance) {
+                case Importance.I_DO_NOT_REALLY_CARE:
+                    return 5;
+                case Importance.NOT_SO_IMPORTANT:
+                    return 10;
+                case null:
+                    return 25;
+                case Importance.IMPORTANT:
+                    return 25;
+                case Importance.VERY_IMPORTANT:
+                    return 30;
+            }
+        }
+
+        return 0;
+    }
+
     let calculatePointsForTask = (task: Task): number => {
         let points = 0;
-
-        // add more points to more urgent tasks
-        let today = moment();
-
-        let dueDateOfTask;
-        if (task.dueDateTime) {
-            dueDateOfTask = moment(task.dueDateTime);
-        } else {
-            dueDateOfTask = moment(task.creationDateTime).add(1, "year");
-        }
-
-        let numberOfDaysBetweenTasks = dueDateOfTask.diff(today.startOf("day"), "day");
-        if (numberOfDaysBetweenTasks < 0) {
-            points += 100;
-        } else {
-            let extraPoints = 40 + (task.expectedDurationInHours ? task.expectedDurationInHours/4 : 0) - numberOfDaysBetweenTasks;
-            if (extraPoints <= 0) {
-                extraPoints = 15;
-            }
-            points += extraPoints;
-        }
-
-        // add more points to more important tasks
-        switch (task.importance) {
-            case Importance.NOT_SO_IMPORTANT: points += 10; break;
-            case null: points += 20; break;
-            case Importance.IMPORTANT: points += 30; break;
-            case Importance.VERY_IMPORTANT: points += 40; break;
-        }
+        // max 50 points from urgency, max 50 points for urgency and extra points for special cases (overdue tasks, for example)
+        points += pointsForUrgency(task);
+        points += pointsForImportance(task);
+        points += pointsForExceptions(task);
 
         return points;
     };
 
-    // and the points from the task comparator go to...
     let pointsForTask1 = calculatePointsForTask(task1);
     let pointsForTask2 = calculatePointsForTask(task2);
 
