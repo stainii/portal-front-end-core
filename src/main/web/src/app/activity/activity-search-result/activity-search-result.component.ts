@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Activity} from "@app/activity/activity.model";
+import {ActivityHelperService} from "@app/activity/activity-helper.service";
 
 @Component({
     selector: 'app-activity-search-result',
@@ -11,7 +12,7 @@ export class ActivitySearchResultComponent implements OnInit {
     @Input()
     activity: Activity;
 
-    constructor() {
+    constructor(private activityHelper: ActivityHelperService) {
     }
 
     ngOnInit(): void {
@@ -33,4 +34,13 @@ export class ActivitySearchResultComponent implements OnInit {
         }
         return "";
     }
+
+
+    getPhotoUrl(photo: string) {
+        if (photo == "assets/activity/no-photo.png") {
+            return photo;
+        }
+        return this.activityHelper.getPhotoUrl(photo);
+    }
+
 }

@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-photo-thumbnail">
                             <p>
-                                <img class="photo-thumbnail" [src]="activity.newPhotoContent ? activity.newPhotoContent : activity.photo"
+                                <img class="photo-thumbnail" [src]="activity.newPhotoContent ? activity.newPhotoContent : getPhotoUrl(activity.photo)"
                                      (click)="photo.click()">
                                 <input class="hide" type="file" #photo (change)="photoSelected($event)"/>
                             </p>
@@ -96,77 +96,77 @@
                                 <mat-label>Min temperature</mat-label>
                                 <mat-slider
                                     thumbLabel
-                                    [(ngModel)]="activity.minTemperature"
+                                    [(ngModel)]="activity.weather.minTemperature"
                                     min="-10"
                                     max="40"></mat-slider>
-                                <span>{{activity.minTemperature}} °C</span>
+                                <span>{{activity.weather.minTemperature}} °C</span>
                             </p>
                             <p>
                                 <mat-label>Max temperature</mat-label>
                                 <mat-slider
                                     thumbLabel
-                                    [(ngModel)]="activity.maxTemperature"
+                                    [(ngModel)]="activity.weather.maxTemperature"
                                     min="-10"
                                     max="40"></mat-slider>
-                                <span>{{activity.maxTemperature}} °C</span>
+                                <span>{{activity.weather.maxTemperature}} °C</span>
                             </p>
                             <p>
                                 <mat-label>Max cloudiness</mat-label>
                                 <mat-slider
                                     thumbLabel
-                                    [(ngModel)]="activity.maxCloudiness"
+                                    [(ngModel)]="activity.weather.maxCloudiness"
                                     step="10"
                                     min="0"
                                     max="100"></mat-slider>
-                                <span>{{activity.maxCloudiness}} %</span>
+                                <span>{{activity.weather.maxCloudiness}} %</span>
                             </p>
                             <p>
                                 <mat-label>Max rain</mat-label>
                                 <mat-slider
                                     thumbLabel
-                                    [(ngModel)]="activity.maxRain"
+                                    [(ngModel)]="activity.weather.maxRain"
                                     step="10"
                                     min="0"
                                     max="100"></mat-slider>
-                                <span>{{activity.maxRain}} %</span>
+                                <span>{{activity.weather.maxRain}} %</span>
                             </p>
                             <p>
                                 <mat-label>Max snow</mat-label>
                                 <mat-slider
                                     thumbLabel
-                                    [(ngModel)]="activity.maxSnow"
+                                    [(ngModel)]="activity.weather.maxSnow"
                                     step="10"
                                     min="0"
                                     max="100"></mat-slider>
-                                <span>{{activity.maxSnow}} %</span>
+                                <span>{{activity.weather.maxSnow}} %</span>
                             </p>
                             <p>
                                 <mat-label>Max fog</mat-label>
                                 <mat-slider
                                     thumbLabel
-                                    [(ngModel)]="activity.maxFog"
+                                    [(ngModel)]="activity.weather.maxFog"
                                     step="10"
                                     min="0"
                                     max="100"></mat-slider>
-                                <span>{{activity.maxFog}} %</span>
+                                <span>{{activity.weather.maxFog}} %</span>
                             </p>
                             <p>
                                 <mat-label>Min wind in beaufort</mat-label>
                                 <mat-slider
                                     thumbLabel
-                                    [(ngModel)]="activity.minWind"
+                                    [(ngModel)]="activity.weather.minWind"
                                     min="0"
                                     max="12"></mat-slider>
-                                <span>{{getBeaufortDescription(activity.minWind)}}</span>
+                                <span>{{getBeaufortDescription(activity.weather.minWind)}}</span>
                             </p>
                             <p>
                                 <mat-label>Max wind in beaufort</mat-label>
                                 <mat-slider
                                     thumbLabel
-                                    [(ngModel)]="activity.maxWind"
+                                    [(ngModel)]="activity.weather.maxWind"
                                     min="0"
                                     max="12"></mat-slider>
-                                <span>{{getBeaufortDescription(activity.maxWind)}}</span>
+                                <span>{{getBeaufortDescription(activity.weather.maxWind)}}</span>
                             </p>
                         </div>
                     </div>

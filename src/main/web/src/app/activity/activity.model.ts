@@ -1,5 +1,6 @@
 import Location from "@app/activity/location.model";
 import {DateInterval} from "@app/activity/date-interval.model";
+import {Weather} from "@app/activity/weather.model";
 
 export interface Activity {
     id: string;
@@ -9,16 +10,9 @@ export interface Activity {
     description: string;
     source: string;
     location: Location;
+    weather: Weather;
     minNumberOfParticipants: number;
     maxNumberOfParticipants: number;
-    minTemperature: number;
-    maxTemperature: number;
-    maxCloudiness: number;
-    maxRain: number;
-    maxSnow: number;
-    maxFog: number;
-    minWind: number;
-    maxWind: number;
     dateIntervals: DateInterval[];
     timeIntervals: any[];
     labels: string[];

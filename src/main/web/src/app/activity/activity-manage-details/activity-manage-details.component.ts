@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Activity} from "@app/activity/activity.model";
 import {ManageActivitiesService} from "@app/activity/manage-activities.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {ErrorService} from "@app/error/error.service";
+import {ActivityHelperService} from "@app/activity/activity-helper.service";
 
 @Component({
     selector: 'app-activity-manage-details',
@@ -15,8 +16,10 @@ export class ActivityManageDetailsComponent implements OnInit {
     activity: Activity;
     private isNew: boolean;
 
-    constructor(private route: ActivatedRoute, private manageActivitiesService: ManageActivitiesService,
-                private snackBar: MatSnackBar, private errorService: ErrorService) {
+    constructor(private route: ActivatedRoute, private router: Router,
+                private manageActivitiesService: ManageActivitiesService,
+                private snackBar: MatSnackBar, private errorService: ErrorService,
+                private activityHelper: ActivityHelperService) {
     }
 
     private readonly NO_PHOTO = "assets/activity/no-photo.png";
@@ -39,16 +42,18 @@ export class ActivityManageDetailsComponent implements OnInit {
                         latitude: undefined,
                         longitude: undefined
                     },
+                    weather: {
+                        minTemperature: undefined,
+                        maxTemperature: undefined,
+                        maxCloudiness: undefined,
+                        maxRain: undefined,
+                        maxSnow: undefined,
+                        maxFog: undefined,
+                        minWind: undefined,
+                        maxWind: undefined,
+                    },
                     maxNumberOfParticipants: undefined,
                     minNumberOfParticipants: undefined,
-                    minTemperature: undefined,
-                    maxTemperature: undefined,
-                    maxCloudiness: undefined,
-                    maxRain: undefined,
-                    maxSnow: undefined,
-                    maxFog: undefined,
-                    minWind: undefined,
-                    maxWind: undefined,
                     name: undefined,
                     photo: this.NO_PHOTO,
                     newPhotoContent: undefined,
@@ -68,6 +73,18 @@ export class ActivityManageDetailsComponent implements OnInit {
                                 country: undefined,
                                 latitude: undefined,
                                 longitude: undefined
+                            };
+                        }
+                        if (!this.activity.weather) {
+                            this.activity.weather = {
+                                minTemperature: undefined,
+                                maxTemperature: undefined,
+                                maxCloudiness: undefined,
+                                maxRain: undefined,
+                                maxSnow: undefined,
+                                maxFog: undefined,
+                                minWind: undefined,
+                                maxWind: undefined,
                             };
                         }
                         if (!this.activity.labels) {
@@ -128,7 +145,6 @@ export class ActivityManageDetailsComponent implements OnInit {
     }
 
     save() {
-        debugger;
         let subscription;
         if (this.isNew) {
             subscription = this.manageActivitiesService.create(this.activity);
@@ -136,11 +152,18 @@ export class ActivityManageDetailsComponent implements OnInit {
             subscription = this.manageActivitiesService.update(this.activity);
         }
         subscription.subscribe(result => {
-            this.snackBar.open("Activity saved!", "Let's discover!", {
+            this.snackBar.open("Activity saved!", "Have fun!", {
                 duration: 5000,
-            })
+            });
             console.log("Activity saved", result);
+            this.router.navigate(["/activity/manage"]);
         }, error => this.errorService.notify(error));
     }
 
+    getPhotoUrl(photo: string) {
+        if (photo == this.NO_PHOTO) {
+            return photo;
+        }
+        return this.activityHelper.getPhotoUrl(photo);
+    }
 }

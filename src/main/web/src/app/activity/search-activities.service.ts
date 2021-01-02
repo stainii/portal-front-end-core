@@ -4,6 +4,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {environment} from "@env/environment";
 import {Moment} from "moment";
 import {Activity} from "@app/activity/activity.model";
+import {ActivityHelperService} from "@app/activity/activity-helper.service";
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +19,7 @@ export class SearchActivitiesService {
 
     private searchResults: BehaviorSubject<Activity[]> = new BehaviorSubject([]);
 
-    constructor(private _http: HttpClient) {
+    constructor(private _http: HttpClient, private _activityHelper: ActivityHelperService) {
         this.search();
     }
 
@@ -64,9 +65,13 @@ export class SearchActivitiesService {
         return this.endDate;
     }
 
+    refresh() {
+        this.search();
+    }
+
     private search() {
         let searchParams = this.calculateSearchParams();
-        let searchParamsAsString = this.searchParamsToString(searchParams);
+        let searchParamsAsString = this._activityHelper.searchParamsToString(searchParams);
 
         return this._http.get<Activity[]>(`${environment.apiBaseUrl}activity/activities/search/${searchParamsAsString}`)
             .subscribe(results => this.searchResults.next(results));
@@ -94,19 +99,6 @@ export class SearchActivitiesService {
         }
 
         return searchParams;
-    }
-
-    private searchParamsToString(searchParams: string[]): string {
-        let searchParamsAsString = "?";
-        if (searchParams.length > 0) {
-            searchParamsAsString += searchParams[0];
-        }
-        if (searchParams.length > 1) {
-            for (let i = 1; i < searchParams.length; i++) {
-                searchParamsAsString += `&${searchParams[i]}`
-            }
-        }
-        return searchParamsAsString;
     }
 
 }

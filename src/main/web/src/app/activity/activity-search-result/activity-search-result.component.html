@@ -13,7 +13,7 @@
     </div>
     <div class="col-img">
         <img class="activity-image"
-            [src]="activity.photo"
+            [src]="getPhotoUrl(activity.photo)"
              *ngIf="activity.photo">
     </div>
 </mat-card>

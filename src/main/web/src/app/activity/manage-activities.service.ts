@@ -4,18 +4,21 @@ import {Observable} from "rxjs";
 import {environment} from "@env/environment";
 import {Activity} from "@app/activity/activity.model";
 import {Page} from "@app/activity/page.model";
+import {SearchActivitiesService} from "@app/activity/search-activities.service";
+import {tap} from "rxjs/operators";
+import {ActivityHelperService} from "@app/activity/activity-helper.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ManageActivitiesService {
 
-    constructor(private _http: HttpClient) {
+    constructor(private _http: HttpClient, private _search: SearchActivitiesService, private _activityHelper: ActivityHelperService) {
     }
 
     public find(sortField: string, order: string, page: number, pageSize: number, filter: string): Observable<Page<Activity>> {
         let searchParams = this.calculateSearchParams(sortField, order, page, pageSize, filter);
-        let searchParamsAsString = this.searchParamsToString(searchParams);
+        let searchParamsAsString = this._activityHelper.searchParamsToString(searchParams);
         return this._http.get<Page<Activity>>(`${environment.apiBaseUrl}activity/activities/${searchParamsAsString}`);
     }
 
@@ -24,15 +27,18 @@ export class ManageActivitiesService {
     }
 
     public create(activity: Activity) {
-        return this._http.post<Activity>(`${environment.apiBaseUrl}activity/activities/`, activity);
+        return this._http.post<Activity>(`${environment.apiBaseUrl}activity/activities/`, activity)
+            .pipe(tap(() => this._search.refresh()));
     }
 
     public update(activity: Activity) {
-        return this._http.put<Activity>(`${environment.apiBaseUrl}activity/activities/${activity.id}`, activity);
+        return this._http.put<Activity>(`${environment.apiBaseUrl}activity/activities/${activity.id}`, activity)
+            .pipe(tap(() => this._search.refresh()));
     }
 
     public delete(activity: Activity) {
-        return this._http.delete(`${environment.apiBaseUrl}activity/activities/${activity.id}`);
+        return this._http.delete(`${environment.apiBaseUrl}activity/activities/${activity.id}`)
+            .pipe(tap(() => this._search.refresh()));
     }
 
     private calculateSearchParams(sortField: string, order: string, page: number, pageSize: number, filter: string): string[] {
@@ -59,19 +65,6 @@ export class ManageActivitiesService {
         }
 
         return searchParams;
-    }
-
-    private searchParamsToString(searchParams: string[]): string {
-        let searchParamsAsString = "?";
-        if (searchParams.length > 0) {
-            searchParamsAsString += searchParams[0];
-        }
-        if (searchParams.length > 1) {
-            for (let i = 1; i < searchParams.length; i++) {
-                searchParamsAsString += `&${searchParams[i]}`
-            }
-        }
-        return searchParamsAsString;
     }
 
 }

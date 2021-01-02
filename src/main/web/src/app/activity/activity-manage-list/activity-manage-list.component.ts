@@ -9,6 +9,7 @@ import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {MatDialog} from "@angular/material/dialog";
 import {ActivityConfirmDeleteComponent} from "@app/activity/activity-confirm-delete/activity-confirm-delete.component";
 import {Router} from "@angular/router";
+import {MatTable} from "@angular/material/table";
 
 
 @Component({
@@ -26,6 +27,9 @@ export class ActivityManageListComponent implements AfterViewInit, OnDestroy {
 
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
+
+    @ViewChild(MatTable)
+    table: MatTable<Activity>;
 
     @ViewChild(MatSort)
     sort: MatSort;
@@ -81,7 +85,10 @@ export class ActivityManageListComponent implements AfterViewInit, OnDestroy {
         deleteDialog.afterClosed().subscribe(deleteConfirmed => {
             if (deleteConfirmed) {
                 this.manageActivitiesService.delete(activity)
-                    .subscribe(() => console.log("Deleted"));
+                    .subscribe(() => {
+                        this.data.splice(this.data.indexOf(activity), 1);
+                        this.table.renderRows()
+                    });
             }
         });
     }
