@@ -27,7 +27,8 @@ export class TodoMenuBarForOverviewComponent implements OnInit {
             .pipe(
                 map(tasks => tasks.filter(task => task.isActive())),
                 map(tasks => tasks.map(task => task.context)),
-                map(contexts => Array.from(new Set(contexts)))
+                map(contexts => Array.from(new Set(contexts))),
+                map(contexts => contexts.sort())
             );
 
         this._route

@@ -1,0 +1,15 @@
+<app-activity-labels></app-activity-labels>
+
+<div class="cards">
+    <div class="flex-grid">
+        <app-activity-location class="card col"></app-activity-location>
+        <app-activity-date class="card col"></app-activity-date>
+    </div>
+
+    <div class="flex-grid">
+        <app-activity-search-results [activities]="activities$ | async"
+                                     class="col">
+        </app-activity-search-results>
+    </div>
+
+</div>

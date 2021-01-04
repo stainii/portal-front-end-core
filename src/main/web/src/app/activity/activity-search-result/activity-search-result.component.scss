@@ -1,0 +1,45 @@
+@import "../../../styles";
+
+.card {
+    margin-top: 17px;
+    margin-bottom: 17px;
+    display: flex;
+}
+
+.img {
+    border-radius: 500px;
+}
+
+.label {
+    font-variant-caps: all-small-caps;
+    color: grey;
+    margin-right: 5px;
+}
+mat-card-footer {
+    margin: 0;
+}
+
+// ugly hack to get rid of left margin in title
+:host ::ng-deep .mat-card-header-text {
+    margin-left: 0;
+}
+
+.col-text {
+    flex: 2 1 auto;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+mat-card-content {
+    flex-grow: 1;
+}
+
+.col-img {
+    flex-grow: 0;
+
+    img {
+        max-width: 100%;
+        max-height: 200px;
+        border-radius: 5px;
+    }
+}

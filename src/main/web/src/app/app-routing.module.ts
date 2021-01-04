@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {AuthenticationGuardService} from "@app/user/authentication-guard.service";
 import {LoginComponent} from "@app/user/login/login.component";
 import {AuthorisationGuardService} from "@app/user/authorisation-guard.service";
+import {DefaultRouteGuardService} from "@app/default-route-guard.service";
 
 const routes: Routes = [
     {
@@ -33,9 +34,13 @@ const routes: Routes = [
         loadChildren: () => import('./social/social.module').then(m => m.SocialModule),
         canActivate: [AuthenticationGuardService, AuthorisationGuardService]
     }, {
-        path: "**",
-        redirectTo: "notifications",
+        path: 'activity',
+        loadChildren: () => import('./activity/activity.module').then(m => m.ActivityModule),
         canActivate: [AuthenticationGuardService, AuthorisationGuardService]
+    }, {
+        path: "**",
+        component: LoginComponent,
+        canActivate: [AuthenticationGuardService, AuthorisationGuardService, DefaultRouteGuardService]
     }
 ];
 
