@@ -14,7 +14,12 @@ import * as moment from "moment";
 export const taskComparator = (task1: Task, task2: Task) => {
     let pointsForUrgency = (task: Task) => {
         if (!task.dueDateTime) {
-            return 25;
+            // non-important tasks without an end date can be done anytime. Important tasks though, are assumed to be urgent enough to be done within the month
+            if (task.importance == Importance.IMPORTANT || task.importance == Importance.VERY_IMPORTANT) {
+                return 20;
+            } else {
+                return 0;
+            }
         }
 
         let today = moment();
