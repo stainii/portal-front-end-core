@@ -161,8 +161,8 @@ export class ActivityManageDetailsComponent implements OnInit {
     }
 
     getPhotoUrl(photo: string) {
-        if (photo == this.NO_PHOTO) {
-            return photo;
+        if (!photo) {
+            return this.NO_PHOTO;
         }
         return this.activityHelper.getPhotoUrl(photo);
     }

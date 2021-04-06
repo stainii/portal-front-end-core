@@ -37,8 +37,8 @@ export class ActivitySearchResultComponent implements OnInit {
 
 
     getPhotoUrl(photo: string) {
-        if (photo == "assets/activity/no-photo.png") {
-            return photo;
+        if (!photo) {
+            return "assets/activity/no-photo.png";
         }
         return this.activityHelper.getPhotoUrl(photo);
     }
