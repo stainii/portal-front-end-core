@@ -39,7 +39,7 @@
         <div class="tasks-section-content" [class.disabled]="!futureTasksVisible">
             <span *ngFor="let task of futureTasks; let i = index">
                 <app-todo-task-panel
-                    *ngIf="i <= 5 || lessImportantTasksVisible"
+                    *ngIf="i <= 5 || futureTasksVisible"
                     [task]="task"
                     (onEdit)="edit($event)"
                     (onComplete)="complete($event)">
